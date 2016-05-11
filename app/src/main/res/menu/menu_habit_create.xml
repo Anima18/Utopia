@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".module.role.activity.RoleCreateActivity">
+
+    <item
+        android:id="@+id/hcAct_action_save"
+        android:title="保存"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_check"
+        app:showAsAction="ifRoom|withText" />
+</menu>

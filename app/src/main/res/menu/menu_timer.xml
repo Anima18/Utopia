@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".module.role.activity.RoleCreateActivity">
+
+    <item
+        android:id="@+id/timerAct_action_select"
+        android:title="选择"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_grid"
+        app:showAsAction="ifRoom|withText" />
+</menu>

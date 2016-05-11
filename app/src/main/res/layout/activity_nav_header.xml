@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/mainAct_nav_height"
+    android:background="?attr/colorPrimary"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <RelativeLayout
+        android:id="@+id/navHeader_user_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/navHeader_userName_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/primary_text_white_color"
+            android:text="Jian JianHong"/>
+
+        <TextView
+            android:id="@+id/navHeader_email_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navHeader_userName_tv"
+            android:textSize="14sp"
+            android:textColor="@color/primary_text_white_color"
+            android:text="java18.jane@gmail.com"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="15dp"
+            android:src="@drawable/ic_down"/>
+    </RelativeLayout>
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/navHeader_user_im"
+        android:layout_width="@dimen/mainAct_nav_avatar_height"
+        android:layout_height="@dimen/mainAct_nav_avatar_height"
+        android:layout_above="@id/navHeader_user_layout"
+        android:src="@drawable/chris"/>
+
+
+</RelativeLayout>

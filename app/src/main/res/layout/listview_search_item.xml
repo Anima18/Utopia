@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/searchList_layout"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:background="@drawable/selectable_item_background"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/searchList_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/secondary_text_dark_color"
+        android:layout_alignParentRight="true"
+        android:text="2016/02/26"
+        />
+
+    <TextView
+        android:id="@+id/searchList_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/primary_text_dark_color"
+        android:textSize="16sp"
+        android:singleLine="true"
+        android:text="11111111111111111111111111"/>
+
+
+    <TextView
+        android:id="@+id/searchList_quadrant_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchList_title_tv"
+        android:textSize="14sp"
+        android:textColor="@color/secondary_text_dark_color"
+        android:paddingTop="3dp"
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/searchList_desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchList_title_tv"
+        android:layout_toRightOf="@id/searchList_quadrant_tv"
+        android:textSize="14sp"
+        android:textColor="@color/secondary_text_dark_color"
+        android:paddingTop="3dp"
+        android:singleLine="true"/>
+
+</RelativeLayout>

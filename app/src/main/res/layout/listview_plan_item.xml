@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="@color/cardView_background">
+
+    <!-- Main Content View -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/planFrg_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/primary_text_dark_color"
+            android:paddingTop="24dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Welcome Back!"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            android:textSize="14sp"
+            android:textColor="@color/secondary_text_dark_color"
+            android:text="2016/02/15 16:19:20, 重要而不紧迫"/>
+
+        <TextView
+            android:id="@+id/planFrg_summary_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="24dp"
+            android:text="奔跑，为了希望，为了生命，为了自由，为了去感受！也为了减肥"
+            android:textSize="14sp"
+            android:textColor="@color/secondary_text_dark_color" />
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="8dp">
+            <com.gc.materialdesign.views.ButtonFlat
+                android:id="@+id/buttonflat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:text="Button" />
+
+            <com.gc.materialdesign.views.ButtonFlat
+                android:id="@+id/buttonflat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:text="Button2" />
+        </LinearLayout>-->
+    </LinearLayout>
+</android.support.v7.widget.CardView>

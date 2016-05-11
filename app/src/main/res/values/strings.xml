@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Utopia</string>
+
+    <!-- menu string -->
+    <string name="mainAct_action_logout">登出</string>
+    <string name="mainAct_action_search">查询</string>
+    <string name="mainAct_action_message">消息</string>
+    <string name="loginAct_action_settings">設置</string>
+
+    <!-- NavigationView item list -->
+    <string name="nav_home">首頁</string>
+    <string name="nav_stockTake">盤點</string>
+    <string name="nav_transfer">轉貨</string>
+    <string name="nav_productInfo">產品信息</string>
+    <string name="nav_setting">設置</string>
+
+    <!-- dialog -->
+    <string name="dialog_title">提示</string>
+    <string name="dialog_button_positive">確認</string>
+    <string name="dialog_button_negative">取消</string>
+
+    <!-- network message -->
+    <string name="network_connection_fail">連接網絡失敗，請稍後再試!</string>
+
+
+</resources>

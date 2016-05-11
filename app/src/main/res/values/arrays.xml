@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settingAct_locale">
+        <item>繁体中文</item>
+        <item>简体中文 </item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="thing_quadrant">
+        <item>重要紧迫</item>
+        <item>重要不紧迫 </item>
+        <item>不重要紧迫</item>
+        <item>不重要不紧迫</item>
+    </string-array>
+
+    <string-array name="thing_type">
+        <item>每天</item>
+        <item>每周</item>
+    </string-array>
+
+    <string-array name="thing_what_day">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+
+    <string-array name="today_task_thing_action">
+        <item>标记完成</item>
+        <item>推迟执行</item>
+        <item>忽略事件</item>
+        <item>删除事件</item>
+    </string-array>
+
+    <string-array name="today_task_thing_done_action">
+        <item>删除事件</item>
+    </string-array>
+
+    <string-array name="today_task_thing_ignore_action">
+        <item>标记完成</item>
+        <item>推迟执行</item>
+        <item>删除事件</item>
+    </string-array>
+
+    <string-array name="message_action">
+        <item>标记完成</item>
+        <item>忽略事件</item>
+    </string-array>
+
+    <string-array name="today_task_habit_action">
+        <item>标记完成</item>
+        <item>忽略习惯</item>
+    </string-array>
+
+    <string-array name="habit_pause_action">
+        <item>暂停习惯</item>
+        <item>删除习惯</item>
+    </string-array>
+
+    <string-array name="habit_continue_action">
+        <item>继续习惯</item>
+        <item>删除习惯</item>
+    </string-array>
+
+    <array name="idea_background_custom_colors">
+        <item>#FAFAFA</item>
+        <item>#F8E9C8</item>
+        <item>#DFF4BB</item>
+        <item>#CCFCEC</item>
+        <item>#C6EBFB</item>
+        <item>#FCDFDB</item>
+        <item>#FBF6BF</item>
+    </array>
+</resources>

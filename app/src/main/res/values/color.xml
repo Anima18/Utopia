@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="accent">#FF80AB</color>
+    <color name="tab_text_inactive">#DDDDDD</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="cardView_background">#FFFFFF</color>
+
+    <color name="backgroundColor">#EEEEEE</color>
+    <color name="backgroundColorPress">#DDDDDD</color>
+    <color name="dividing_line_color">#DDDDDD</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- text color -->
+    <color name="primary_text_dark_color">#212121</color>
+    <color name="secondary_text_dark_color">#727272</color>
+    <color name="disabled_text_dark_color">#B8B8B8</color>
+    <color name="divider_text_dark_color">#DADADA</color>
+    <color name="primary_text_white_color">#FFFFFF</color>
+    <color name="secondary_text_white_color">#FDFDFD</color>
+    <color name="disabled_text_white_color">#FBFBFB</color>
+    <color name="divider_text_white_color">#F9F9F9</color>
+
+    <!-- idea create default color -->
+    <color name="idea_create_default_color">#FAFAFA</color>
+
+    <!-- today task status background -->
+    <color name="today_task_done">#C6EBFB</color>
+    <color name="today_task_ignore">#EEEEEE</color>
+    <color name="today_task_delay">#FCDFDB</color>
+</resources>

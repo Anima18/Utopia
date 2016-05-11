@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/selectable_item_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/roleLv_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Text_Subhead"
+        android:text="Welcome Back!"/>
+
+    <TextView
+        android:id="@+id/roleLv_desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Text_Body"
+        android:singleLine="true"
+        android:textColor="@color/secondary_text_dark_color"
+        android:text="奔跑，为了希望，为了生命，为了自由，为了去感受！"/>
+
+</LinearLayout>

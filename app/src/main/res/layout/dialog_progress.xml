@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.gc.materialdesign.views.Slider
+        android:id="@+id/dialog_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1E88E5"
+        materialdesign:max="100"
+        materialdesign:min="0"
+        materialdesign:showNumberIndicator="true"/>
+
+</LinearLayout>

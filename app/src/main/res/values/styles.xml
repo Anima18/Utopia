@@ -1,0 +1,123 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+
+    </style>
+
+
+    <!--<style name="Custom_Progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>-->
+
+    <!-- text display4 style -->
+    <style name="Text_Display4" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">112sp</item>
+        <item name="android:textColor">@color/secondary_text_dark_color</item>
+    </style>
+
+    <!-- text display3 style -->
+    <style name="Text_Display3" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">56sp</item>
+        <item name="android:textColor">@color/secondary_text_dark_color</item>
+    </style>
+
+    <!-- text display2 style -->
+    <style name="Text_Display2" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">@color/secondary_text_dark_color</item>
+    </style>
+
+    <!-- text display4 style -->
+    <style name="Text_Display1" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/secondary_text_dark_color</item>
+    </style>
+
+    <!-- text headline style -->
+    <style name="Text_Headline" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/primary_text_dark_color</item>
+    </style>
+
+    <!-- text title style -->
+    <style name="Text_Title" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primary_text_dark_color</item>
+    </style>
+
+    <!-- text subhead style -->
+    <style name="Text_Subhead" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/primary_text_dark_color</item>
+    </style>
+
+    <!-- text body style -->
+    <style name="Text_Body" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/secondary_text_dark_color</item>
+    </style>
+
+    <!-- text Caption style -->
+    <style name="Text_Caption" parent="@android:style/TextAppearance" >
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/secondary_text_dark_color</item>
+    </style>
+
+    <!-- Login TextInput style -->
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">@color/disabled_text_dark_color</item>
+        <!--<item name="android:textSize">20sp</item>-->
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlNormal">@color/disabled_text_dark_color</item>
+        <item name="colorControlActivated">@color/accent</item>
+    </style>
+
+    <!-- Login TextInput style -->
+    <style name="Thing_create_input" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">@color/secondary_text_dark_color</item>
+        <!--<item name="android:textSize">20sp</item>-->
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/primary</item>
+        <item name="colorControlNormal">@color/secondary_text_dark_color</item>
+        <item name="colorControlActivated">@color/primary</item>
+    </style>
+
+    <style name="Thing_create_enEdit_input" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">@color/secondary_text_dark_color</item>
+        <!--<item name="android:textSize">20sp</item>-->
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">@color/secondary_text_dark_color</item>
+        <item name="colorControlNormal">@color/secondary_text_dark_color</item>
+        <item name="colorControlActivated">@color/secondary_text_dark_color</item>
+    </style>
+
+    <style name="Primary_checkBox" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColorSecondary">@color/secondary_text_dark_color</item>
+    </style>
+
+    <style name="error_appearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>
