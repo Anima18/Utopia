@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tcAct_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/toolbar_common" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/backgroundColor"
+            android:padding="16dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tcAct_title_ti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Thing_create_input">
+                <EditText
+                    android:id="@+id/tcAct_title_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:hint="Title"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tcAct_desc_ti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:theme="@style/Thing_create_input">
+                <EditText
+                    android:id="@+id/tcAct_desc_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Description"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:theme="@style/Thing_create_enEdit_input">
+                <EditText
+                    android:id="@+id/tcAct_label_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Label"
+                    android:editable="false"
+                    android:drawableRight="@drawable/ic_select_down"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:theme="@style/Thing_create_enEdit_input">
+                <EditText
+                    android:id="@+id/tcAct_role_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Role"
+                    android:editable="false"
+                    android:drawableRight="@drawable/ic_select_down"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:theme="@style/Thing_create_enEdit_input">
+                <EditText
+                    android:id="@+id/tcAct_quadrant_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Quadrant"
+                    android:editable="false"
+                    android:drawableRight="@drawable/ic_select_down"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tcAct_progress_ti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:visibility="gone"
+                android:theme="@style/Thing_create_enEdit_input">
+                <EditText
+                    android:id="@+id/tcAct_progress_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Progress"
+                    android:editable="false"
+                    android:drawableRight="@drawable/ic_select_down"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="16dp">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tcAct_begin_date_ti"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:theme="@style/Thing_create_input">
+                    <EditText
+                        android:id="@+id/tcAct_begin_date_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:hint="Begin time"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tcAct_begin_time_ti"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:theme="@style/Thing_create_input">
+                    <EditText
+                        android:id="@+id/tcAct_begin_time_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/tcAct_prompting_cb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="提醒"
+                android:textColor="@color/secondary_text_dark_color"
+                android:theme="@style/Primary_checkBox"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

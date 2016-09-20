@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/habitLv_layout"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/selectable_item_background"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/habitLv_day_tv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/habit_day_drawabl"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="30"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/habitLv_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/secondary_text_dark_color"
+        android:text="23:40:00"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/habitLv_day_tv"
+        android:layout_toLeftOf="@id/habitLv_time_tv"
+        android:paddingLeft="16dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:id="@+id/habitLv_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_dark_color"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:text="Sunday BBQ"/>
+        <TextView
+            android:id="@+id/habitLv_desc_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/secondary_text_dark_color"
+            android:text="Primary text font: Roboto Regular 16sp"/>
+    </LinearLayout>
+</RelativeLayout>

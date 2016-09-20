@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginAct_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/toolbar_common" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_vertical_margin"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/loginAct_name_ti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/loginAct_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:hint="用户名"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/loginAct_password_ti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/loginAct_password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:hint="密码"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/loginAct_login_bt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="登录"/>
+            <TextView
+                android:id="@+id/loginAct_register_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="没有账号?注册>"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

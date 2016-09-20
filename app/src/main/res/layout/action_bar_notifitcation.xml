@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:clickable="true"
+    style="@android:style/Widget.Holo.ActionButton">
+
+    <ImageView
+        android:id="@+id/menu_icon_scan"
+        android:src="@drawable/ic_message"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_margin="0dp"
+        />
+
+    <TextView
+        android:id="@+id/menu_icon_scan_num"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_alignRight="@id/menu_icon_scan"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/red_oval_shape_drawabl"/>
+</RelativeLayout>

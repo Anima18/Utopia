@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<group android:checkableBehavior="single" android:id="@+id/nav_group">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="首页"/>
+    <item
+        android:id="@+id/nav_role"
+        android:icon="@drawable/ic_role"
+        android:title="我的角色"/>
+    <item
+        android:id="@+id/nav_plan"
+        android:icon="@drawable/ic_plan"
+        android:title="计划实验室"/>
+    <item
+        android:id="@+id/nav_idea"
+        android:icon="@drawable/ic_idea"
+        android:title="构想孵化"/>
+    <item
+        android:id="@+id/nav_ntegrity"
+        android:icon="@drawable/ic_wallet"
+        android:title="诚信账户"/>
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/ic_setting"
+        android:title="设置"/>
+</group>
+
+</menu>

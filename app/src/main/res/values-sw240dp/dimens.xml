@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- LoginActivity numberKeyBoard item width & height -->
+    <dimen name="loginAct_numberKeyboard_item_width">45dp</dimen>
+    <dimen name="loginAct_numberKeyboard_item_height">45dp</dimen>
+    <dimen name="loginAct_logo_width">120dp</dimen>
+    <dimen name="loginAct_logo_height">120dp</dimen>
+    <dimen name="indexAct_logo_width">150dp</dimen>
+    <dimen name="indexAct_logo_height">150dp</dimen>
+
+    <!-- mainActivity navigationView  -->
+    <dimen name="mainAct_nav_height">148dp</dimen>
+    <dimen name="mainAct_nav_avatar_height">56dp</dimen>
+</resources>

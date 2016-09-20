@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/messageAct_action_message"
+        android:title="忽略所有"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>

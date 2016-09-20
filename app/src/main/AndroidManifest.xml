@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chris.utopia" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name="com.chris.utopia.base.MyApplication">
+        <activity android:name=".module.system.activity.IndexActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".module.system.activity.MainActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.system.activity.LoginActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.system.activity.RegisterActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.idea.activity.IdeaCreateActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.role.activity.RoleCreateActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.plan.activity.PlanCreateActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.ThingCreateActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.HabitCreateActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.SearchActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.MessageActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.ProfileActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.TimerActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <activity android:name=".module.home.activity.TimeAnalysisActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <service android:name=".common.service.NotificationService"/>
+
+        <meta-data android:name="roboguice.modules" android:value="com.chris.utopia.common.config.MsmModule"/>
+    </application>
+
+</manifest>
