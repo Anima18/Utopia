@@ -9,8 +9,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:windowBackground">@color/backgroundColor</item>
-
+        <item name="android:windowBackground">@color/windowBackground</item>
     </style>
 
 
@@ -119,8 +118,6 @@
         <item name="android:textColor">@android:color/holo_red_light</item>
         <item name="android:textSize">12sp</item>
     </style>
-
-
 
     <style name="Widget.Holo.ActionButton" parent="@android:style/Widget.Holo.ActionButton">
         <item name="android:minWidth">56dp</item>

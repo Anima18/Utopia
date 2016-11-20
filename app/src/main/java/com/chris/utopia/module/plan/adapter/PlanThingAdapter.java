@@ -56,7 +56,6 @@ public class PlanThingAdapter extends RecyclerView.Adapter<PlanThingAdapter.View
         holder.titleTv.setText(thing.getTitle());
         holder.descTv.setText(thing.getDescription());
         holder.percentTv.setText(thing.getProgress());
-
         String timeStr = thing.getBeginDate() + " " + thing.getBeginTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(DateUtil.toDate(timeStr, Constant.DATETIME_FORMAT_6));

@@ -135,7 +135,6 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.ViewHo
             view.setBackgroundResource(R.drawable.selectable_item_background);
         }
     }
-
     // Return the total count of items
     @Override
     public int getItemCount() {

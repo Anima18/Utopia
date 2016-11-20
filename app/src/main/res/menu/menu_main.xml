@@ -17,12 +17,6 @@
         android:icon="@drawable/ic_message"
         app:showAsAction="ifRoom|withText" />
 
-    <!--<item
-        android:id="@+id/mainAct_action_initData"
-        android:title="初始化数据"
-        android:orderInCategory="100"
-        app:showAsAction="never" />-->
-
     <item
         android:id="@+id/mainAct_action_logout"
         android:title="@string/mainAct_action_logout"

@@ -149,10 +149,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true ;
-            /*case R.id.mainAct_action_initData:
-                presenter.setActionView(this);
-                presenter.initData();
-                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }

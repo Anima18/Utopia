@@ -79,7 +79,6 @@ public class MsmModule extends AbstractModule {
         bind(MessagePresenter.class).to(MessagePresenterImpl.class);
         bind(TimerPresenter.class).to(TimerPresenterImpl.class);
         bind(ProfilePresenter.class).to(ProfilePresenterImpl.class);
-
         bind(TimeAnalysisPresenter.class).to(TimeAnalysisPresenterImpl.class);
     }
 }

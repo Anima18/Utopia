@@ -43,7 +43,6 @@ public class BaseFragment extends RoboFragment implements BaseActionView {
     @Override
     public void showMessage(String message) {}
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();

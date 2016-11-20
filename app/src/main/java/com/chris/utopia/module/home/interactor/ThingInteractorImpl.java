@@ -304,7 +304,6 @@ public class ThingInteractorImpl implements ThingInteractor {
             }
         }
     }
-
     @Override
     public void addThing(final List<Thing> thingList) throws Exception {
         try {

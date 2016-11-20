@@ -111,7 +111,6 @@ public class PlanInteractorImpl implements PlanInteractor {
             }
         }
     }
-
     @Override
     public void addPlan(final List<Plan> plans) throws Exception {
         try {

@@ -56,7 +56,6 @@ public class CommonUtil {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (width / scale + 0.5f);
     }
-
     public static int percent( int  p1,  int  p2)  {
         double p3  =  (p1*1.0) / (p2*1.0);
         int valie = (int) (p3*100);

@@ -15,7 +15,6 @@ public class IndexActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         transmitNextPage();
     }
 
@@ -33,5 +32,4 @@ public class IndexActivity extends AppCompatActivity {
             return new Intent(IndexActivity.this, MainActivity.class);
         }
     }
-
 }

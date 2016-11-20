@@ -165,7 +165,6 @@ public class SystemInteractorImpl implements SystemInteractor {
         }
         return null;
     }
-
     @Override
     public Role findRoleById(int id) throws SQLException {
         try {

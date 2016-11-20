@@ -1,6 +1,7 @@
 package com.chris.utopia.module.home.activity;
 
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Plan;
 import com.chris.utopia.module.home.adapter.WeekPlanAdapter;
 import com.chris.utopia.module.home.presenter.WeekPlanPresenter;
+
 import com.chris.utopia.module.plan.activity.PlanCreateActivity;
 import com.google.inject.Inject;
 
