@@ -29,4 +29,5 @@
     <color name="today_task_done">#C6EBFB</color>
     <color name="today_task_ignore">#EEEEEE</color>
     <color name="today_task_delay">#FCDFDB</color>
+
 </resources>

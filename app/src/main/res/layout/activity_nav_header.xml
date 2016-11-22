@@ -47,7 +47,7 @@
         android:layout_width="@dimen/mainAct_nav_avatar_height"
         android:layout_height="@dimen/mainAct_nav_avatar_height"
         android:layout_above="@id/navHeader_user_layout"
-        android:src="@drawable/chris"/>
+        android:src="@drawable/ic_chris"/>
 
 
 </RelativeLayout>
