@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name="com.chris.utopia.base.MyApplication">
-        <activity android:name=".module.system.activity.IndexActivity" android:label="@string/app_name">
+        <activity android:name=".module.guide.GuideActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

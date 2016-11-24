@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2">
+
+    <TextView
+        android:id="@+id/tv_one_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="80dp"
+        android:textSize="40sp"
+        android:textColor="@color/primary_text_white_color"
+        android:text="计划"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_one_plan"
+        android:layout_toRightOf="@id/tv_one_plan"
+        android:paddingLeft="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/secondary_text_white_color"
+        android:text="安排..."/>
+
+</RelativeLayout>
