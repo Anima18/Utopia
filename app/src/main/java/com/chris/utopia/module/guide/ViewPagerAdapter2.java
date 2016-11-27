@@ -14,20 +14,6 @@ import com.chris.utopia.module.system.activity.RegisterActivity;
 
 import java.util.List;
 
-/**
- * 
- * @{# ViewPagerAdapter.java Create on 2013-5-2 下午11:03:39
- * 
- *     class desc: 引导页面适配器
- * 
- *     <p>
- *     Copyright: Copyright(c) 2013
- *     </p>
- * @Version 1.0
- * @Author <a href="mailto:gaolei_xj@163.com">Leo</a>
- * 
- * 
- */
 public class ViewPagerAdapter2 extends PagerAdapter {
 
 	// 界面列表
@@ -70,6 +56,7 @@ public class ViewPagerAdapter2 extends PagerAdapter {
 				public void onClick(View v) {
 					Intent intent = new Intent(activity, LoginActivity.class);
 					activity.startActivity(intent);
+					activity.finish();
 				}
 			});
 			registerBt.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +64,7 @@ public class ViewPagerAdapter2 extends PagerAdapter {
 				public void onClick(View v) {
 					Intent intent = new Intent(activity, RegisterActivity.class);
 					activity.startActivity(intent);
+					activity.finish();
 				}
 			});
 		}

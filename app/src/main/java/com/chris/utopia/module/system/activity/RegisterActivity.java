@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
@@ -43,6 +44,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText emailEt;
     @InjectView(R.id.registerAct_register_bt)
     private Button registerButton;
+    @InjectView(R.id.tv_registerAct_login)
+    private TextView loginTv;
 
     @Inject
     private RegisterPresenter presenter;
@@ -58,6 +61,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     public void initEvent() {
         registerButton.setOnClickListener(this);
+        loginTv.setOnClickListener(this);
     }
 
     @Override
@@ -102,6 +106,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     presenter.setActionView(this);
                     presenter.register(new User(name, password, email));
                 }
+                break;
+            case R.id.tv_registerAct_login:
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                 break;
         }
     }

@@ -107,6 +107,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void toMainPage() {
+        this.finish();
         Intent intent = new Intent(getContext(), MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);

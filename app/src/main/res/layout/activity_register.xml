@@ -91,6 +91,7 @@
             android:text="Create Account"/>
 
         <TextView
+            android:id="@+id/tv_registerAct_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
