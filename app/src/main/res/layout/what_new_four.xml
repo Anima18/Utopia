@@ -36,11 +36,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
+            style="@style/AppTheme.Button.Colored.accent"
             android:text="注册"/>
         <Button
             android:id="@+id/bt_guide_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/AppTheme.Button.Colored.primary"
             android:text="登录"/>
     </LinearLayout>
 

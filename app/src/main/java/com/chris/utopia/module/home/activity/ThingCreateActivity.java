@@ -59,10 +59,16 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
     private TextInputLayout descTi;
     @InjectView(R.id.tcAct_desc_et)
     private EditText descEt;
+    @InjectView(R.id.tcAct_label_ti)
+    private TextInputLayout labelTi;
     @InjectView(R.id.tcAct_label_et)
     private EditText labelEt;
+    @InjectView(R.id.tcAct_role_ti)
+    private TextInputLayout roleTi;
     @InjectView(R.id.tcAct_role_et)
     private EditText roleEt;
+    @InjectView(R.id.tcAct_quadrant_ti)
+    private TextInputLayout quadrantTi;
     @InjectView(R.id.tcAct_quadrant_et)
     private EditText quadrantEt;
     @InjectView(R.id.tcAct_begin_date_ti)
@@ -375,7 +381,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
         String fromDate = fromDateEt.getText().toString();
         String fromTime = fromTimeEt.getText().toString();
         String progress = progressEt.getText().toString();
-
+        boolean flag = true;
         if(thing == null) {
             thing = new Thing();
         }
@@ -391,50 +397,87 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
         }
 
         if(StringUtil.isEmpty(thing.getTitle())) {
-            showMessage("Title不能为空");
-            return;
+            nameTi.setErrorEnabled(true);
+            nameTi.setError("Title不能为空");
+            flag = false;
+        }else {
+            nameTi.setErrorEnabled(false);
+            nameTi.setError(null);
         }
         if(StringUtil.isEmpty(thing.getDescription())) {
-            showMessage("Desc不能为空");
-            return;
+            descTi.setErrorEnabled(true);
+            descTi.setError("Desc 不能为空");
+            flag = false;
+        }else {
+            descTi.setErrorEnabled(false);
+            descTi.setError(null);
         }
         if(thing.getClassessId() == null || thing.getClassessId() == 0) {
-            showMessage("Label不能为空");
-            return;
+            labelTi.setErrorEnabled(true);
+            labelTi.setError("Label 不能为空");
+            flag = false;
+        }else {
+            labelTi.setErrorEnabled(false);
+            labelTi.setError(null);
         }
         if(thing.getRoleId() == null || thing.getRoleId() == 0) {
-            showMessage("Role不能为空");
-            return;
+            roleTi.setErrorEnabled(true);
+            roleTi.setError("Role 不能为空");
+            flag = false;
+        }else {
+            roleTi.setErrorEnabled(false);
+            roleTi.setError(null);
         }
         if(StringUtil.isEmpty(thing.getThingQuadrant())) {
-            showMessage("Quadrant不能为空");
-            return;
+            quadrantTi.setErrorEnabled(true);
+            quadrantTi.setError("Quadrant 不能为空");
+            flag = false;
+        }else {
+            quadrantTi.setErrorEnabled(false);
+            quadrantTi.setError(null);
         }
 
         if(progressTi.getVisibility() == View.VISIBLE && StringUtil.isEmpty(thing.getProgress())) {
-            showMessage("Progress不能为空");
-            return;
+            progressTi.setErrorEnabled(true);
+            progressTi.setError("Progress 不能为空");
+            flag = false;
         }else if(plan != null) {
             int thingProgress = Integer.parseInt(thing.getProgress().split("%")[0]);
             int planProgress = Integer.parseInt(plan.getProgress().split("%")[0]);
             if(thingProgress < planProgress) {
-                showMessage("Thing的Progress不能小于" + plan.getProgress());
-                return;
+                progressTi.setErrorEnabled(true);
+                progressTi.setError("Thing的Progress不能小于" + plan.getProgress());
+                flag = false;
             }else {
                 plan.setProgress(progress);
+                progressTi.setErrorEnabled(false);
+                progressTi.setError(null);
             }
+        }else {
+            progressTi.setErrorEnabled(false);
+            progressTi.setError(null);
         }
 
         if(StringUtil.isEmpty(thing.getBeginDate())) {
-            showMessage("开始日期不能为空");
-            return;
+            fromDateTi.setErrorEnabled(true);
+            fromDateTi.setError("开始日期不能为空");
+            flag = false;
+        }else {
+            fromDateTi.setErrorEnabled(false);
+            fromDateTi.setError(null);
         }
         if(StringUtil.isEmpty(thing.getBeginTime())) {
-            showMessage("开始时间不能为空");
-            return;
+            fromTimeTi.setErrorEnabled(true);
+            fromTimeTi.setError("开始时间不能为空");
+            flag = false;
+        }else {
+            fromTimeTi.setErrorEnabled(false);
+            fromTimeTi.setError(null);
         }
 
-        presenter.save(plan, thing);
+        if(flag) {
+            presenter.save(plan, thing);
+        }
     }
 
     public void createThing() {

@@ -1,62 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/loginAct_layout"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
-    <include layout="@layout/toolbar_common" />
-
-    <ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/primary">
+    <LinearLayout
+        android:id="@+id/loginAct_layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="48dp"
+            android:layout_marginBottom="24dp"
+            android:textSize="40sp"
+            android:textColor="@color/primary_text_white_color"
+            android:text="Utopia"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/loginAct_name_ti"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_vertical_margin"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/loginAct_name_ti"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/loginAct_name_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:hint="用户名"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/loginAct_password_ti"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/loginAct_password_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:hint="密码"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <Button
-                android:id="@+id/loginAct_login_bt"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/login_input">
+            <EditText
+                android:id="@+id/loginAct_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="登录"/>
-            <TextView
-                android:id="@+id/loginAct_register_tv"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:hint="UserName"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/loginAct_password_ti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/login_input">
+            <EditText
+                android:id="@+id/loginAct_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="没有账号?注册>"/>
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:hint="Password"/>
+        </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/loginAct_login_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:theme="@style/AppTheme.Button.Colored.primary"
+            android:text="Login"/>
+
+        <TextView
+            android:id="@+id/loginAct_register_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="No account yet? Create one"
+            android:textColor="@color/disabled_text_dark_color"
+            android:gravity="center"
+            android:textSize="16dip"/>
+
+    </LinearLayout>
+</ScrollView>

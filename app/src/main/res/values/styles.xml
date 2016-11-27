@@ -91,24 +91,31 @@
     </style>
 
     <!-- Login TextInput style -->
-    <style name="Thing_create_input" parent="TextAppearance.AppCompat">
+    <style name="Thing_create_input" parent="Widget.Design.TextInputLayout">
         //hint color And Label Color in False State
         <item name="android:textColorHint">@color/secondary_text_dark_color</item>
         <!--<item name="android:textSize">20sp</item>-->
         //Label color in True State And Bar Color False And True State
-        <item name="colorAccent">@color/primary</item>
+        <item name="colorControlHighlight">@color/primary</item>
         <item name="colorControlNormal">@color/secondary_text_dark_color</item>
         <item name="colorControlActivated">@color/primary</item>
     </style>
 
-    <style name="Thing_create_enEdit_input" parent="TextAppearance.AppCompat">
+    <style name="Thing_create_enEdit_input" parent="Widget.Design.TextInputLayout">
         //hint color And Label Color in False State
         <item name="android:textColorHint">@color/secondary_text_dark_color</item>
         <!--<item name="android:textSize">20sp</item>-->
         //Label color in True State And Bar Color False And True State
-        <item name="colorAccent">@color/secondary_text_dark_color</item>
+        <item name="colorControlHighlight">@color/secondary_text_dark_color</item>
         <item name="colorControlNormal">@color/secondary_text_dark_color</item>
         <item name="colorControlActivated">@color/secondary_text_dark_color</item>
+    </style>
+
+    <style name="login_input" parent="Widget.Design.TextInputLayout">
+        <item name="android:textColorHint">@color/disabled_text_dark_color</item>
+        <item name="colorControlNormal">@color/disabled_text_dark_color</item>
+        <item name="colorControlActivated">@color/secondary_text_white_color</item>
+        <item name="colorControlHighlight">@color/secondary_text_white_color</item>
     </style>
 
     <style name="Primary_checkBox" parent="Theme.AppCompat">
@@ -129,4 +136,16 @@
         <item name="android:scaleType">center</item>
         <item name="android:maxLines">2</item>
     </style>
+
+    <style name="AppTheme.Button.Colored.accent" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/accent</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.Button.Colored.primary" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/primary_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
 </resources>

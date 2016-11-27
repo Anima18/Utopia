@@ -62,7 +62,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void setToolBarTitle() {
-        toolbar.setTitle("注册");
+        //toolbar.setTitle("注册");
     }
 
     @Override
