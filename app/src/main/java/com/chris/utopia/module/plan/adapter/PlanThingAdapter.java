@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
+import com.chris.utopia.common.view.DisplayLeakConnectorView;
 import com.chris.utopia.entity.Thing;
 
 import java.util.Calendar;
@@ -60,14 +61,32 @@ public class PlanThingAdapter extends RecyclerView.Adapter<PlanThingAdapter.View
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(DateUtil.toDate(timeStr, Constant.DATETIME_FORMAT_6));
 
+        int status;
         if(Constant.THING_STATUS_DONE.equals(thing.getStatus())) {
-            holder.rootView.setBackgroundResource(R.drawable.today_task_done_background);
+            status = 0;
+            //holder.rootView.setBackgroundResource(R.drawable.today_task_done_background);
         }else if(Constant.THING_STATUS_IGNORE.equals(thing.getStatus())) {
-            holder.rootView.setBackgroundResource(R.drawable.today_task_ignore_background);
+            status = 1;
+            //holder.rootView.setBackgroundResource(R.drawable.today_task_ignore_background);
         }else if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
-            holder.rootView.setBackgroundResource(R.drawable.today_task_delay_background);
+            status = 2;
+            //holder.rootView.setBackgroundResource(R.drawable.today_task_delay_background);
         }else {
-            holder.rootView.setBackgroundResource(R.drawable.selectable_item_background);
+            status = 3;
+            //holder.rootView.setBackgroundResource(R.drawable.selectable_item_background);
+        }
+
+        boolean isRoot = position == 0;
+        boolean isLeakingInstance = position == getItemCount() - 1;
+        DisplayLeakConnectorView connector = holder.stepView;
+        if (isRoot) {
+            connector.setType(DisplayLeakConnectorView.Type.START, status);
+        } else {
+            if (isLeakingInstance) {
+                connector.setType(DisplayLeakConnectorView.Type.END, status);
+            } else {
+                connector.setType(DisplayLeakConnectorView.Type.NODE, status);
+            }
         }
     }
 
@@ -86,7 +105,7 @@ public class PlanThingAdapter extends RecyclerView.Adapter<PlanThingAdapter.View
         public TextView titleTv;
         public TextView descTv;
         public View rootView;
-
+        public DisplayLeakConnectorView stepView;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -97,6 +116,7 @@ public class PlanThingAdapter extends RecyclerView.Adapter<PlanThingAdapter.View
             percentTv = (TextView) itemView.findViewById(R.id.pcLv_thing_percent);
             titleTv = (TextView) itemView.findViewById(R.id.pcLv_thing_title);
             descTv = (TextView) itemView.findViewById(R.id.pcLv_thing_desc);
+            stepView = (DisplayLeakConnectorView) itemView.findViewById(R.id.stepView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

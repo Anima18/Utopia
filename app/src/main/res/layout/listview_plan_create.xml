@@ -7,11 +7,10 @@
     android:background="@drawable/selectable_item_background"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_checked"/>
+    <com.chris.utopia.common.view.DisplayLeakConnectorView
+        android:id="@+id/stepView"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -9,7 +9,7 @@
 
     <color name="backgroundColor">#EEEEEE</color>
     <color name="backgroundColorPress">#DDDDDD</color>
-    <color name="dividing_line_color">#DDDDDD</color>
+    <color name="dividing_line_color">#EEEEEE</color>
     <color name="transparent">#00000000</color>
 
     <!-- text color -->

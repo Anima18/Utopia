@@ -51,6 +51,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration{
         mPaint.setColor(context.getResources().getColor(R.color.dividing_line_color));
          /*设置填充*/
         mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(2);
     }
 
     @Override

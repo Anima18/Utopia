@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.WindowManager;
 
 import com.chris.utopia.base.MyApplication;
@@ -16,6 +17,10 @@ public class CommonUtil {
         return MyApplication.getInstance();
     }
 
+    public static int dipToPixels(float dipValue) {
+        DisplayMetrics metrics = getApplicationContext().getResources().getDisplayMetrics();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
+    }
     public static boolean isOpenNetwork() {
         ConnectivityManager connManager = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connManager.getActiveNetworkInfo() != null) {
