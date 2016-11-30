@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -11,6 +13,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +21,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -28,6 +30,7 @@ import com.chris.utopia.common.callback.LabelCallBack;
 import com.chris.utopia.common.callback.QuadrantCallBack;
 import com.chris.utopia.common.callback.RoleCallBack;
 import com.chris.utopia.common.constant.Constant;
+import com.chris.utopia.common.listener.AppBarStateChangeListener;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseActivity;
 import com.chris.utopia.common.view.DividerItemDecoration;
@@ -66,18 +69,12 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
     private View roleView;
     @InjectView(R.id.pcAct_quadrant_layout)
     private View quadrantView;
-    @InjectView(R.id.pcAct_upAndDown_layout)
-    private View upDownView;
-    @InjectView(R.id.pcAct_other_layout)
-    private View otherView;
     @InjectView(R.id.pcAct_label_value)
     private TextView lableTv;
     @InjectView(R.id.pcAct_role_value)
     private TextView roleTv;
     @InjectView(R.id.pcAct_quadrant_value)
     private TextView quadrantTv;
-    @InjectView(R.id.pcAct_upAndDown_iv)
-    private ImageView upDownIv;
     @InjectView(R.id.pcAct_addFad)
     private FloatingActionButton addFAB;
     @InjectView(R.id.pcAct_title_textInput)
@@ -151,13 +148,36 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
         labelView.setOnClickListener(this);
         roleView.setOnClickListener(this);
         quadrantView.setOnClickListener(this);
-        upDownView.setOnClickListener(this);
         addFAB.setOnClickListener(this);
+
+        AppBarLayout mappBarLayout = (AppBarLayout)findViewById(R.id.AppBarLayout);
+        final CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+        mappBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                Log.d("STATE", state.name());
+                if( state == State.EXPANDED ) {
+                    Log.d("MainActivity", "EXPANDED");
+                    //展开状态
+
+                }else if(state == State.COLLAPSED){
+                    Log.d("MainActivity", "COLLAPSED");
+                    mCollapsingToolbarLayout.setTitle("MainActivity");
+                    //折叠状态
+
+                }else {
+                    Log.d("MainActivity", "EXPANDING");
+                    mCollapsingToolbarLayout.setTitle(null);
+                    //中间状态
+
+                }
+            }
+        });
     }
 
     @Override
     public void setToolBarTitle() {
-        toolbar.setTitle("创建计划");
+        toolbar.setTitle(null);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
     }
@@ -224,19 +244,7 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
                     }
                 });
                 break;
-            case R.id.pcAct_upAndDown_layout:
-                if(otherView.getVisibility() == View.GONE) {
-                    otherView.setVisibility(View.VISIBLE);
-                    //ViewCompat.animate(otherView).withLayer().setListener(null).start();
-                    upDownIv.setImageDrawable(getResources().getDrawable(R.drawable.ic_up));
-                    showAddFAB(false);
-                }else {
-                    otherView.setVisibility(View.GONE);
-                    //ViewCompat.animate(otherView).withLayer().setListener(null).start();
-                    upDownIv.setImageDrawable(getResources().getDrawable(R.drawable.ic_down));
-                    showAddFAB(true);
-                }
-                break;
+
             case R.id.pcAct_addFad:
                 if(plan == null || plan.getId() == null) {
                     final MaterialDialog dialog = new MaterialDialog.Builder(getContext())
