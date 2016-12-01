@@ -115,9 +115,9 @@ public final class DisplayLeakConnectorView extends View {
     static {
         iconPaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.divider_text_dark_color));
         rootPaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.primary));
-        leakPaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.accent));
-        ignorePaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.today_task_ignore));
-        delayPaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.today_task_delay));
+        leakPaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.green));
+        ignorePaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.grey));
+        delayPaint.setColor(CommonUtil.getApplicationContext().getResources().getColor(R.color.accent));
         clearPaint.setColor(0);
         clearPaint.setXfermode(new PorterDuffXfermode(CLEAR));
     }

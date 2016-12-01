@@ -64,8 +64,10 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.ViewHo
             public void onClick(View v) {
                 if (holder.moreView.getVisibility() == View.GONE) {
                     holder.moreView.setVisibility(View.VISIBLE);
+                    holder.moreBt.setText("收起详情");
                 } else {
                     holder.moreView.setVisibility(View.GONE);
+                    holder.moreBt.setText("更多详情");
                 }
             }
         });
@@ -126,13 +128,17 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.ViewHo
 
     public void initThingBackground(View view, Thing thing, Calendar calendar) {
         if(Constant.THING_STATUS_DONE.equals(thing.getStatus())) {
-            view.setBackgroundResource(R.drawable.today_task_done_background);
+            //view.setBackgroundResource(R.drawable.today_task_done_background);
+            view.setBackgroundColor(context.getResources().getColor(R.color.today_task_done));
         }else if(Constant.THING_STATUS_IGNORE.equals(thing.getStatus())) {
-            view.setBackgroundResource(R.drawable.today_task_ignore_background);
+            //view.setBackgroundResource(R.drawable.today_task_ignore_background);
+            view.setBackgroundColor(context.getResources().getColor(R.color.today_task_ignore));
         }else if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
-            view.setBackgroundResource(R.drawable.today_task_delay_background);
+            //view.setBackgroundResource(R.drawable.today_task_delay_background);
+            view.setBackgroundColor(context.getResources().getColor(R.color.today_task_delay));
         }else {
-            view.setBackgroundResource(R.drawable.selectable_item_background);
+            //view.setBackgroundResource(R.drawable.selectable_item_background);
+            //view.setBackgroundColor(context.getResources().getColor(R.color.today_task_done));
         }
     }
     // Return the total count of items

@@ -31,5 +31,6 @@
     <color name="today_task_delay">#FCDFDB</color>
 
     <color name="white">#FFFFFF</color>
-
+    <color name="green">#259b24</color>
+    <color name="grey">#9e9e9e</color>
 </resources>
