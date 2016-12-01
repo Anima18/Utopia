@@ -30,6 +30,12 @@ public abstract class BaseActivity extends RoboAppCompatActivity implements Base
         rootView = content.getChildAt(0);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setToolBarTitle();
+    }
+
     public void initStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
@@ -45,7 +51,7 @@ public abstract class BaseActivity extends RoboAppCompatActivity implements Base
         // App Logo
         //toolbar.setLogo(R.mipmap.ic_launcher);
         // Title
-        setToolBarTitle();
+
         // Sub Title
         //toolbar.setSubtitle("Sub title");
         setSupportActionBar(toolbar);

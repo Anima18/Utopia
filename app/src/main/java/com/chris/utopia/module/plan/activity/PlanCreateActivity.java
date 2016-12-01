@@ -13,6 +13,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -152,17 +153,26 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
 
         AppBarLayout mappBarLayout = (AppBarLayout)findViewById(R.id.AppBarLayout);
         final CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+        mCollapsingToolbarLayout.setTitle("MainActivity");
         mappBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 Log.d("STATE", state.name());
                 if( state == State.EXPANDED ) {
                     Log.d("MainActivity", "EXPANDED");
+                    mCollapsingToolbarLayout.setTitle(null);
                     //展开状态
 
                 }else if(state == State.COLLAPSED){
                     Log.d("MainActivity", "COLLAPSED");
-                    mCollapsingToolbarLayout.setTitle("MainActivity");
+                    if(StringUtil.isNotEmpty(plan.getName())) {
+                        mCollapsingToolbarLayout.setTitle(plan.getName());
+                    }else if(idea != null) {
+                        mCollapsingToolbarLayout.setTitle(idea.getName());
+                    }else {
+                        mCollapsingToolbarLayout.setTitle("创建计划");
+                    }
+
                     //折叠状态
 
                 }else {
@@ -177,9 +187,8 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void setToolBarTitle() {
-        toolbar.setTitle(null);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        setSupportActionBar(toolbar);
+        toolbar.setTitle(null);
     }
 
     @Override
