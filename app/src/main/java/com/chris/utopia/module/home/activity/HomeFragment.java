@@ -4,6 +4,7 @@ package com.chris.utopia.module.home.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class HomeFragment extends Fragment {
 
     private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
+    private Toolbar toolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +33,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.homeFrm_slidingTabLayout);
         mViewPager = (ViewPager) view.findViewById(R.id.homeFrm_viewpager);
+        toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
+        toolbar.setTitle("Utopia");
 
         initTabView();
         return view;

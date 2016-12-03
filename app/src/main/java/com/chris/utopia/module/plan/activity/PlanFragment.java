@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,8 @@ public class PlanFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     public void initView(View view) {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
+        toolbar.setTitle("Utopia");
         addFAB = (FloatingActionButton) view.findViewById(R.id.planFrm_addFad);
         planRecyclerView = (RecyclerView) view.findViewById(R.id.planFrm_recyclerView);
 

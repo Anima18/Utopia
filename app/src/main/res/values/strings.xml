@@ -7,12 +7,11 @@
     <string name="mainAct_action_message">消息</string>
     <string name="loginAct_action_settings">設置</string>
 
-    <!-- NavigationView item list -->
-    <string name="nav_home">首頁</string>
-    <string name="nav_stockTake">盤點</string>
-    <string name="nav_transfer">轉貨</string>
-    <string name="nav_productInfo">產品信息</string>
-    <string name="nav_setting">設置</string>
+    <string name="bottom_nav_home">首页</string>
+    <string name="bottom_nav_role">角色</string>
+    <string name="bottom_nav_plan">计划</string>
+    <string name="bottom_nav_idea">构想</string>
+    <string name="bottom_nav_me">我</string>
 
     <!-- dialog -->
     <string name="dialog_title">提示</string>

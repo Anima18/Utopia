@@ -3,6 +3,7 @@
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
     <color name="accent">#FF80AB</color>
+    <color name="nav_background">#3096F2</color>
     <color name="tab_text_inactive">#DDDDDD</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="cardView_background">#FFFFFF</color>

@@ -33,7 +33,7 @@ public class IndexActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run() {
-                    startActivity(new Intent(IndexActivity.this, MainActivity.class));
+                    startActivity(new Intent(IndexActivity.this, MainActivity2.class));
                     overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                     IndexActivity.this.finish();
                 }

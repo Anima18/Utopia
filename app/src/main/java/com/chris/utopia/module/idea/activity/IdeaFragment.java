@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,9 @@ public class IdeaFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     public void initView(View view) {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
+        toolbar.setTitle("Utopia");
+
         rootView = (CoordinatorLayout) view.findViewById(R.id.stFrm_coordinatorLayout);
         addFAB = (FloatingActionButton) view.findViewById(R.id.ideaFrm_addFad);
         ideaRecyclerView = (RecyclerView) view.findViewById(R.id.ideaFrm_recyclerView);

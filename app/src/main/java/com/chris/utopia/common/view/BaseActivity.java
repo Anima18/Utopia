@@ -41,19 +41,12 @@ public abstract class BaseActivity extends RoboAppCompatActivity implements Base
 
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.primary);
+            tintManager.setStatusBarTintResource(R.color.primary_dark);
         }
     }
 
     public void initToolBar() {
-
         toolbar = (Toolbar) findViewById(R.id.activity_toolBar);
-        // App Logo
-        //toolbar.setLogo(R.mipmap.ic_launcher);
-        // Title
-
-        // Sub Title
-        //toolbar.setSubtitle("Sub title");
         setSupportActionBar(toolbar);
 
     }

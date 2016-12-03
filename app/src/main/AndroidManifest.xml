@@ -19,6 +19,8 @@
 
         <activity android:name=".module.system.activity.MainActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
 
+        <activity android:name=".module.system.activity.MainActivity2" android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".module.system.activity.LoginActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity android:name=".module.system.activity.RegisterActivity" android:windowSoftInputMode="stateAlwaysHidden"/>

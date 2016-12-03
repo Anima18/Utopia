@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
-import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
 import com.chris.utopia.module.home.presenter.ProfilePresenter;
@@ -27,42 +27,45 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
 
 /**
  * Created by Chris on 2016/2/29.
  */
 @ContentView(R.layout.activity_profile)
-public class ProfileActivity extends BaseActivity implements ProfileActionView {
+public class ProfileActivity extends BaseFragment implements ProfileActionView {
 
-    @InjectView(R.id.profileAct_user_im)
     private CircleImageView userIm;
-    @InjectView(R.id.profileAct_userName_tv)
     private TextView userNameTv;
-    @InjectView(R.id.profileAct_menu_rv)
     private RecyclerView dataRv;
 
     private String userName;
     private ProfileAdapter adapter;
     private List<String> dataList = new ArrayList<>();
     private MaterialDialog resetPwdDialog;
+    private View view;
 
     @Inject
     private ProfilePresenter profilePresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        if(view == null) {
+            view = inflater.inflate(R.layout.activity_profile, container, false);
+            initView(view);
+            initData();
+            initEvent();
+        }
 
-        userName = SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "");
-
-        initView();
-        initData();
-        initEvent();
+        return view;
     }
 
-    public void initView() {
-        setToolBarTitle();
+    public void initView(View view) {
+        userIm = (CircleImageView) view.findViewById(R.id.profileAct_user_im);
+        userNameTv = (TextView) view.findViewById(R.id.profileAct_userName_tv);
+        dataRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar);
+        toolbar.setTitle("Utopia");
     }
 
     public void initData() {
@@ -144,12 +147,12 @@ public class ProfileActivity extends BaseActivity implements ProfileActionView {
                     case 1:
                         Intent intent = new Intent(getContext(), TimerActivity.class);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+                        getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
                     case 2:
                         Intent intent2 = new Intent(getContext(), TimeAnalysisActivity.class);
                         startActivity(intent2);
-                        overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+                        getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
                 }
             }
@@ -162,24 +165,7 @@ public class ProfileActivity extends BaseActivity implements ProfileActionView {
 
     public void initEvent() {}
 
-    @Override
-    public void setToolBarTitle() {
-        toolbar.setTitle(userName);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        setSupportActionBar(toolbar);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                overridePendingTransition(R.anim.push_in_left, R.anim.push_out_right);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     public void showResetPasswordFail(String message) {
