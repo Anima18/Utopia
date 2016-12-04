@@ -52,7 +52,7 @@ public class PlanFragment extends BaseFragment implements View.OnClickListener, 
 
     public void initView(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
-        toolbar.setTitle("Utopia");
+        toolbar.setTitle("计划实验室");
         addFAB = (FloatingActionButton) view.findViewById(R.id.planFrm_addFad);
         planRecyclerView = (RecyclerView) view.findViewById(R.id.planFrm_recyclerView);
 

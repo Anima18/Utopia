@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.chris.utopia"
-        minSdkVersion 19
-        targetSdkVersion 24
+        minSdkVersion 21
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }

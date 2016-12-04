@@ -2,7 +2,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/toolbar_common"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/primary"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        style="@android:style/Widget.Material.Toolbar">
+
+        <ImageButton
+            android:id="@+id/im_main_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="-6dp"
+            android:layout_marginLeft="-6dp"
+            android:src="@drawable/ic_message"
+            style="@android:style/Widget.Material.Toolbar.Button.Navigation"/>
+
+        <EditText
+            android:id="@+id/et_main_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:focusable="false"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/im_main_message"
+            android:background="@drawable/edittext_toolbar_background"
+            android:textColorHint="@color/disabled_text_dark_color"
+            android:textSize="14sp"
+            android:hint="查询事情或者计划"/>
+
+
+    </RelativeLayout>
 
     <com.chris.utopia.common.view.SlidingTabLayout
         android:id="@+id/homeFrm_slidingTabLayout"

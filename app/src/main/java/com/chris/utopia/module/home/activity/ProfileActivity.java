@@ -1,6 +1,8 @@
 package com.chris.utopia.module.home.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,8 +38,6 @@ import roboguice.inject.ContentView;
 @ContentView(R.layout.activity_profile)
 public class ProfileActivity extends BaseFragment implements ProfileActionView {
 
-    private CircleImageView userIm;
-    private TextView userNameTv;
     private RecyclerView dataRv;
 
     private String userName;
@@ -56,21 +58,17 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
             initData();
             initEvent();
         }
-
         return view;
     }
 
     public void initView(View view) {
-        userIm = (CircleImageView) view.findViewById(R.id.profileAct_user_im);
-        userNameTv = (TextView) view.findViewById(R.id.profileAct_userName_tv);
         dataRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv);
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar);
-        toolbar.setTitle("Utopia");
+        toolbar.setTitle("我");
     }
 
     public void initData() {
         profilePresenter.setActionView(this);
-        userNameTv.setText(userName);
 
         dataList.add("更改密码");
         dataList.add("我的时间");

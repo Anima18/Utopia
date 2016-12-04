@@ -54,7 +54,7 @@ public class IdeaFragment extends BaseFragment implements View.OnClickListener, 
 
     public void initView(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
-        toolbar.setTitle("Utopia");
+        toolbar.setTitle("构想孵化");
 
         rootView = (CoordinatorLayout) view.findViewById(R.id.stFrm_coordinatorLayout);
         addFAB = (FloatingActionButton) view.findViewById(R.id.ideaFrm_addFad);

@@ -1,6 +1,7 @@
 package com.chris.utopia.module.home.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.view.SlidingTabLayout;
@@ -19,11 +22,12 @@ import java.util.List;
 /**
  * Created by Admin on 2015/8/16.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
-    private Toolbar toolbar;
+    private EditText searchEt;
+    private ImageButton messageIm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,8 +37,10 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.homeFrm_slidingTabLayout);
         mViewPager = (ViewPager) view.findViewById(R.id.homeFrm_viewpager);
-        toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
-        toolbar.setTitle("Utopia");
+        searchEt = (EditText) view.findViewById(R.id.et_main_search);
+        messageIm = (ImageButton) view.findViewById(R.id.im_main_message);
+        searchEt.setOnClickListener(this);
+        messageIm.setOnClickListener(this);
 
         initTabView();
         return view;
@@ -68,5 +74,21 @@ public class HomeFragment extends Fragment {
             public void onPageScrollStateChanged(int state) { }
         });
         //mSlidingTabLayout.setDividerColors(R.color.primary);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.et_main_search:
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+                break;
+            case R.id.im_main_message:
+                Intent intent2 = new Intent(getContext(), MessageActivity.class);
+                getActivity().startActivity(intent2);
+                getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+                break;
+        }
     }
 }

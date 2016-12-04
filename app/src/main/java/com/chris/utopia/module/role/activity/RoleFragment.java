@@ -55,7 +55,7 @@ public class RoleFragment extends BaseFragment implements View.OnClickListener, 
 
     public void initView(View view) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar) ;
-        toolbar.setTitle("Utopia");
+        toolbar.setTitle("角色");
         rootView = (CoordinatorLayout) view.findViewById(R.id.roleFrm_coordinatorLayout);
         addFab = (FloatingActionButton) view.findViewById(R.id.roleFrm_addFad);
         roleRecyclerView = (RecyclerView) view.findViewById(R.id.roleFrm_recyclerView);
