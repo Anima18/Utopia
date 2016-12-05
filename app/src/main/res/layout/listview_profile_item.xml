@@ -4,7 +4,7 @@
     android:layout_height="48dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:background="@drawable/selectable_item_background">
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/profileLv_image"

@@ -157,7 +157,7 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
         });
         dataRv.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        dataRv.addItemDecoration(new DividerItemDecoration(getContext(), layoutManager.getOrientation()));
+        dataRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager.getOrientation()));
         dataRv.setLayoutManager(layoutManager);
     }
 
