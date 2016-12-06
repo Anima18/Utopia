@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.view.BaseFragment;
-import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.adapter.RoleAdapter;
 import com.chris.utopia.module.role.presenter.RolePresenter;

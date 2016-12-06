@@ -3,6 +3,7 @@ package com.chris.utopia.module.home.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -12,7 +13,6 @@ import android.view.View;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.view.BaseActivity;
-import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.SearchAdapter;
 import com.chris.utopia.module.home.presenter.SearchPresenter;

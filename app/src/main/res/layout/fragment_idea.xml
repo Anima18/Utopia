@@ -15,7 +15,7 @@
             android:id="@+id/ideaFrm_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
+            android:background="@color/white"
             android:paddingTop="8dp"
             android:paddingLeft="8dp"/>
         <android.support.design.widget.FloatingActionButton

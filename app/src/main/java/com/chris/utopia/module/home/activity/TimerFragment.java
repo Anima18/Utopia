@@ -2,6 +2,7 @@ package com.chris.utopia.module.home.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.view.BaseFragment;
-import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.TimerAdapter;
 import com.chris.utopia.module.home.presenter.TimerPresenter;

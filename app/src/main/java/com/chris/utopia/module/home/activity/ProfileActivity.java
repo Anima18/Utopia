@@ -1,8 +1,6 @@
 package com.chris.utopia.module.home.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,10 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -29,7 +24,6 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import roboguice.inject.ContentView;
 
 /**
@@ -73,6 +67,9 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
         dataList.add("更改密码");
         dataList.add("我的时间");
         dataList.add("时间分析");
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        dataRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager.getOrientation()));
+        dataRv.setLayoutManager(layoutManager);
         adapter = new ProfileAdapter(getContext(), dataList);
         adapter.setOnItemClickListener(new ProfileAdapter.OnItemClickListener() {
             @Override
@@ -156,9 +153,6 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
             }
         });
         dataRv.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        dataRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager.getOrientation()));
-        dataRv.setLayoutManager(layoutManager);
     }
 
     public void initEvent() {}
