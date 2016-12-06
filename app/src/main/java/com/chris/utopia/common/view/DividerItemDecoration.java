@@ -66,7 +66,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     public void drawVertical(Canvas c, RecyclerView parent) {
-        int insetSize = dividerType == DIVIDER_TYPE_FULL ? 0 : CommonUtil.dipToPixels(72);
+        int insetSize = dividerType == DIVIDER_TYPE_FULL ? 0 : CommonUtil.dipToPixels(56);
         final int left = parent.getPaddingLeft() + insetSize;
         //final int left = parent.getPaddingLeft();
         final int right = parent.getWidth() - parent.getPaddingRight();
