@@ -14,6 +14,8 @@ import android.widget.EditText;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
+import com.chris.utopia.common.constant.Constant;
+import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.common.view.DividerItemDecoration;
@@ -58,12 +60,15 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
     public void initView(View view) {
         dataRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv);
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar);
-        toolbar.setTitle("我");
+
+        String userName = SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "");
+        toolbar.setTitle(userName);
     }
 
     public void initData() {
         profilePresenter.setActionView(this);
 
+        dataList.add("个人信息");
         dataList.add("更改密码");
         dataList.add("我的时间");
         dataList.add("时间分析");
@@ -76,6 +81,11 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
             public void onItemClick(View itemView, int position) {
                 switch (position) {
                     case 0:
+                        Intent intent0 = new Intent(getContext(), InformationActivity.class);
+                        startActivity(intent0);
+                        getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+                        break;
+                    case 1:
                         resetPwdDialog = new MaterialDialog.Builder(getContext())
                                 .title("更改密码")
                                 .customView(R.layout.dialog_reset_password, true)
@@ -139,12 +149,12 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
                         });
 
                         break;
-                    case 1:
+                    case 2:
                         Intent intent = new Intent(getContext(), TimerActivity.class);
                         startActivity(intent);
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
-                    case 2:
+                    case 3:
                         Intent intent2 = new Intent(getContext(), TimeAnalysisActivity.class);
                         startActivity(intent2);
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);

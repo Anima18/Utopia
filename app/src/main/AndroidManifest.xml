@@ -41,6 +41,8 @@
 
         <activity android:name=".module.home.activity.ProfileActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
 
+        <activity android:name=".module.home.activity.InformationActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".module.home.activity.TimerActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity android:name=".module.home.activity.TimeAnalysisActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
