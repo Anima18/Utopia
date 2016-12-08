@@ -1,5 +1,7 @@
 package com.chris.utopia.common.constant;
 
+import android.os.Environment;
+
 /**
  * Created by Chris on 2015/9/9.
  */
@@ -54,4 +56,6 @@ public interface Constant {
     //Thing type
     String THING_TYPE_THING = "THING";
     String THING_TYPE_HABIT = "HABIT";
+
+    String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
 }

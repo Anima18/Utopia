@@ -83,6 +83,17 @@ public class SystemInteractorImpl implements SystemInteractor {
             throw e;
         }
     }
+
+    @Override
+    public User findUserById(int id) throws SQLException {
+        try {
+            return userDao.queryForId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
     @Override
     public List<ThingClasses> findThingClassess(ThingClasses classes) throws SQLException {
         try {

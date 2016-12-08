@@ -20,6 +20,17 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_info_camera"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_camera"
+        android:background="@color/primary"
+        android:layout_alignRight="@id/profile_image"
+        android:layout_alignBottom="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop" />
+
     <LinearLayout
         android:id="@+id/view_info_name"
         android:layout_width="match_parent"
@@ -70,18 +81,19 @@
             android:src="@drawable/ic_sex"/>
 
         <RadioGroup
+            android:id="@+id/rg_info_sex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
-            <CheckBox
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/cb_info_man"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="男"
                 android:layout_marginLeft="16dp"/>
 
-            <CheckBox
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/cb_info_women"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

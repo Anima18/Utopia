@@ -1,6 +1,8 @@
 package com.chris.utopia.module.home.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
+import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseFragment;
@@ -32,7 +36,7 @@ import roboguice.inject.ContentView;
  * Created by Chris on 2016/2/29.
  */
 @ContentView(R.layout.activity_profile)
-public class ProfileActivity extends BaseFragment implements ProfileActionView {
+public class ProfileActivity extends BaseFragment /*implements ProfileActionView*/ {
 
     private RecyclerView dataRv;
 
@@ -42,8 +46,8 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
     private MaterialDialog resetPwdDialog;
     private View view;
 
-    @Inject
-    private ProfilePresenter profilePresenter;
+    /*@Inject
+    private ProfilePresenter profilePresenter;*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,10 +67,17 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
 
         String userName = SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "");
         toolbar.setTitle(userName);
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.pcAct_title_layout);
+        String filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath, CommonUtil.getBitmapOption(3));
+        if(bitmap != null) {
+            imageView.setImageBitmap(bitmap);
+        }
     }
 
     public void initData() {
-        profilePresenter.setActionView(this);
+        //profilePresenter.setActionView(this);
 
         dataList.add("个人信息");
         dataList.add("更改密码");
@@ -86,67 +97,7 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
                     case 1:
-                        resetPwdDialog = new MaterialDialog.Builder(getContext())
-                                .title("更改密码")
-                                .customView(R.layout.dialog_reset_password, true)
-                                .positiveText("确认")
-                                .show();
-                        View view = resetPwdDialog.getCustomView();
-                        final TextInputLayout pwTi = (TextInputLayout) view.findViewById(R.id.resetPasswordDialog_password_textInput);
-                        final EditText pwEt = (EditText) view.findViewById(R.id.resetPasswordDialog_password_et);
-                        final TextInputLayout npwTi = (TextInputLayout) view.findViewById(R.id.resetPasswordDialog_new_password_textInput);
-                        final EditText npwEt = (EditText) view.findViewById(R.id.resetPasswordDialog_new_password_et);
-                        final TextInputLayout cpwTi = (TextInputLayout) view.findViewById(R.id.resetPasswordDialog_confirm_password_textInput);
-                        final EditText cpwEt = (EditText) view.findViewById(R.id.resetPasswordDialog_confirm_password_et);
 
-                        resetPwdDialog.getActionButton(DialogAction.POSITIVE).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                boolean flag = true;
-                                String pwd = pwEt.getText().toString();
-                                String newPwd = npwEt.getText().toString();
-                                String comfirmPwd = cpwEt.getText().toString();
-
-                                if(StringUtil.isEmpty(pwd)) {
-                                    pwTi.setErrorEnabled(true);
-                                    pwTi.setError("旧密码不能为空");
-                                    flag = false;
-                                }else {
-                                    pwTi.setErrorEnabled(false);
-                                    pwTi.setError(null);
-                                }
-                                if(StringUtil.isEmpty(newPwd)) {
-                                    npwTi.setErrorEnabled(true);
-                                    npwTi.setError("密码不能为空");
-                                    flag = false;
-                                }else {
-                                    npwTi.setErrorEnabled(false);
-                                    npwTi.setError(null);
-                                }
-                                if(StringUtil.isEmpty(comfirmPwd)) {
-                                    cpwTi.setErrorEnabled(true);
-                                    cpwTi.setError("确认密码不能为空");
-                                    flag = false;
-                                }else {
-                                    cpwTi.setErrorEnabled(false);
-                                    cpwTi.setError(null);
-                                }
-                                if(StringUtil.isNotEmpty(newPwd) && StringUtil.isNotEmpty(comfirmPwd)) {
-                                    if(!newPwd.equals(comfirmPwd)) {
-                                        cpwTi.setErrorEnabled(true);
-                                        cpwTi.setError("确认密码不正确");
-                                        flag = false;
-                                    }else {
-                                        cpwTi.setErrorEnabled(false);
-                                        cpwTi.setError(null);
-                                    }
-                                }
-
-                                if(flag) {
-                                    profilePresenter.resetPassword(pwd, newPwd);
-                                }
-                            }
-                        });
 
                         break;
                     case 2:
@@ -169,7 +120,7 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
 
 
 
-    @Override
+    /*@Override
     public void showResetPasswordFail(String message) {
         resetPwdDialog.dismiss();
         new MaterialDialog.Builder(getContext())
@@ -190,5 +141,5 @@ public class ProfileActivity extends BaseFragment implements ProfileActionView {
         TextInputLayout pwTi = (TextInputLayout) view.findViewById(R.id.resetPasswordDialog_password_textInput);
         pwTi.setErrorEnabled(true);
         pwTi.setError(message);
-    }
+    }*/
 }

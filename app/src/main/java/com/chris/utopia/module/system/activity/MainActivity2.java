@@ -28,7 +28,6 @@ import roboguice.inject.InjectView;
  */
 @ContentView(R.layout.activity_main2)
 public class MainActivity2 extends BaseActivity {
-    @InjectView(R.id.bottom_nav)
     private BottomNavigationView navigationView;
     private Fragment fragment1;
     private Fragment fragment2;
@@ -40,6 +39,7 @@ public class MainActivity2 extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        navigationView = (BottomNavigationView)findViewById(R.id.bottom_nav);
         if(fragment1 == null) {
             fragment1 = new HomeFragment();
         }

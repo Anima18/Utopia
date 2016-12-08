@@ -1,5 +1,6 @@
 package com.chris.utopia.module.home.presenter;
 
+import com.chris.utopia.entity.User;
 import com.chris.utopia.module.home.activity.ProfileActionView;
 
 /**
@@ -8,4 +9,6 @@ import com.chris.utopia.module.home.activity.ProfileActionView;
 public interface ProfilePresenter {
     void setActionView(ProfileActionView actionView);
     void resetPassword(String password, String newPassword);
+    void loadUserInfo();
+    void saveUser(User user);
 }

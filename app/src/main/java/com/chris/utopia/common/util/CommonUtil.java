@@ -2,6 +2,7 @@ package com.chris.utopia.common.util;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -65,5 +66,13 @@ public class CommonUtil {
         double p3  =  (p1*1.0) / (p2*1.0);
         int valie = (int) (p3*100);
         return valie;
+    }
+
+    public static BitmapFactory.Options getBitmapOption(int inSampleSize){
+        System.gc();
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        options.inSampleSize = inSampleSize;
+        return options;
     }
 }

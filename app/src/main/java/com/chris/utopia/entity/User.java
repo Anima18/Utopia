@@ -20,6 +20,10 @@ public class User {
 	private String updateBy;
 	@DatabaseField(columnName = "UPDATE_AT")
 	private String updateAt;
+	@DatabaseField(columnName = "GENDER")
+	private String gender;
+	@DatabaseField(columnName = "INTRODUCE")
+	private String introduce;
 
 	public User () {}
 
@@ -91,5 +95,21 @@ public class User {
 
 	public void setUpdateAt(String updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 }

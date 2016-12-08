@@ -7,6 +7,7 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.home.activity.ProfileActionView;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
+import com.chris.utopia.module.system.interactor.SystemInteractorImpl;
 import com.google.inject.Inject;
 
 import java.sql.SQLException;
@@ -20,8 +21,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     private ProfileActionView actionView;
     private Context mContext;
 
-    @Inject
-    private SystemInteractor systemInteractor;
+    private SystemInteractor systemInteractor = new SystemInteractorImpl();
 
     @Override
     public void setActionView(ProfileActionView actionView) {
@@ -49,6 +49,28 @@ public class ProfilePresenterImpl implements ProfilePresenter {
         } catch (SQLException e) {
             e.printStackTrace();
             actionView.showResetPasswordFail("更改密码失败");
+        }
+    }
+
+    @Override
+    public void loadUserInfo() {
+        try {
+            int userId = SharedPrefsUtil.getIntValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, 0);
+            User user = systemInteractor.findUserById(userId);
+            actionView.loadUserInfo(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void saveUser(User user) {
+        try {
+            systemInteractor.addUser(user);
+            actionView.showSaveUserMessage("保存个人信息成功");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            actionView.showSaveUserMessage("保存个人信息失败");
         }
     }
 }
