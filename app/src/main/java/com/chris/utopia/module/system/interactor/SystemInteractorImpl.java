@@ -122,7 +122,7 @@ public class SystemInteractorImpl implements SystemInteractor {
     @Override
     public void addThingClassess(ThingClasses classes) throws SQLException {
         try {
-            thingClassesDao.create(classes);
+            thingClassesDao.createOrUpdate(classes);
         } catch (SQLException e) {
             e.printStackTrace();
             throw  e;

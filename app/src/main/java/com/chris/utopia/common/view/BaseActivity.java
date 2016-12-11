@@ -9,6 +9,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.ProgressDialogUtil;
@@ -39,9 +41,16 @@ public abstract class BaseActivity extends RoboAppCompatActivity implements Base
     public void initStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            /*SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.primary_dark);
+            tintManager.setStatusBarTintResource(R.color.primary_dark);*/
+            Window window = getWindow();
+            //取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            //设置状态栏颜色
+            window.setStatusBarColor(getResources().getColor(R.color.primary_dark));
         }
     }
 

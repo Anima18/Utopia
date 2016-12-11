@@ -18,10 +18,8 @@ import com.chris.utopia.module.home.activity.ProfileActivity;
 import com.chris.utopia.module.home.activity.SearchActivity;
 import com.chris.utopia.module.idea.activity.IdeaFragment;
 import com.chris.utopia.module.plan.activity.PlanFragment;
-import com.chris.utopia.module.role.activity.RoleFragment;
 
 import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
 
 /**
  * Created by jianjianhong on 2016/12/2.
@@ -55,12 +53,12 @@ public class MainActivity2 extends BaseActivity {
                         }
                         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment1).commitAllowingStateLoss();
                         break;
-                    case R.id.bottom_nav_role:
+                   /* case R.id.bottom_nav_role:
                         if(fragment2 == null) {
                             fragment2 = new RoleFragment();
                         }
                         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment2).commitAllowingStateLoss();
-                        break;
+                        break;*/
                     case R.id.bottom_nav_plan:
                         if(fragment3 == null) {
                             fragment3 = new PlanFragment();

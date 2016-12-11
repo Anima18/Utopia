@@ -8,8 +8,8 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="cardView_background">#FFFFFF</color>
 
-    <color name="backgroundColor">#EEEEEE</color>
-    <color name="backgroundColorPress">#DDDDDD</color>
+    <color name="backgroundColor">#F0F4F5</color>
+    <color name="backgroundColorPress">#666666</color>
     <color name="dividing_line_color">#EEEEEE</color>
     <color name="transparent">#00000000</color>
 

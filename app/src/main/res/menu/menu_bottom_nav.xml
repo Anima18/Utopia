@@ -8,11 +8,11 @@
         android:title="@string/bottom_nav_home"
         android:icon="@drawable/ic_home"/>
 
-    <item android:id="@+id/bottom_nav_role"
+    <!--<item android:id="@+id/bottom_nav_role"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/bottom_nav_role"
-        android:icon="@drawable/ic_role"/>
+        android:icon="@drawable/ic_role"/>-->
 
     <item android:id="@+id/bottom_nav_plan"
         android:enabled="true"

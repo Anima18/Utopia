@@ -5,21 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chris.utopia.R;
+import com.chris.utopia.entity.ThingClasses;
 
 import java.util.List;
 
 /**
  * Created by chris on 2015/11/18
  */
-public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
+public class LabelAdapter extends RecyclerView.Adapter<LabelAdapter.ViewHolder> {
     // Store the context for later use
     private Context context;
-    private List<String> dList;
-    private List<Integer> rList;
+    private List<ThingClasses> dList;
 
     private static OnItemClickListener listener;
     // Define the listener interface
@@ -32,17 +31,16 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     }
 
     // Pass in the context and users array into the constructor
-    public ProfileAdapter(Context context, List<String> dList, List<Integer> rList) {
+    public LabelAdapter(Context context, List<ThingClasses> dList) {
         this.context = context;
         this.dList = dList;
-        this.rList = rList;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the custom layout
-        View itemView = LayoutInflater.from(context).inflate(R.layout.listview_profile_item, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.listview_role_item, parent, false);
         // Return a new holder instance
         return new ViewHolder(context, itemView);
     }
@@ -51,9 +49,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // Get the data model based on position
-        String data = dList.get(position);
-        holder.titleTv.setText(data);
-        holder.imageView.setImageResource(rList.get(position));
+        ThingClasses role = dList.get(position);
+        holder.titleTv.setText(role.getName());
+        holder.descTv.setText(role.getDescription().replace("\n", "").replace(" ", ""));
     }
 
     // Return the total count of items
@@ -68,15 +66,16 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView titleTv;
-        public ImageView imageView;
+        public TextView descTv;
+
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder(Context context, final View itemView) {
+        public ViewHolder(Context context,final View itemView) {
             super(itemView);
 
-            titleTv = (TextView) itemView.findViewById(R.id.profileLv_title);
-            imageView = (ImageView) itemView.findViewById(R.id.profileLv_image);
+            titleTv = (TextView) itemView.findViewById(R.id.roleLv_name_tv);
+            descTv = (TextView) itemView.findViewById(R.id.roleLv_desc_tv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,6 +86,5 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
                 }
             });
         }
-
     }
 }

@@ -4,28 +4,23 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
-import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
-import com.chris.utopia.module.home.presenter.ProfilePresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.role.activity.RoleActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +38,7 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
     private String userName;
     private ProfileAdapter adapter;
     private List<String> dataList = new ArrayList<>();
+    private List<Integer> resList = new ArrayList<>();
     private MaterialDialog resetPwdDialog;
     private View view;
 
@@ -80,13 +76,19 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
         //profilePresenter.setActionView(this);
 
         dataList.add("个人信息");
-        dataList.add("更改密码");
+        resList.add(R.drawable.ic_user);
+        dataList.add("事情分类");
+        resList.add(R.drawable.ic_label_disable);
+        dataList.add("我的角色");
+        resList.add(R.drawable.ic_role_group);
         dataList.add("我的时间");
+        resList.add(R.drawable.ic_time);
         dataList.add("时间分析");
+        resList.add(R.drawable.ic_analyze);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         dataRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager.getOrientation()));
         dataRv.setLayoutManager(layoutManager);
-        adapter = new ProfileAdapter(getContext(), dataList);
+        adapter = new ProfileAdapter(getContext(), dataList, resList);
         adapter.setOnItemClickListener(new ProfileAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
@@ -97,15 +99,21 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
                     case 1:
-
-
+                        Intent labelIntent = new Intent(getContext(), ThingLabelActivity.class);
+                        startActivity(labelIntent);
+                        getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
                     case 2:
+                        Intent roleIntent = new Intent(getContext(), RoleActivity.class);
+                        startActivity(roleIntent);
+                        getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+                        break;
+                    case 3:
                         Intent intent = new Intent(getContext(), TimerActivity.class);
                         startActivity(intent);
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
-                    case 3:
+                    case 4:
                         Intent intent2 = new Intent(getContext(), TimeAnalysisActivity.class);
                         startActivity(intent2);
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
@@ -118,28 +126,4 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
 
     public void initEvent() {}
 
-
-
-    /*@Override
-    public void showResetPasswordFail(String message) {
-        resetPwdDialog.dismiss();
-        new MaterialDialog.Builder(getContext())
-                .title(R.string.dialog_title)
-                .content(message)
-                .show();
-    }
-
-    @Override
-    public void showResetPasswordSuccess(String message) {
-        resetPwdDialog.dismiss();
-        showMessage(message);
-    }
-
-    @Override
-    public void showPasswordError(String message) {
-        View view = resetPwdDialog.getCustomView();
-        TextInputLayout pwTi = (TextInputLayout) view.findViewById(R.id.resetPasswordDialog_password_textInput);
-        pwTi.setErrorEnabled(true);
-        pwTi.setError(message);
-    }*/
 }

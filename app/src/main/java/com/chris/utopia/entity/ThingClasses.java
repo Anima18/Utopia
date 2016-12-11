@@ -2,9 +2,12 @@ package com.chris.utopia.entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
+
 @DatabaseTable(tableName = "THING_CLASSES")
-public class ThingClasses {
-	@DatabaseField(generatedId = true)
+public class ThingClasses implements Serializable{
+		@DatabaseField(generatedId = true)
 	private Integer id;
 	@DatabaseField(columnName = "NAME")
 	private String name;
@@ -22,6 +25,11 @@ public class ThingClasses {
 	private String updateAt;
 
 	public ThingClasses() {}
+
+	public ThingClasses(String title, String description) {
+		this.name = title;
+		this.description = description;
+	}
 
 	public ThingClasses(String title, String description, int userId) {
 		this.name = title;

@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+  <!--  <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_info_camera"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -28,8 +28,7 @@
         android:background="@color/primary"
         android:layout_alignRight="@id/profile_image"
         android:layout_alignBottom="@id/profile_image"
-        android:layout_centerHorizontal="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop" />-->
 
     <LinearLayout
         android:id="@+id/view_info_name"
@@ -45,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:tint="@color/backgroundColorPress"
             android:src="@drawable/ic_role"/>
 
         <android.support.design.widget.TextInputLayout
@@ -78,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:tint="@color/backgroundColorPress"
             android:src="@drawable/ic_sex"/>
 
         <RadioGroup
@@ -117,6 +118,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tint="@color/backgroundColorPress"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_email"/>
 
@@ -149,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:tint="@color/backgroundColorPress"
             android:src="@drawable/ic_message2"/>
 
         <android.support.design.widget.TextInputLayout
@@ -180,6 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:tint="@color/backgroundColorPress"
             android:src="@drawable/ic_password"/>
 
         <TextView
