@@ -4,12 +4,10 @@ import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -26,7 +23,6 @@ import android.widget.RadioGroup;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
-import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseActivity;
@@ -329,8 +325,12 @@ public class InformationActivity extends BaseActivity implements ProfileActionVi
     public void setToolBarTitle() {
         toolbar = (Toolbar) findViewById(R.id.activity_toolBar);
         toolbar.setTitle("编辑个人信息");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
+        // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override
@@ -358,6 +358,10 @@ public class InformationActivity extends BaseActivity implements ProfileActionVi
                 user.setEmail(emailEt.getText().toString());
                 user.setIntroduce(introduceEt.getText().toString());
                 profilePresenter.saveUser(user);
+                return true;
+            case android.R.id.home:
+                this.finish();
+                overridePendingTransition(R.anim.push_in_left, R.anim.push_out_right);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

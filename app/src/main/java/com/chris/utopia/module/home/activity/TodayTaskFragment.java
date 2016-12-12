@@ -168,7 +168,7 @@ public class TodayTaskFragment extends BaseFragment implements TodayTaskActionVi
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         String timeStr = (hourOfDay < 10 ? "0"+hourOfDay : hourOfDay) + ":" + (minute < 10 ? "0"+minute : minute) + ":" + (second < 10 ? "0"+second : second);
         selectThing.setBeginTime(timeStr);
-        selectThing.setStatus(Constant.Plan_STATUS_NEW);
+        selectThing.setStatus(Constant.PLAN_STATUS_NEW);
         presenter.updateThing(selectThing);
     }
 

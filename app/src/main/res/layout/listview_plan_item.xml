@@ -9,7 +9,7 @@
     card_view:cardBackgroundColor="@color/cardView_background">
 
     <!-- Main Content View -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,14 +20,26 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="@color/primary_text_dark_color"
+            android:layout_alignParentLeft="true"
             android:paddingTop="24dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="Welcome Back!"/>
 
+        <ImageView
+            android:id="@+id/planFrg_overflow_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="16dp"
+            android:layout_alignBottom="@id/planFrg_title_tv"
+            android:src="@drawable/ic_overflow"/>
+
         <TextView
+            android:id="@+id/planFrg_second_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/planFrg_title_tv"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="10dp"
@@ -39,6 +51,7 @@
             android:id="@+id/planFrg_summary_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/planFrg_second_title"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="24dp"
@@ -65,5 +78,5 @@
                 android:background="@color/primary"
                 android:text="Button2" />
         </LinearLayout>-->
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chris.utopia.R;
@@ -28,6 +29,26 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     // Define the method that allows the parent activity or fragment to define the listener
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
+    }
+
+    private static OnLongItemClickListener longClickListener;
+    // Define the listener interface
+    public interface OnLongItemClickListener {
+        void onLongClick(View itemView, int position);
+    }
+    // Define the method that allows the parent activity or fragment to define the listener
+    public void setOnLongItemClickListener(OnLongItemClickListener longClickListener) {
+        this.longClickListener = longClickListener;
+    }
+
+    private static OverflowMenuClickListener overflowMenuClickListener;
+    // Define the listener interface
+    public interface OverflowMenuClickListener {
+        void onClick(View itemView, int position);
+    }
+    // Define the method that allows the parent activity or fragment to define the listener
+    public void setOnOverflowMenuClickListener(OverflowMenuClickListener overflowMenuClickListener) {
+        this.overflowMenuClickListener = overflowMenuClickListener;
     }
 
     // Pass in the context and users array into the constructor
@@ -67,6 +88,8 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
         // for any view that will be set as you render a row
         public TextView titleTv;
         public TextView descTv;
+        public TextView secondTitleTv;
+        public ImageView overflowMenu;
 
 
         // We also create a constructor that accepts the entire item row
@@ -76,6 +99,8 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
             titleTv = (TextView) itemView.findViewById(R.id.planFrg_title_tv);
             descTv = (TextView) itemView.findViewById(R.id.planFrg_summary_tv);
+            secondTitleTv = (TextView) itemView.findViewById(R.id.planFrg_second_title);
+            overflowMenu = (ImageView) itemView.findViewById(R.id.planFrg_overflow_menu);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,6 +110,18 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
                         listener.onItemClick(itemView, getLayoutPosition());
                 }
             });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if(longClickListener != null) {
+                        longClickListener.onLongClick(itemView, getLayoutPosition());
+                    }
+                    return true;
+                }
+            });
+
+            //overflowMenu.set
         }
     }
 }

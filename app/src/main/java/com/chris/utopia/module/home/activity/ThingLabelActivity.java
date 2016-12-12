@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.chris.utopia.R;
@@ -89,6 +90,11 @@ public class ThingLabelActivity extends BaseActivity implements LabelActionView,
     @Override
     public void setToolBarTitle() {
         toolbar.setTitle("事情分类");
+        // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     @Override
@@ -96,5 +102,17 @@ public class ThingLabelActivity extends BaseActivity implements LabelActionView,
         this.labellist.clear();
         this.labellist.addAll(labelList);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                overridePendingTransition(R.anim.push_in_left, R.anim.push_out_right);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

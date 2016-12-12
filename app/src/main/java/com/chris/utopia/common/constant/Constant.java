@@ -48,7 +48,9 @@ public interface Constant {
     String HABIT_STATUS_PAUSE = "PAUSE";
 
     //plan status
-    String Plan_STATUS_NEW = "NEW";
+    String PLAN_STATUS_NEW = "NEW";
+    String PLAN_STATUS_IGNORE = "IGNORE";
+    String PLAN_STATUS_DONE = "DONE";
 
     //add plan thing result code
     int ADD_THING_RESULT_CODE = 0;

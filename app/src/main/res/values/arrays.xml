@@ -65,6 +65,12 @@
         <item>删除习惯</item>
     </string-array>
 
+    <string-array name="plan_action">
+        <item>标记完成</item>
+        <item>忽略计划</item>
+        <item>删除计划</item>
+    </string-array>
+
     <array name="idea_background_custom_colors">
         <item>#FAFAFA</item>
         <item>#F8E9C8</item>

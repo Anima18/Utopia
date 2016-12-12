@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Plan;
@@ -66,6 +67,21 @@ public class PlanFragment extends BaseFragment implements View.OnClickListener, 
                 intent.putExtras(bundle);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
+            }
+        });
+        adapter.setOnLongItemClickListener(new PlanAdapter.OnLongItemClickListener() {
+            @Override
+            public void onLongClick(View itemView, int position) {
+                //Toast.makeText(getContext(), "item longClick: " + position, Toast.LENGTH_SHORT).show();
+                new MaterialDialog.Builder(getContext())
+                        .items(R.array.plan_action)
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+
+                            }
+                        })
+                        .show();
             }
         });
         planRecyclerView.setAdapter(adapter);

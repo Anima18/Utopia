@@ -67,7 +67,7 @@ public class PlanCreatePresenterImpl implements PlanCreatePresenter {
                 plan.setCreateAt(dateStr);
                 plan.setProgress(0+"%");
                 plan.setBeginDate(dateStr);
-                plan.setStatus(Constant.Plan_STATUS_NEW);
+                plan.setStatus(Constant.PLAN_STATUS_NEW);
             }
             plan.setUpdateBy(userName);
             plan.setUpdateAt(dateStr);
