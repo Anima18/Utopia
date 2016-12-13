@@ -1,17 +1,24 @@
 package com.chris.utopia.module.plan.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chris.utopia.R;
 import com.chris.utopia.entity.Plan;
+import com.chris.utopia.module.home.adapter.MenuAdapter;
 
 import java.util.List;
+
+import static com.chris.utopia.common.util.CommonUtil.getApplicationContext;
 
 /**
  * Created by chris on 2015/11/18
@@ -41,7 +48,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
         this.longClickListener = longClickListener;
     }
 
-    private static OverflowMenuClickListener overflowMenuClickListener;
+    /*private static OverflowMenuClickListener overflowMenuClickListener;
     // Define the listener interface
     public interface OverflowMenuClickListener {
         void onClick(View itemView, int position);
@@ -49,7 +56,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     // Define the method that allows the parent activity or fragment to define the listener
     public void setOnOverflowMenuClickListener(OverflowMenuClickListener overflowMenuClickListener) {
         this.overflowMenuClickListener = overflowMenuClickListener;
-    }
+    }*/
 
     // Pass in the context and users array into the constructor
     public PlanAdapter(Context context, List<Plan> dList) {
@@ -94,13 +101,35 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder(Context context,final View itemView) {
+        public ViewHolder(final Context context, final View itemView) {
             super(itemView);
-
+            Log.i("Chris", "planAdapter");
             titleTv = (TextView) itemView.findViewById(R.id.planFrg_title_tv);
             descTv = (TextView) itemView.findViewById(R.id.planFrg_summary_tv);
             secondTitleTv = (TextView) itemView.findViewById(R.id.planFrg_second_title);
             overflowMenu = (ImageView) itemView.findViewById(R.id.planFrg_overflow_menu);
+
+            String items[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            final ListPopupWindow listPopupWindow = new ListPopupWindow(context);
+            MenuAdapter adapter = new MenuAdapter(context, R.layout.listview_menu_item, 10);
+            listPopupWindow.setAdapter(adapter);
+            // 对话框的宽高
+            listPopupWindow.setWidth(450);
+            listPopupWindow.setHeight(300);
+
+            // ListPopupWindow的锚,弹出框的位置是相对当前View的位置
+            listPopupWindow.setAnchorView(overflowMenu);
+            // ListPopupWindow 距锚view的距离
+            listPopupWindow.setHorizontalOffset(-350);
+
+            // 选择item的监听事件
+            listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                    Toast.makeText(getApplicationContext(), "选择:" + pos, Toast.LENGTH_SHORT).show();
+                    listPopupWindow.dismiss();
+                }
+            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,7 +150,16 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
                 }
             });
 
-            //overflowMenu.set
+            overflowMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    listPopupWindow.setVerticalOffset(-overflowMenu.getHeight()-60);
+
+                    listPopupWindow.setModal(true);
+                    listPopupWindow.show();
+                }
+            });
         }
     }
 }
