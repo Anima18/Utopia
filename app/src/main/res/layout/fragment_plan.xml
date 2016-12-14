@@ -17,9 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/backgroundColor"
-            android:paddingTop="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"/>
+            android:paddingTop="8dp"/>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/planFrm_addFad"
             android:layout_width="wrap_content"

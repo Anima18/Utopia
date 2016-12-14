@@ -5,6 +5,8 @@ import android.content.Context;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Plan;
+import com.chris.utopia.entity.Thing;
+import com.chris.utopia.module.home.interactor.ThingInteractor;
 import com.chris.utopia.module.plan.activity.PlanActionView;
 import com.chris.utopia.module.plan.interactor.PlanInteractor;
 import com.google.inject.Inject;
@@ -22,6 +24,8 @@ public class PlanPresenterImpl implements PlanPresenter {
 
     @Inject
     private PlanInteractor interactor;
+    @Inject
+    private ThingInteractor thingInteractor;
 
     @Override
     public void setActionView(PlanActionView actionView) {
@@ -41,6 +45,44 @@ public class PlanPresenterImpl implements PlanPresenter {
         } catch (SQLException e) {
             e.printStackTrace();
             actionView.showMessage("获取数据失败");
+        }
+    }
+
+    @Override
+    public void updateStatus(Plan plan) {
+        try {
+            interactor.createOrUpdate(plan);
+            Thing thing = new Thing();
+            thing.setPlanId(plan.getId());
+
+            List<Thing> thingList = thingInteractor.findThing(thing);
+            for(Thing thing1 : thingList) {
+                thing1.setStatus(plan.getStatus());
+            }
+            thingInteractor.addThing(thingList);
+
+            actionView.updatePlanSuccess(plan);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            actionView.showMessage("更新数据失败");
+        } catch (Exception e) {
+            e.printStackTrace();
+            actionView.showMessage("更新数据失败");
+        }
+    }
+
+    @Override
+    public void deletePlan(Plan plan) {
+        try {
+            Thing thing = new Thing();
+            thing.setPlanId(plan.getId());
+            thingInteractor.deleteThing(thing);
+
+            interactor.deletePlan(plan);
+            actionView.deletePlanSuccess(plan);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            actionView.showMessage("更新数据失败");
         }
     }
 }

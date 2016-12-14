@@ -10,9 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
+import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Plan;
 import com.chris.utopia.module.plan.adapter.PlanAdapter;
@@ -69,19 +72,19 @@ public class PlanFragment extends BaseFragment implements View.OnClickListener, 
                 getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
             }
         });
-        adapter.setOnLongItemClickListener(new PlanAdapter.OnLongItemClickListener() {
+        adapter.setOnMenuItemClickListener(new PlanAdapter.OnMenuItemClickListener() {
             @Override
-            public void onLongClick(View itemView, int position) {
-                //Toast.makeText(getContext(), "item longClick: " + position, Toast.LENGTH_SHORT).show();
-                new MaterialDialog.Builder(getContext())
-                        .items(R.array.plan_action)
-                        .itemsCallback(new MaterialDialog.ListCallback() {
-                            @Override
-                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-
-                            }
-                        })
-                        .show();
+            public void onItemClick(AdapterView<?> parent, View view, int pos, int id) {
+                Plan plan = planList.get(id);
+                if(0 == pos) {
+                    plan.setStatus(Constant.PLAN_STATUS_DONE);
+                    presenter.updateStatus(plan);
+                }else if(1 == pos) {
+                    plan.setStatus(Constant.PLAN_STATUS_IGNORE);
+                    presenter.updateStatus(plan);
+                }else if(2 == pos) {
+                    presenter.deletePlan(plan);
+                }
             }
         });
         planRecyclerView.setAdapter(adapter);
@@ -113,5 +116,18 @@ public class PlanFragment extends BaseFragment implements View.OnClickListener, 
         this.planList.clear();
         this.planList.addAll(plans);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updatePlanSuccess(Plan plan) {
+        adapter.notifyItemChanged(planList.indexOf(plan));
+    }
+
+
+    @Override
+    public void deletePlanSuccess(Plan plan) {
+        int index = planList.indexOf(plan);
+        planList.remove(index);
+        adapter.notifyItemRemoved(index);
     }
 }

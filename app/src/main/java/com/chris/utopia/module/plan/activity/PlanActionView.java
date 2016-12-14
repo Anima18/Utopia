@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface PlanActionView extends BaseActionView {
     void loadPlan(List<Plan> plans);
+    void updatePlanSuccess(Plan plan);
+    void deletePlanSuccess(Plan plan);
 }

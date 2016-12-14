@@ -129,4 +129,15 @@ public class PlanInteractorImpl implements PlanInteractor {
             throw e;
         }
     }
+
+    @Override
+    public void deletePlan(Plan plan) throws SQLException {
+        try {
+            planDao.delete(plan);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.chris.utopia.module.home.interactor;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.chris.utopia.base.DBOpenHelper;
@@ -15,6 +16,7 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 
@@ -63,7 +65,27 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public void deleteThing(Thing thing) throws SQLException {
         try {
-            thingDao.delete(thing);
+            DeleteBuilder<Thing, Integer> db = thingDao.deleteBuilder();
+            Where<Thing, Integer> where = db.where();
+            where.isNotNull("id");
+            if(thing != null) {
+                if(StringUtil.isNotEmpty(thing.getUserId())) {
+                    where.and().eq("USER_ID", thing.getUserId());
+                }
+
+                if(StringUtil.isNotEmpty(thing.getBeginDate())) {
+                    where.and().eq("BEGIN_DATE", thing.getBeginDate());
+                }
+
+                if(StringUtil.isNotEmpty(thing.getPlanId())) {
+                    where.and().eq("PLAN_ID", thing.getPlanId());
+                }
+
+                if(StringUtil.isNotEmpty(thing.getType())) {
+                    where.and().eq("TYPE", thing.getType());
+                }
+            }
+            db.delete();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -16,23 +16,20 @@ import com.chris.utopia.R;
 public class MenuAdapter extends BaseAdapter {
 
     private Context context;
-    private int layoutId;
-    private int itemSize;
-    private int selected = -1;
+    private String[] menuList;
 
-    public MenuAdapter(Context context, int layoutId, int itemSize) {
+    public MenuAdapter(Context context, String[] menuList) {
         this.context = context;
-        this.layoutId = layoutId;
-        this.itemSize = itemSize;
+        this.menuList = menuList;
     }
     @Override
     public int getCount() {
-        return itemSize;
+        return menuList.length;
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return menuList[i];
     }
 
     @Override
@@ -42,11 +39,10 @@ public class MenuAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = LayoutInflater.from(context).inflate(layoutId, null);
+        view = LayoutInflater.from(context).inflate(R.layout.listview_menu_item, null);
         TextView textView = (TextView) view.findViewById(R.id.menuList_text);
-        textView.setText(i+"");
+        textView.setText(menuList[i]);
 
         return view;
     }
-
 }

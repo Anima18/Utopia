@@ -14,4 +14,5 @@ public interface PlanInteractor {
     Plan findPlanById(Integer id) throws SQLException;
     List<Plan> findWeekPlan(Plan plan) throws SQLException;
     void addPlan(List<Plan> plans) throws Exception;
+    void deletePlan(Plan plan) throws SQLException;
 }
