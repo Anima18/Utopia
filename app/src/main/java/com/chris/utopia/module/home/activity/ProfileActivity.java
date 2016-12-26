@@ -20,7 +20,10 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
+import com.chris.utopia.module.home.presenter.MePresenter;
+import com.chris.utopia.module.home.presenter.MePresnterImpl;
 import com.chris.utopia.module.role.activity.RoleActivity;
+import com.trello.rxlifecycle.LifecycleProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,7 @@ import roboguice.inject.ContentView;
  * Created by Chris on 2016/2/29.
  */
 @ContentView(R.layout.activity_profile)
-public class ProfileActivity extends BaseFragment /*implements ProfileActionView*/ {
+public class ProfileActivity extends BaseFragment implements MeActionView {
 
     private RecyclerView dataRv;
 
@@ -42,8 +45,7 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
     private MaterialDialog resetPwdDialog;
     private View view;
 
-    /*@Inject
-    private ProfilePresenter profilePresenter;*/
+    private MePresenter presenter = new MePresnterImpl(this);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +87,9 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
         resList.add(R.drawable.ic_time);
         dataList.add("时间分析");
         resList.add(R.drawable.ic_analyze);
+        dataList.add("数据同步");
+        resList.add(R.drawable.ic_palette);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         dataRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager.getOrientation()));
         dataRv.setLayoutManager(layoutManager);
@@ -118,6 +123,9 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
                         startActivity(intent2);
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
+                    case 5:
+                        presenter.syncData();
+                        break;
                 }
             }
         });
@@ -126,4 +134,20 @@ public class ProfileActivity extends BaseFragment /*implements ProfileActionView
 
     public void initEvent() {}
 
+    @Override
+    public void syncFail() {
+        progressDialog.hide();
+        showMessage("同步数据失败");
+    }
+
+    @Override
+    public void syncSuccess() {
+        progressDialog.hide();
+        showMessage("同步数据成功");
+    }
+
+    @Override
+    public LifecycleProvider getLifecycleProvider() {
+        return this;
+    }
 }

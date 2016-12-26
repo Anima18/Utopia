@@ -370,7 +370,8 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                progressEt.setText(slider.getValue() + "%");
+                //progressEt.setText(slider.getValue() + "%");
+                progressEt.setText(slider.getValue() + "");
             }
         });
     }
