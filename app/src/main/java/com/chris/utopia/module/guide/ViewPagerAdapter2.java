@@ -1,93 +1,75 @@
 package com.chris.utopia.module.guide;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Parcelable;
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 
 import com.chris.utopia.R;
-import com.chris.utopia.module.system.activity.LoginActivity;
-import com.chris.utopia.module.system.activity.RegisterActivity;
 
-import java.util.List;
+public class ViewPagerAdapter2 extends PagerAdapter implements View.OnClickListener {
 
-public class ViewPagerAdapter2 extends PagerAdapter {
+    private int[]              layouts;
+    private Context            context;
+    private LayoutInflater     inflater;
+    private OnBtnClickListener listener;
 
-	// 界面列表
-	private List<View> views;
-	private Activity activity;
+    public ViewPagerAdapter2(@NonNull Context context, @NonNull int[] layouts, @NonNull OnBtnClickListener listener) {
+        this.layouts = layouts;
+        this.context = context;
+        this.listener = listener;
+        this.inflater = LayoutInflater.from(context);
+    }
 
-	public ViewPagerAdapter2(List<View> views, Activity activity) {
-		this.views = views;
-		this.activity = activity;
-	}
+    @Override
+    public int getCount() {
+        return layouts == null ? 0 : layouts.length;
+    }
 
-	// 销毁arg1位置的界面
-	@Override
-	public void destroyItem(View arg0, int arg1, Object arg2) {
-		((ViewPager) arg0).removeView(views.get(arg1));
-	}
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
 
-	@Override
-	public void finishUpdate(View arg0) {
-	}
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
+    }
 
-	// 获得当前界面数
-	@Override
-	public int getCount() {
-		if (views != null) {
-			return views.size();
-		}
-		return 0;
-	}
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        View view = inflater.inflate(layouts[position], container, false);
+        if (position == layouts.length - 1) {
+            view.findViewById(R.id.bt_guide_register).setOnClickListener(ViewPagerAdapter2.this);
+            view.findViewById(R.id.bt_guide_login).setOnClickListener(ViewPagerAdapter2.this);
+        }
+        container.addView(view);
+        return view;
+    }
 
-	// 初始化arg1位置的界面
-	@Override
-	public Object instantiateItem(View arg0, int arg1) {
-		((ViewPager) arg0).addView(views.get(arg1), 0);
-		if (arg1 == views.size() - 1) {
-			Button loginBt = (Button) arg0.findViewById(R.id.bt_guide_login);
-			Button registerBt = (Button) arg0.findViewById(R.id.bt_guide_register);
-			loginBt.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(activity, LoginActivity.class);
-					activity.startActivity(intent);
-					activity.finish();
-				}
-			});
-			registerBt.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(activity, RegisterActivity.class);
-					activity.startActivity(intent);
-					activity.finish();
-				}
-			});
-		}
-		return views.get(arg1);
-	}
+    @Override
+    public void onClick(View view) {
+        if (listener == null) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.bt_guide_register:
+                listener.onRegisterClick();
+                break;
+            case R.id.bt_guide_login:
+                listener.onLoginClick();
+                break;
+        }
+    }
 
-	// 判断是否由对象生成界面
-	@Override
-	public boolean isViewFromObject(View arg0, Object arg1) {
-		return (arg0 == arg1);
-	}
+    public interface OnBtnClickListener {
 
-	@Override
-	public void restoreState(Parcelable arg0, ClassLoader arg1) {
-	}
+        void onLoginClick();
 
-	@Override
-	public Parcelable saveState() {
-		return null;
-	}
-
-	@Override
-	public void startUpdate(View arg0) {
-	}
-
+        void onRegisterClick();
+    }
 }
+
+
