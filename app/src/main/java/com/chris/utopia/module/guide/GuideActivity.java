@@ -1,90 +1,94 @@
 package com.chris.utopia.module.guide;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.chris.utopia.R;
+import com.chris.utopia.module.system.activity.LoginActivity;
+import com.chris.utopia.module.system.activity.RegisterActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+public class GuideActivity extends Activity {
 
-public class GuideActivity extends Activity implements OnPageChangeListener {
+    private ViewPager         vp;
+    private ViewPagerAdapter2 vpAdapter;
+    private ImageView[]       dots;
+    private int               currentIndex;
+    private int[] layouts = new int[]{R.layout.what_new_one, R.layout.what_new_two, R.layout.what_new_three, R.layout.what_new_four};
 
-	private ViewPager vp;
-	private ViewPagerAdapter2 vpAdapter;
-	private List<View> views;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_guide);
+        initViews();
+        initDots();
+    }
 
-	private ImageView[] dots;
+    private void initViews() {
 
-	private int currentIndex;
+        vpAdapter = new ViewPagerAdapter2(GuideActivity.this, layouts, onBtnClickListener);
+        vp = (ViewPager) findViewById(R.id.viewpager);
+        vp.setAdapter(vpAdapter);
+        vp.addOnPageChangeListener(onPageChangeListener);
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_guide);
-		initViews();
-		initDots();
-	}
+    private void initDots() {
+        LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
 
-	private void initViews() {
-		LayoutInflater inflater = LayoutInflater.from(this);
+        dots = new ImageView[layouts.length];
 
-		views = new ArrayList<View>();
-		views.add(inflater.inflate(R.layout.what_new_one, null));
-		views.add(inflater.inflate(R.layout.what_new_two, null));
-		views.add(inflater.inflate(R.layout.what_new_three, null));
-		views.add(inflater.inflate(R.layout.what_new_four, null));
+        for (int i = 0; i < layouts.length; i++) {
+            dots[i] = (ImageView) ll.getChildAt(i);
+            dots[i].setEnabled(true);
+        }
 
-		vpAdapter = new ViewPagerAdapter2(views, this);
-		
-		vp = (ViewPager) findViewById(R.id.viewpager);
-		vp.setAdapter(vpAdapter);
-		vp.setOnPageChangeListener(this);
-	}
+        currentIndex = 0;
+        dots[currentIndex].setEnabled(false);
+    }
 
-	private void initDots() {
-		LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
+    private void setCurrentDot(int position) {
+        if (position < 0 || position > layouts.length - 1 || currentIndex == position) {
+            return;
+        }
 
-		dots = new ImageView[views.size()];
+        dots[position].setEnabled(false);
+        dots[currentIndex].setEnabled(true);
 
-		for (int i = 0; i < views.size(); i++) {
-			dots[i] = (ImageView) ll.getChildAt(i);
-			dots[i].setEnabled(true);
-		}
+        currentIndex = position;
+    }
 
-		currentIndex = 0;
-		dots[currentIndex].setEnabled(false);
-	}
+    private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-	private void setCurrentDot(int position) {
-		if (position < 0 || position > views.size() - 1
-				|| currentIndex == position) {
-			return;
-		}
+        }
 
-		dots[position].setEnabled(false);
-		dots[currentIndex].setEnabled(true);
+        @Override
+        public void onPageSelected(int position) {
+            setCurrentDot(position);
+        }
 
-		currentIndex = position;
-	}
+        @Override
+        public void onPageScrollStateChanged(int state) {
 
-	@Override
-	public void onPageScrollStateChanged(int arg0) {
-	}
+        }
+    };
 
-	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {
-	}
+    private ViewPagerAdapter2.OnBtnClickListener onBtnClickListener = new ViewPagerAdapter2.OnBtnClickListener() {
+        @Override
+        public void onLoginClick() {
+            startActivity(new Intent(GuideActivity.this, LoginActivity.class));
+            finish();
+        }
 
-	@Override
-	public void onPageSelected(int arg0) {
-		setCurrentDot(arg0);
-	}
-
+        @Override
+        public void onRegisterClick() {
+            startActivity(new Intent(GuideActivity.this, RegisterActivity.class));
+            finish();
+        }
+    };
 }
