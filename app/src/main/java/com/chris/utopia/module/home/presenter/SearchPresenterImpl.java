@@ -32,7 +32,7 @@ public class SearchPresenterImpl implements SearchPresenter {
     @Override
     public void search(String searchStr) {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setTitle(searchStr);
             thing.setBeginDate(searchStr);

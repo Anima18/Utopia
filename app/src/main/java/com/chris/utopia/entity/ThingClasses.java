@@ -7,14 +7,14 @@ import java.io.Serializable;
 
 @DatabaseTable(tableName = "THING_CLASSES")
 public class ThingClasses implements Serializable{
-		@DatabaseField(generatedId = true)
-	private Integer id;
+	@DatabaseField(columnName = "ID", id = true, unique = true)
+	private String id;
 	@DatabaseField(columnName = "NAME")
 	private String name;
 	@DatabaseField(columnName = "DESCRIPTION")
 	private String description;
 	@DatabaseField(columnName = "USER_ID")
-	private Integer userId;
+	private String userId;
 	@DatabaseField(columnName = "CREATE_BY")
 	private String createBy;
 	@DatabaseField(columnName = "CREATE_AT")
@@ -31,13 +31,13 @@ public class ThingClasses implements Serializable{
 		this.description = description;
 	}
 
-	public ThingClasses(String title, String description, int userId) {
+	public ThingClasses(String title, String description, String userId) {
 		this.name = title;
 		this.description = description;
 		this.userId = userId;
 	}
 
-	public ThingClasses(String title, String description, int userId, String userName, String dateTime) {
+	public ThingClasses(String title, String description, String userId, String userName, String dateTime) {
 		this.name = title;
 		this.description = description;
 		this.userId = userId;
@@ -47,11 +47,11 @@ public class ThingClasses implements Serializable{
 		this.updateAt = dateTime;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -103,11 +103,11 @@ public class ThingClasses implements Serializable{
 		this.updateAt = updateAt;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 }

@@ -18,7 +18,7 @@ import java.util.Date;
  */
 public class AlarmManagerUtil {
 
-    public static void addAlarm(Context context, Thing thing) {
+    /*public static void addAlarm(Context context, Thing thing) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("THING", thing);
         Intent intent = new Intent(context, NotificationService.class);
@@ -38,6 +38,6 @@ public class AlarmManagerUtil {
         PendingIntent sender = PendingIntent.getService(context, thing.getId(), intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager am = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
         am.cancel(sender);
-    }
+    }*/
 
 }

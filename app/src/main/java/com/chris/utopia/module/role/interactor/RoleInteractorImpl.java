@@ -18,7 +18,7 @@ import java.util.concurrent.Callable;
 public class RoleInteractorImpl implements RoleInteractor {
     private static DBOpenHelper openHelper = null;
 
-    private Dao<Role, Integer> roleDao = null;
+    private Dao<Role, String> roleDao = null;
 
     public RoleInteractorImpl() {
         try {
@@ -67,8 +67,8 @@ public class RoleInteractorImpl implements RoleInteractor {
     @Override
     public List<Role> findRole(Role role) throws SQLException {
         try {
-            QueryBuilder<Role, Integer> qb = roleDao.queryBuilder();
-            Where<Role, Integer> where = qb.where();
+            QueryBuilder<Role, String> qb = roleDao.queryBuilder();
+            Where<Role, String> where = qb.where();
             where.isNotNull("id");
             if(role != null) {
                 if(role.getUserId() != null) {

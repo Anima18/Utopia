@@ -27,7 +27,7 @@ public class LabelPresenterImpl implements LabelPresenter {
     @Override
     public void loadLabel() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, "");
             ThingClasses classes = new ThingClasses();
             classes.setUserId(userId);
             List<ThingClasses> classesList =  interactor.findThingClassess(classes);

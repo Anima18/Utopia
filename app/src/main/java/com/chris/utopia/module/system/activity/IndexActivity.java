@@ -9,6 +9,7 @@ import android.util.Log;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.SharedPrefsUtil;
+import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.module.guide.GuideActivity;
 
 /**
@@ -24,8 +25,8 @@ public class IndexActivity extends AppCompatActivity {
 }
 
     private void getNextPageIntent() {
-        int userId = SharedPrefsUtil.getIntValue(IndexActivity.this, Constant.SP_KEY_LOGIN_USER_ID, 0);
-        if(userId == 0) {
+        String userId = SharedPrefsUtil.getStringValue(IndexActivity.this, Constant.SP_KEY_LOGIN_USER_ID, "");
+        if(StringUtil.isEmpty(userId)) {
             startActivity(new Intent(IndexActivity.this, GuideActivity.class));
             overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
             IndexActivity.this.finish();

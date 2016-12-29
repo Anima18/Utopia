@@ -5,6 +5,7 @@ import android.content.Context;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
+import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.Idea;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.idea.activity.IdeaCreateActionView;
@@ -32,7 +33,7 @@ public class IdeaCreatePresenterImpl implements IdeaCreatePresenter {
     }
 
     @Override
-    public ThingClasses getThingClassById(Integer id) {
+    public ThingClasses getThingClassById(String id) {
         try {
             return interactor.findThingClassessById(id);
         } catch (SQLException e) {
@@ -44,11 +45,14 @@ public class IdeaCreatePresenterImpl implements IdeaCreatePresenter {
     @Override
     public void addIdea(Idea idea) {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_NAME, "");
+            if(idea.getId() == null) {
+                idea.setId(StringUtil.getUUID());
+                idea.setCreateAt(DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6));
+                idea.setCreateBy(userName);
+            }
             idea.setUserId(userId);
-            idea.setCreateAt(DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6));
-            idea.setCreateBy(userName);
             idea.setUpdateAt(DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6));
             idea.setUpdateBy(userName);
             interactor.addIdea(idea);

@@ -57,10 +57,10 @@ public class LabelDialog {
         index = -1;
     }
 
-    public void showLableDialog(final Integer labelId, final LabelCallBack callBack) {
+    public void showLableDialog(final String labelId, final LabelCallBack callBack) {
         try {
             //get thingClass data
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             ThingClasses classes = new ThingClasses();
             classes.setUserId(userId);
             final List<ThingClasses> classesList =  interactor.findThingClassess(classes);
@@ -108,7 +108,7 @@ public class LabelDialog {
         }
     }
 
-    public void showCreateLabelDialog(final Integer labelId, final LabelCallBack callBack) {
+    public void showCreateLabelDialog(final String labelId, final LabelCallBack callBack) {
         final MaterialDialog dialog = new MaterialDialog.Builder(mContext)
                 .title("创建类别")
                 .customView(R.layout.dialog_create_label, true)
@@ -138,7 +138,7 @@ public class LabelDialog {
                     flag = false;
                 }
                 if (flag) {
-                    int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+                    String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
                     ThingClasses classes = new ThingClasses(title, desc, userId);
                     labelDialog.dismiss();
                     dialog.dismiss();
@@ -148,6 +148,7 @@ public class LabelDialog {
                     classes.setCreateBy(userName);
                     classes.setUpdateAt(DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_2));
                     classes.setUpdateBy(userName);
+                    classes.setId(StringUtil.getUUID());
 
                     try {
                         interactor.addThingClassess(classes);

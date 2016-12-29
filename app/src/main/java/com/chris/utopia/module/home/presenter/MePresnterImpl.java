@@ -1,12 +1,15 @@
 package com.chris.utopia.module.home.presenter;
 
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Idea;
 import com.chris.utopia.entity.Plan;
+import com.chris.utopia.entity.ResultData;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.entity.ThingClasses;
@@ -49,10 +52,58 @@ public class MePresnterImpl implements MePresenter {
         this.thingInteractor = new ThingInteractorImpl();
     }
 
+    public void chcekDataVersion() {
+        String userId = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, null);
+        TelephonyManager telephonyManager =(TelephonyManager)actionView.getContext().getSystemService( Context.TELEPHONY_SERVICE );
+        String deviceId = telephonyManager.getDeviceId();
+        String lastSyncTime = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LAST_SYNC_TIME, null);
+
+        new NetworkRequest.Builder(actionView.getLifecycleProvider())
+                .url("http://192.168.1.103:8080/PhotoKnow/security/security_checkData.action")
+                .dataType(new TypeToken<String>(){}.getType())
+                .method(NetworkRequest.POST_TYPE)
+                .param("userId", userId)
+                .param("deviceId", deviceId)
+                .param("lastSyncTime", lastSyncTime)
+                .call(new DataCallBack<ResultData>() {
+                    @Override
+                    public void onSuccess(ResultData data) {
+                        Log.i("Chris", "onSuccess");
+                        int code = data.getCode();
+                        if(code == 1) {
+                            //sync local data to service
+                        }else if(code == 0) {
+                            //sync service data to local
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int code, String message) {
+                        Log.i("Chris", "onFailure："+message);
+                        actionView.showMessage("同步数据失败");
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        actionView.hideProgress();
+                        Log.i("Chris", "onCompleted");
+                    }
+                });
+    }
+
+    public void syncDataToLocal(UserData userData) {
+        String lastSyncTime = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LAST_SYNC_TIME, null);
+
+        User user = userData.getUser();
+        if(user.getUpdateAt().compareTo(lastSyncTime) <= 0) {
+
+        }
+    }
+
     @Override
     public void syncData() {
         actionView.showProgress("正在同步中，请稍后");
-        int userId = SharedPrefsUtil.getIntValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, 0);
+        String userId = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, null);
         try {
             User user = interactor.findUserById(userId);
             if(user == null) {

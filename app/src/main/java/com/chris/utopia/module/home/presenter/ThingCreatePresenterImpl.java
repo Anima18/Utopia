@@ -38,7 +38,7 @@ public class ThingCreatePresenterImpl implements ThingCreatePresenter {
     }
 
     @Override
-    public ThingClasses getThingClassById(Integer id) {
+    public ThingClasses getThingClassById(String id) {
         try {
             return interactor.findThingClassessById(id);
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class ThingCreatePresenterImpl implements ThingCreatePresenter {
     }
 
     @Override
-    public Role getRoleById(Integer id) {
+    public Role getRoleById(String id) {
         try {
             return interactor.findRoleById(id);
         } catch (SQLException e) {
@@ -58,7 +58,7 @@ public class ThingCreatePresenterImpl implements ThingCreatePresenter {
     }
 
     @Override
-    public Plan getPlanById(Integer id) {
+    public Plan getPlanById(String id) {
         try {
             return planInteractor.findPlanById(id);
         } catch (SQLException e) {
@@ -73,10 +73,11 @@ public class ThingCreatePresenterImpl implements ThingCreatePresenter {
             if(plan != null) {
                 planInteractor.createOrUpdate(plan);
             }
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_NAME, "");
             String dateStr = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6);
             if(thing.getId() == null) {
+                thing.setId(StringUtil.getUUID());
                 thing.setCreateBy(userName);
                 thing.setCreateAt(dateStr);
             }
@@ -97,10 +98,11 @@ public class ThingCreatePresenterImpl implements ThingCreatePresenter {
     @Override
     public void save(Thing thing) {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_NAME, "");
             String dateStr = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6);
             if(thing.getId() == null) {
+                thing.setId(StringUtil.getUUID());
                 thing.setCreateBy(userName);
                 thing.setCreateAt(dateStr);
                 thing.setHabitStatus(Constant.HABIT_STATUS_ACTION);

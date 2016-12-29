@@ -3,7 +3,6 @@ package com.chris.utopia.module.home.presenter;
 import android.content.Context;
 
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.AlarmManagerUtil;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.util.StringUtil;
@@ -36,7 +35,7 @@ public class TodayTaskPresenterImpl implements TodayTaskPresenter {
     @Override
     public void loadTodayTask() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             String today = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_4);
             Thing thing = new Thing();
             thing.setUserId(userId);
@@ -79,14 +78,14 @@ public class TodayTaskPresenterImpl implements TodayTaskPresenter {
                 interactor.addThing(thing);
             }
 
-            if(thing.getType().equals(Constant.THING_TYPE_THING)) {
+            /*if(thing.getType().equals(Constant.THING_TYPE_THING)) {
                 if(thing.getStatus().equals(Constant.THING_STATUS_NEW)) {
                     AlarmManagerUtil.addAlarm(mContext, thing);
                 }else {
                     AlarmManagerUtil.removeAlarm(mContext, thing);
                 }
             }
-
+*/
             actionView.updateTodayTask(thing);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,7 +97,7 @@ public class TodayTaskPresenterImpl implements TodayTaskPresenter {
     public void deleteThing(Thing thing) {
         try {
             interactor.deleteThing(thing);
-            AlarmManagerUtil.removeAlarm(mContext, thing);
+            //AlarmManagerUtil.removeAlarm(mContext, thing);
             actionView.removeTodayTask(thing);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
+import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.activity.RoleCreateActionView;
 import com.chris.utopia.module.role.interactor.RoleInteractor;
@@ -33,10 +34,11 @@ public class RoleCreatePresenterImpl implements RoleCreatePresenter {
     @Override
     public void saveRole(Role role) {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(context, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_NAME, "");
             String dateStr = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6);
 
+            role.setId(StringUtil.getUUID());
             role.setUserId(userId);
             role.setCreateAt(dateStr);
             role.setCreateBy(userName);

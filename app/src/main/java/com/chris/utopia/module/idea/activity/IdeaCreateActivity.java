@@ -119,7 +119,7 @@ public class IdeaCreateActivity extends BaseActivity implements IdeaCreateAction
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.icAct_label_layout:
-                Integer labelId = idea == null ? null : idea.getThingClassesId();
+                String labelId = idea == null ? null : idea.getThingClassesId();
                 LabelDialog labelDialog = LabelDialog.initInstance();
                 labelDialog.setmContext(getContext());
                 labelDialog.showLableDialog(labelId, new LabelCallBack() {

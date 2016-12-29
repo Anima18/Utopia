@@ -41,7 +41,7 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
     @Override
     public void loadTimeFinishData() {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
 
@@ -72,12 +72,12 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
     @Override
     public void loadTimeRoleData() {
         try{
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
 
             List<Thing> thingList = interactor.findThing(thing);
-            Map<Integer, List<Thing>> dataIdMap = new HashMap<>();
+            Map<String, List<Thing>> dataIdMap = new HashMap<>();
             for(Thing t : thingList) {
                 if(CollectionUtil.isNotEmpty(dataIdMap.get(t.getRoleId()))) {
                     dataIdMap.get(t.getRoleId()).add(t);
@@ -88,9 +88,9 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
                 }
             }
             Map<String, Integer> dataMap = new HashMap<>();
-            Iterator<Integer> it = dataIdMap.keySet().iterator();
+            Iterator<String> it = dataIdMap.keySet().iterator();
             while (it.hasNext()) {
-                int key = it.next();
+                String key = it.next();
                 dataMap.put(systemInteractor.findRoleById(key).getName(), CommonUtil.percent(dataIdMap.get(key).size(), thingList.size()));
             }
             actionView.loadDate(dataMap);
@@ -103,12 +103,12 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
     @Override
     public void loadTimeClassesData() {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
 
             List<Thing> thingList = interactor.findThing(thing);
-            Map<Integer, List<Thing>> dataIdMap = new HashMap<>();
+            Map<String, List<Thing>> dataIdMap = new HashMap<>();
             for(Thing t : thingList) {
                 if(CollectionUtil.isNotEmpty(dataIdMap.get(t.getClassessId()))) {
                     dataIdMap.get(t.getClassessId()).add(t);
@@ -119,9 +119,9 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
                 }
             }
             Map<String, Integer> dataMap = new HashMap<>();
-            Iterator<Integer> it = dataIdMap.keySet().iterator();
+            Iterator<String> it = dataIdMap.keySet().iterator();
             while (it.hasNext()) {
-                int key = it.next();
+                String key = it.next();
                 dataMap.put(systemInteractor.findThingClassessById(key).getName(), CommonUtil.percent(dataIdMap.get(key).size(), thingList.size()));
             }
             actionView.loadDate(dataMap);
@@ -134,7 +134,7 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
     @Override
     public void loadTimeQuadrantData() {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
 
@@ -165,7 +165,7 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
     @Override
     public void loadTimePlanData() {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
 

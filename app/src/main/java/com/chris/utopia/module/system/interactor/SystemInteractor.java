@@ -13,11 +13,11 @@ import java.util.List;
 public interface SystemInteractor {
     void addUser(User user) throws SQLException;
     List<User> findUser(User user) throws SQLException;
-    User findUserById(int id) throws SQLException;
+    User findUserById(String id) throws SQLException;
     List<ThingClasses> findThingClassess(ThingClasses classes) throws SQLException;
     List<Role> findRole(Role role) throws SQLException;
-    Role findRoleById(int id) throws SQLException;
-    ThingClasses findThingClassessById(Integer id) throws SQLException;
+    Role findRoleById(String id) throws SQLException;
+    ThingClasses findThingClassessById(String id) throws SQLException;
     void addThingClassess(ThingClasses classes) throws SQLException;
     void addThingClassess(List<ThingClasses> classesList) throws Exception;
 }

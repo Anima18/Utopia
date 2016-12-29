@@ -1,6 +1,7 @@
 package com.chris.utopia.common.constant;
 
 import android.os.Environment;
+import android.telephony.TelephonyManager;
 
 /**
  * Created by Chris on 2015/9/9.
@@ -37,6 +38,7 @@ public interface Constant {
     String SP_KEY_LOGIN_USER_ID = "SP_KEY_LOGIN_USER_ID";
     String SP_KEY_LOGIN_USER_NAME = "SP_KEY_LOGIN_USER_NAME";
     String SP_KEY_LOGIN_USER_EMAIL = "SP_KEY_LOGIN_USER_EMAIL";
+    String SP_KEY_LAST_SYNC_TIME = "SP_KEY_LAST_SYNC_TIME";
 
     //Thing status
     String THING_STATUS_NEW = "NEW";
@@ -60,4 +62,5 @@ public interface Constant {
     String THING_TYPE_HABIT = "HABIT";
 
     String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
+
 }

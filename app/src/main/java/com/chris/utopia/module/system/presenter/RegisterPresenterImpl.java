@@ -2,6 +2,7 @@ package com.chris.utopia.module.system.presenter;
 
 import android.content.Context;
 
+import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.system.activity.RegisterActionView;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
@@ -29,6 +30,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
     @Override
     public void register(User user) {
         try {
+            user.setUserId(StringUtil.getUUID());
             interactor.addUser(user);
             actionView.toLoginPage("注册成功");
         } catch (SQLException e) {

@@ -21,9 +21,9 @@ import java.util.concurrent.Callable;
 public class SystemInteractorImpl implements SystemInteractor {
     private static DBOpenHelper openHelper = null;
 
-    private Dao<User, Integer> userDao = null;
-    private Dao<ThingClasses, Integer> thingClassesDao = null;
-    private Dao<Role, Integer> roleDao = null;
+    private Dao<User, String> userDao = null;
+    private Dao<ThingClasses, String> thingClassesDao = null;
+    private Dao<Role, String> roleDao = null;
 
     public SystemInteractorImpl() {
         try {
@@ -55,8 +55,8 @@ public class SystemInteractorImpl implements SystemInteractor {
     @Override
     public List<User> findUser(User user) throws SQLException {
         try {
-            QueryBuilder<User, Integer> qb = userDao.queryBuilder();
-            Where<User, Integer> where = qb.where();
+            QueryBuilder<User, String> qb = userDao.queryBuilder();
+            Where<User, String> where = qb.where();
             where.isNotNull("userId");
 
             if(user != null) {
@@ -85,7 +85,7 @@ public class SystemInteractorImpl implements SystemInteractor {
     }
 
     @Override
-    public User findUserById(int id) throws SQLException {
+    public User findUserById(String id) throws SQLException {
         try {
             return userDao.queryForId(id);
         } catch (SQLException e) {
@@ -97,8 +97,8 @@ public class SystemInteractorImpl implements SystemInteractor {
     @Override
     public List<ThingClasses> findThingClassess(ThingClasses classes) throws SQLException {
         try {
-            QueryBuilder<ThingClasses, Integer> qb = thingClassesDao.queryBuilder();
-            Where<ThingClasses, Integer> where = qb.where();
+            QueryBuilder<ThingClasses, String> qb = thingClassesDao.queryBuilder();
+            Where<ThingClasses, String> where = qb.where();
             where.isNotNull("id");
 
             if(classes != null) {
@@ -149,7 +149,7 @@ public class SystemInteractorImpl implements SystemInteractor {
     }
 
     @Override
-    public ThingClasses findThingClassessById(Integer id) throws SQLException {
+    public ThingClasses findThingClassessById(String id) throws SQLException {
         try {
             return thingClassesDao.queryForId(id);
         } catch (SQLException e) {
@@ -161,8 +161,8 @@ public class SystemInteractorImpl implements SystemInteractor {
     @Override
     public List<Role> findRole(Role role) throws SQLException {
         try {
-            QueryBuilder<Role, Integer> qb = roleDao.queryBuilder();
-            Where<Role, Integer> where = qb.where();
+            QueryBuilder<Role, String> qb = roleDao.queryBuilder();
+            Where<Role, String> where = qb.where();
             where.isNotNull("id");
             if(role != null) {
                 if(role.getUserId() != null) {
@@ -177,7 +177,7 @@ public class SystemInteractorImpl implements SystemInteractor {
         return null;
     }
     @Override
-    public Role findRoleById(int id) throws SQLException {
+    public Role findRoleById(String id) throws SQLException {
         try {
             return roleDao.queryForId(id);
         } catch (SQLException e) {

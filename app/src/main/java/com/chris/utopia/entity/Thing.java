@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @DatabaseTable(tableName = "THING")
 public class Thing implements Serializable {
-	@DatabaseField(generatedId = true)
-	private Integer id;
+	@DatabaseField(columnName = "ID", id = true, unique = true)
+	private String id;
 	@DatabaseField(columnName = "TITLE")
 	private String title;
 	@DatabaseField(columnName = "DESCRIPTION")
@@ -26,15 +26,15 @@ public class Thing implements Serializable {
 	@DatabaseField(columnName = "IS_PROMPTING")
 	private boolean isPrompting;
 	@DatabaseField(columnName = "CLASSESS_ID")
-	private Integer classessId;
+	private String classessId;
 	@DatabaseField(columnName = "THING_QUADRANT")
 	private String thingQuadrant;
 	@DatabaseField(columnName = "PLAN_ID")
-	private Integer planId;
+	private String planId;
 	@DatabaseField(columnName = "ROLE_ID")
-	private Integer roleId;
+	private String roleId;
 	@DatabaseField(columnName = "USER_ID")
-	private Integer userId;
+	private String userId;
 	@DatabaseField(columnName = "PROGRESS")
 	private String progress;
 	@DatabaseField(columnName = "CREATE_BY")
@@ -59,7 +59,7 @@ public class Thing implements Serializable {
 	public Thing() {}
 
 	public Thing(String title, String description, String status, String beginDate, String beginTime,
-				 int classessId, String thingQuadrant, Integer planId, int roleId, int userId,
+				 String classessId, String thingQuadrant, String planId, String roleId, String userId,
 				 String progress, String type, String userName, String dateTime) {
 		this.title = title;
 		this.description = description;
@@ -82,7 +82,7 @@ public class Thing implements Serializable {
 	public Thing(String id, String title, String description, String saidSomething, String status, String beginDate, String beginTime,
 					  String endTime, String isPrompting, String classessId, String thingQuadrant, String planId, String roleId, String userId,
 					  String progress, String type, String period, String whatDay, String holdOnDay, String habitStatus, String updateAt) {
-		this.id = Integer.parseInt(id);
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.saidSomething = saidSomething;
@@ -91,11 +91,11 @@ public class Thing implements Serializable {
 		this.beginTime = beginTime;
 		this.endTime = endTime;
 		this.isPrompting = "1".equals(isPrompting) ? true : false;
-		this.classessId = Integer.parseInt(classessId);
+		this.classessId = classessId;
 		this.thingQuadrant = thingQuadrant;
-		this.planId = planId != null ? Integer.parseInt(planId) : null;
-		this.roleId = Integer.parseInt(roleId);
-		this.userId = Integer.parseInt(userId);
+		this.planId = planId;
+		this.roleId = roleId;
+		this.userId = userId;
 		this.progress = progress;
 		this.type = type;
 		this.period = period;
@@ -105,11 +105,11 @@ public class Thing implements Serializable {
 		this.updateAt = updateAt;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -169,20 +169,64 @@ public class Thing implements Serializable {
 		this.isPrompting = isPrompting;
 	}
 
-	public Integer getClassessId() {
+	public String getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(String beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public void setPrompting(boolean prompting) {
+		isPrompting = prompting;
+	}
+
+	public String getClassessId() {
 		return classessId;
 	}
 
-	public void setClassessId(Integer classessId) {
+	public void setClassessId(String classessId) {
 		this.classessId = classessId;
 	}
 
-	public Integer getUserId() {
+	public String getThingQuadrant() {
+		return thingQuadrant;
+	}
+
+	public void setThingQuadrant(String thingQuadrant) {
+		this.thingQuadrant = thingQuadrant;
+	}
+
+	public String getPlanId() {
+		return planId;
+	}
+
+	public void setPlanId(String planId) {
+		this.planId = planId;
+	}
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getProgress() {
+		return progress;
+	}
+
+	public void setProgress(String progress) {
+		this.progress = progress;
 	}
 
 	public String getCreateBy() {
@@ -217,44 +261,20 @@ public class Thing implements Serializable {
 		this.updateAt = updateAt;
 	}
 
-	public Integer getPlanId() {
-		return planId;
+	public String getType() {
+		return type;
 	}
 
-	public void setPlanId(Integer planId) {
-		this.planId = planId;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getThingQuadrant() {
-		return thingQuadrant;
+	public String getPeriod() {
+		return period;
 	}
 
-	public void setThingQuadrant(String thingQuadrant) {
-		this.thingQuadrant = thingQuadrant;
-	}
-
-	public Integer getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
-	}
-
-	public String getBeginDate() {
-		return beginDate;
-	}
-
-	public void setBeginDate(String beginDate) {
-		this.beginDate = beginDate;
-	}
-
-	public String getProgress() {
-		return progress;
-	}
-
-	public void setProgress(String progress) {
-		this.progress = progress;
+	public void setPeriod(String period) {
+		this.period = period;
 	}
 
 	public String getWhatDay() {
@@ -265,28 +285,12 @@ public class Thing implements Serializable {
 		this.whatDay = whatDay;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public Integer getHoldOnDay() {
 		return holdOnDay;
 	}
 
 	public void setHoldOnDay(Integer holdOnDay) {
 		this.holdOnDay = holdOnDay;
-	}
-
-	public String getPeriod() {
-		return period;
-	}
-
-	public void setPeriod(String period) {
-		this.period = period;
 	}
 
 	public String getHabitStatus() {

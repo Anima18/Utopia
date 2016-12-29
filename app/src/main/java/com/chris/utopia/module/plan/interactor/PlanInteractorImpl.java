@@ -23,7 +23,7 @@ import java.util.concurrent.Callable;
 public class PlanInteractorImpl implements PlanInteractor {
     private static DBOpenHelper openHelper = null;
 
-    private Dao<Plan, Integer> planDao = null;
+    private Dao<Plan, String> planDao = null;
 
     public PlanInteractorImpl() {
         try {
@@ -53,8 +53,8 @@ public class PlanInteractorImpl implements PlanInteractor {
     @Override
     public List<Plan> findPlan(Plan plan) throws SQLException {
         try {
-            QueryBuilder<Plan, Integer> qb = planDao.queryBuilder();
-            Where<Plan, Integer> where = qb.where();
+            QueryBuilder<Plan, String> qb = planDao.queryBuilder();
+            Where<Plan, String> where = qb.where();
             where.isNotNull("id");
             if(plan != null) {
                 if(plan.getUserId() != null) {
@@ -69,7 +69,7 @@ public class PlanInteractorImpl implements PlanInteractor {
     }
 
     @Override
-    public Plan findPlanById(Integer id) throws SQLException {
+    public Plan findPlanById(String id) throws SQLException {
         try {
             return planDao.queryForId(id);
         } catch (SQLException e) {

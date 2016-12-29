@@ -256,7 +256,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
     public void showLabelDialog() {
         LabelDialog labelDialog = LabelDialog.initInstance();
         labelDialog.setmContext(getContext());
-        Integer index = (thing != null && thing.getClassessId() != null) ? thing.getClassessId() : null;
+        String index = (thing != null && thing.getClassessId() != null) ? thing.getClassessId() : null;
         labelDialog.showLableDialog(index, new LabelCallBack() {
             @Override
             public void callBack(ThingClasses classes) {
@@ -275,7 +275,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
     public void showRoleDialog() {
         RoleDialog roleDialog = RoleDialog.initInstance();
         roleDialog.setmContext(getContext());
-        Integer index = (thing != null && thing.getRoleId() != null) ? thing.getRoleId() : null;
+        String index = (thing != null && thing.getRoleId() != null) ? thing.getRoleId() : null;
         roleDialog.showRoleDialog(index, new RoleCallBack() {
             @Override
             public void callBack(Role role) {
@@ -413,7 +413,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
             descTi.setErrorEnabled(false);
             descTi.setError(null);
         }
-        if(thing.getClassessId() == null || thing.getClassessId() == 0) {
+        if(thing.getClassessId() == null) {
             labelTi.setErrorEnabled(true);
             labelTi.setError("Label 不能为空");
             flag = false;
@@ -421,7 +421,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
             labelTi.setErrorEnabled(false);
             labelTi.setError(null);
         }
-        if(thing.getRoleId() == null || thing.getRoleId() == 0) {
+        if(thing.getRoleId() == null) {
             roleTi.setErrorEnabled(true);
             roleTi.setError("Role 不能为空");
             flag = false;
@@ -509,7 +509,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);*/
 
-        AlarmManagerUtil.addAlarm(getContext(), thing);
+        /*AlarmManagerUtil.addAlarm(getContext(), thing);
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -517,7 +517,7 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
                 ThingCreateActivity.this.finish();
                 overridePendingTransition(R.anim.push_in_left, R.anim.push_out_right);
             }
-        }, 1000);
+        }, 1000);*/
     }
 
     @Override

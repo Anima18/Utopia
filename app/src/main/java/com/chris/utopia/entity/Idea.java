@@ -10,16 +10,16 @@ import java.io.Serializable;
  */
 @DatabaseTable(tableName = "IDEA")
 public class Idea implements Serializable {
-    @DatabaseField(generatedId = true)
-    private Integer id;
+    @DatabaseField(columnName = "ID", id = true, unique = true)
+    private String id;
     @DatabaseField(columnName = "NAME")
     private String name;
     @DatabaseField(columnName = "DESCRIPTION")
     private String description;
     @DatabaseField(columnName = "USER_ID")
-    private Integer userId;
+    private String userId;
     @DatabaseField(columnName = "THING_CLASSES_ID")
-    private Integer thingClassesId;
+    private String thingClassesId;
     @DatabaseField(columnName = "REMIND_TIME")
     private String remindTime;
     @DatabaseField(columnName = "BACKGROUND")
@@ -35,7 +35,7 @@ public class Idea implements Serializable {
 
     public Idea() {}
 
-    public Idea(String name, String description, Integer userId, Integer thingClassesId, String remindTime, String background, String userName, String dateTime) {
+    public Idea(String name, String description, String userId, String thingClassesId, String remindTime, String background, String userName, String dateTime) {
         this.name = name;
         this.description = description;
         this.userId = userId;
@@ -48,11 +48,11 @@ public class Idea implements Serializable {
         this.updateBy = userName;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -72,12 +72,20 @@ public class Idea implements Serializable {
         this.description = description;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getThingClassesId() {
+        return thingClassesId;
+    }
+
+    public void setThingClassesId(String thingClassesId) {
+        this.thingClassesId = thingClassesId;
     }
 
     public String getCreateBy() {
@@ -110,14 +118,6 @@ public class Idea implements Serializable {
 
     public void setUpdateAt(String updateAt) {
         this.updateAt = updateAt;
-    }
-
-    public Integer getThingClassesId() {
-        return thingClassesId;
-    }
-
-    public void setThingClassesId(Integer thingClassesId) {
-        this.thingClassesId = thingClassesId;
     }
 
     public String getRemindTime() {

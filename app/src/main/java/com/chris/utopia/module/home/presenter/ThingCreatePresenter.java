@@ -11,9 +11,9 @@ import com.chris.utopia.module.home.activity.ThingCreateActionView;
  */
 public interface ThingCreatePresenter {
     void setActionView(ThingCreateActionView actionView);
-    ThingClasses getThingClassById(Integer id);
-    Role getRoleById(Integer id);
-    Plan getPlanById(Integer id);
+    ThingClasses getThingClassById(String id);
+    Role getRoleById(String id);
+    Plan getPlanById(String id);
     void save(Plan plan, Thing thing);
     void save(Thing thing);
 }

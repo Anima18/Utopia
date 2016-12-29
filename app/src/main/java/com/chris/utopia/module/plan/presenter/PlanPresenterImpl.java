@@ -36,7 +36,7 @@ public class PlanPresenterImpl implements PlanPresenter {
     @Override
     public void loadPlan() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Plan plan = new Plan();
             plan.setUserId(userId);
 

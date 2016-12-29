@@ -51,10 +51,10 @@ public class RoleDialog {
         index = -1;
     }
 
-    public void showRoleDialog(final Integer roleId, final RoleCallBack callBack) {
+    public void showRoleDialog(final String roleId, final RoleCallBack callBack) {
         try {
             //get thingClass data
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             final Role role = new Role();
             role.setUserId(userId);
             final List<Role> roles = interactor.findRole(role);

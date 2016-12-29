@@ -32,9 +32,9 @@ public class ThingInteractorImpl implements ThingInteractor {
 
     private static DBOpenHelper openHelper = null;
 
-    private Dao<Thing, Integer> thingDao = null;
-    private Dao<ThingClasses, Integer> thingClassesDao = null;
-    private Dao<Role, Integer> roleDao = null;
+    private Dao<Thing, String> thingDao = null;
+    private Dao<ThingClasses, String> thingClassesDao = null;
+    private Dao<Role, String> roleDao = null;
 
     public ThingInteractorImpl() {
         try {
@@ -65,8 +65,8 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public void deleteThing(Thing thing) throws SQLException {
         try {
-            DeleteBuilder<Thing, Integer> db = thingDao.deleteBuilder();
-            Where<Thing, Integer> where = db.where();
+            DeleteBuilder<Thing, String> db = thingDao.deleteBuilder();
+            Where<Thing, String> where = db.where();
             where.isNotNull("id");
             if(thing != null) {
                 if(StringUtil.isNotEmpty(thing.getUserId())) {
@@ -110,7 +110,7 @@ public class ThingInteractorImpl implements ThingInteractor {
     }
 
     @Override
-    public Thing findThingById(Integer id) throws SQLException {
+    public Thing findThingById(String id) throws SQLException {
         try {
             return thingDao.queryForId(id);
         } catch (SQLException e) {
@@ -122,8 +122,8 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public List<Thing> findThing(Thing thing) throws SQLException {
         try {
-            QueryBuilder<Thing, Integer> qb = thingDao.queryBuilder();
-            Where<Thing, Integer> where = qb.where();
+            QueryBuilder<Thing, String> qb = thingDao.queryBuilder();
+            Where<Thing, String> where = qb.where();
             where.isNotNull("id");
 
             if(thing != null) {
@@ -156,8 +156,8 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public List<Thing> findWeekThing(Plan plan) throws SQLException {
         try {
-            QueryBuilder<Thing, Integer> qb = thingDao.queryBuilder();
-            Where<Thing, Integer> where = qb.where();
+            QueryBuilder<Thing, String> qb = thingDao.queryBuilder();
+            Where<Thing, String> where = qb.where();
             where.isNotNull("id");
 
             if(plan != null) {
@@ -186,8 +186,8 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public List<Thing> search(Thing thing) throws SQLException {
         try {
-            QueryBuilder<Thing, Integer> qb = thingDao.queryBuilder();
-            Where<Thing, Integer> where = qb.where();
+            QueryBuilder<Thing, String> qb = thingDao.queryBuilder();
+            Where<Thing, String> where = qb.where();
             where.isNotNull("id");
 
             if(thing != null) {
@@ -216,8 +216,8 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public List<Thing> findMessage(Thing thing) throws SQLException {
         try {
-            QueryBuilder<Thing, Integer> qb = thingDao.queryBuilder();
-            Where<Thing, Integer> where = qb.where();
+            QueryBuilder<Thing, String> qb = thingDao.queryBuilder();
+            Where<Thing, String> where = qb.where();
             where.isNotNull("id");
 
             if(thing != null) {
@@ -239,7 +239,7 @@ public class ThingInteractorImpl implements ThingInteractor {
     }
 
     @Override
-    public ThingClasses findThingClassessById(Integer id) throws SQLException {
+    public ThingClasses findThingClassessById(String id) throws SQLException {
         try {
             return thingClassesDao.queryForId(id);
         } catch (SQLException e) {
@@ -249,7 +249,7 @@ public class ThingInteractorImpl implements ThingInteractor {
     }
 
     @Override
-    public Role findRoleById(Integer id) throws SQLException {
+    public Role findRoleById(String id) throws SQLException {
         try {
             return roleDao.queryForId(id);
         } catch (SQLException e) {
@@ -261,8 +261,8 @@ public class ThingInteractorImpl implements ThingInteractor {
     @Override
     public List<Thing> findHabit(Thing thing) throws SQLException {
         try {
-            QueryBuilder<Thing, Integer> qb = thingDao.queryBuilder();
-            Where<Thing, Integer> where = qb.where();
+            QueryBuilder<Thing, String> qb = thingDao.queryBuilder();
+            Where<Thing, String> where = qb.where();
             where.isNotNull("id");
 
             if(thing != null) {

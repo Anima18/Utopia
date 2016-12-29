@@ -196,7 +196,7 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
             case R.id.pcAct_label_layout:
                 LabelDialog labelDialog = LabelDialog.initInstance();
                 labelDialog.setmContext(getContext());
-                Integer index = null;
+                String index = null;
                 if(plan != null && plan.getThingClassesId() != null) {
                     index =  plan.getThingClassesId();
                 }else if(idea != null && idea.getThingClassesId() != null){
@@ -219,7 +219,7 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
             case R.id.pcAct_role_layout:
                 RoleDialog roleDialog = RoleDialog.initInstance();
                 roleDialog.setmContext(getContext());
-                Integer index2 = (plan != null && plan.getRoleId() != null) ? plan.getRoleId() : null;
+                String index2 = (plan != null && plan.getRoleId() != null) ? plan.getRoleId() : null;
                 roleDialog.showRoleDialog(index2, new RoleCallBack() {
                     @Override
                     public void callBack(Role role) {

@@ -4,8 +4,8 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "USER")
 public class User {
-	@DatabaseField(generatedId = true)
-	private Integer userId;
+	@DatabaseField(columnName = "userId", id = true, unique = true)
+	private String userId;
 	@DatabaseField(columnName = "NAME")
 	private String name;
 	@DatabaseField(columnName = "EMAIL", unique = true)
@@ -33,11 +33,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

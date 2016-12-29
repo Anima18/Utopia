@@ -11,7 +11,7 @@ import java.util.List;
 public interface PlanInteractor {
     void createOrUpdate(Plan plan) throws SQLException;
     List<Plan> findPlan(Plan plan) throws SQLException;
-    Plan findPlanById(Integer id) throws SQLException;
+    Plan findPlanById(String id) throws SQLException;
     List<Plan> findWeekPlan(Plan plan) throws SQLException;
     void addPlan(List<Plan> plans) throws Exception;
     void deletePlan(Plan plan) throws SQLException;

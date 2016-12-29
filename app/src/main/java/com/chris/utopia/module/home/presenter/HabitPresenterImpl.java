@@ -3,7 +3,6 @@ package com.chris.utopia.module.home.presenter;
 import android.content.Context;
 
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.AlarmManagerUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.activity.MyHabitActionView;
@@ -33,7 +32,7 @@ public class HabitPresenterImpl implements HabitPresenter {
     @Override
     public void loadHabit() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
             thing.setType(Constant.THING_TYPE_HABIT);
@@ -52,11 +51,11 @@ public class HabitPresenterImpl implements HabitPresenter {
             Thing habit = interactor.findThingById(thing.getId());
             habit.setHabitStatus(thing.getHabitStatus());
             interactor.addThing(habit);
-            if(thing.getHabitStatus().equals(Constant.HABIT_STATUS_ACTION)) {
+            /*if(thing.getHabitStatus().equals(Constant.HABIT_STATUS_ACTION)) {
                 AlarmManagerUtil.addAlarm(mContext, thing);
             }else if(thing.getHabitStatus().equals(Constant.HABIT_STATUS_PAUSE)) {
                 AlarmManagerUtil.removeAlarm(mContext, thing);
-            }
+            }*/
             actionView.updateSuccess(thing);
         }catch (SQLException e) {
             e.printStackTrace();
@@ -68,7 +67,7 @@ public class HabitPresenterImpl implements HabitPresenter {
     public void deleteHabit(Thing thing) {
         try {
             interactor.deleteThing(thing);
-            AlarmManagerUtil.removeAlarm(mContext, thing);
+            //AlarmManagerUtil.removeAlarm(mContext, thing);
             actionView.removeSuccess(thing);
         }catch (SQLException e) {
             e.printStackTrace();

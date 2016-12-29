@@ -34,7 +34,7 @@ public class MessagePresenterImpl implements MessagePresenter {
     @Override
     public void loadData() {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
 

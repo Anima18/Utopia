@@ -32,7 +32,7 @@ public class TimerPresenterImpl implements TimerPresenter {
     @Override
     public void loadData(String dateStr) {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setUserId(userId);
             thing.setBeginDate(dateStr);

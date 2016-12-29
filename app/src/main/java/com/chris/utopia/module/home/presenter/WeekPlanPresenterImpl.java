@@ -39,7 +39,7 @@ public class WeekPlanPresenterImpl implements WeekPlanPresenter {
     @Override
     public void loadWeekPlan() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Plan plan = new Plan();
             plan.setUserId(userId);
             List<String> dateList = DateUtil.getALlweekDays();

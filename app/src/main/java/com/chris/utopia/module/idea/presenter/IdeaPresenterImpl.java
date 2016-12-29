@@ -31,8 +31,9 @@ public class IdeaPresenterImpl implements IdeaPresenter {
     @Override
     public void loadIdeaData() {
         try {
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Idea idea = new Idea();
-            idea.setUserId(SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0));
+            idea.setUserId(userId);
             List<Idea> ideas = interactor.findIdea(idea);
             actionView.loadIdeaData(ideas);
         } catch (SQLException e) {

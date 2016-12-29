@@ -7,14 +7,14 @@ import java.io.Serializable;
 
 @DatabaseTable(tableName = "ROLE")
 public class Role implements Serializable {
-	@DatabaseField(generatedId = true)
-	private Integer id;
+	@DatabaseField(columnName = "ID", id = true, unique = true)
+	private String id;
 	@DatabaseField(columnName = "NAME")
 	private String name;
 	@DatabaseField(columnName = "DESCRIPTION")
 	private String description;
 	@DatabaseField(columnName = "USER_ID")
-	private Integer userId;
+	private String userId;
 	@DatabaseField(columnName = "CREATE_BY")
 	private String createBy;
 	@DatabaseField(columnName = "CREATE_AT")
@@ -31,7 +31,7 @@ public class Role implements Serializable {
 		this.description = description;
 	}
 
-	public Role(String name, String description, Integer userId, String userName, String dateTime) {
+	public Role(String name, String description, String userId, String userName, String dateTime) {
 		this.name = name;
 		this.description = description;
 		this.userId = userId;
@@ -41,11 +41,11 @@ public class Role implements Serializable {
 		this.updateBy = userName;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -65,11 +65,11 @@ public class Role implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

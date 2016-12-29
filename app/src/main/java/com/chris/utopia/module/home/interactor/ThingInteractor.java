@@ -13,15 +13,15 @@ import java.util.List;
  */
 public interface ThingInteractor {
     void addThing(Thing thing) throws SQLException;
-    ThingClasses findThingClassessById(Integer id) throws SQLException;
-    Role findRoleById(Integer id) throws SQLException;
+    ThingClasses findThingClassessById(String id) throws SQLException;
+    Role findRoleById(String id) throws SQLException;
     List<Thing> findThing(Thing thing) throws SQLException;
     List<Thing> findWeekThing(Plan plan) throws SQLException;
     List<Thing> findHabit(Thing thing) throws SQLException;
     List<Thing> findHabitOneDay(Thing thing) throws SQLException;
     void deleteThing(Thing thing) throws SQLException;
     void deleteAll(List<Thing> thingList) throws SQLException;
-    Thing findThingById(Integer id) throws SQLException;
+    Thing findThingById(String id) throws SQLException;
     List<Thing> search(Thing thing) throws SQLException;
     List<Thing> findMessage(Thing thing) throws SQLException;
     void addThing(List<Thing> thingList) throws Exception;

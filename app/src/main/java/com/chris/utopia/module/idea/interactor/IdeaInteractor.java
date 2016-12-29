@@ -11,10 +11,10 @@ import java.util.List;
  */
 public interface IdeaInteractor {
     List<ThingClasses> findThingClassess(ThingClasses classes) throws SQLException;
-    ThingClasses findThingClassessById(Integer id) throws SQLException;
+    ThingClasses findThingClassessById(String id) throws SQLException;
     void addThingClassess(ThingClasses classes) throws SQLException;
     List<Idea> findIdea(Idea idea) throws SQLException;
-    Idea findIdeaById(Integer id) throws SQLException;
+    Idea findIdeaById(String id) throws SQLException;
     void addIdea(Idea idea) throws SQLException;
     void addIdea(List<Idea> ideas) throws Exception;
     void delete(Idea idea) throws SQLException;

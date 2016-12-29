@@ -13,6 +13,6 @@ public interface PlanCreatePresenter {
     void setActionView(PlanCreateActionView actionView);
     void loadThing(Plan plan);
     void save(Plan plan, Idea idea, boolean isClose);
-    ThingClasses getThingClassById(Integer id);
-    Role getRoleById(Integer id);
+    ThingClasses getThingClassById(String id);
+    Role getRoleById(String id);
 }

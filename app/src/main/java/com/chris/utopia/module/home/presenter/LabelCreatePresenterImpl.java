@@ -5,6 +5,7 @@ import android.content.Context;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
+import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.activity.LabelCreateActionView;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
@@ -31,13 +32,17 @@ public class LabelCreatePresenterImpl implements LabelCreatePresenter {
     @Override
     public void saveLabel(ThingClasses label) {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(context, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_NAME, "");
             String dateStr = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6);
 
+            if(label.getId() == null) {
+                label.setId(StringUtil.getUUID());
+                label.setCreateAt(dateStr);
+                label.setCreateBy(userName);
+            }
+
             label.setUserId(userId);
-            label.setCreateAt(dateStr);
-            label.setCreateBy(userName);
             label.setUpdateBy(userName);
             label.setUpdateAt(dateStr);
 

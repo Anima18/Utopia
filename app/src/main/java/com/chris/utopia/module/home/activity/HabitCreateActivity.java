@@ -211,7 +211,7 @@ public class HabitCreateActivity extends BaseActivity  implements View.OnClickLi
     public void showLabelDialog() {
         LabelDialog labelDialog = LabelDialog.initInstance();
         labelDialog.setmContext(getContext());
-        Integer index = (thing != null && thing.getClassessId() != null) ? thing.getClassessId() : null;
+        String index = (thing != null && thing.getClassessId() != null) ? thing.getClassessId() : null;
         labelDialog.showLableDialog(index, new LabelCallBack() {
             @Override
             public void callBack(ThingClasses classes) {
@@ -230,7 +230,7 @@ public class HabitCreateActivity extends BaseActivity  implements View.OnClickLi
     public void showRoleDialog() {
         RoleDialog roleDialog = RoleDialog.initInstance();
         roleDialog.setmContext(getContext());
-        Integer index = (thing != null && thing.getRoleId() != null) ? thing.getRoleId() : null;
+        String index = (thing != null && thing.getRoleId() != null) ? thing.getRoleId() : null;
         roleDialog.showRoleDialog(index, new RoleCallBack() {
             @Override
             public void callBack(Role role) {
@@ -378,11 +378,11 @@ public class HabitCreateActivity extends BaseActivity  implements View.OnClickLi
             showMessage("Desc不能为空");
             return;
         }
-        if(thing.getClassessId() == null || thing.getClassessId() == 0) {
+        if(thing.getClassessId() == null) {
             showMessage("Label不能为空");
             return;
         }
-        if(thing.getRoleId() == null || thing.getRoleId() == 0) {
+        if(thing.getRoleId() == null) {
             showMessage("Role不能为空");
             return;
         }
@@ -412,7 +412,7 @@ public class HabitCreateActivity extends BaseActivity  implements View.OnClickLi
     public void saveSuccess(String message) {
         showMessage(message);
 
-        Bundle bundle = new Bundle();
+       /* Bundle bundle = new Bundle();
         bundle.putSerializable("THING", thing);
         Intent intent = new Intent(getContext(), NotificationService.class);
         intent.putExtras(bundle);
@@ -437,7 +437,7 @@ public class HabitCreateActivity extends BaseActivity  implements View.OnClickLi
                 HabitCreateActivity.this.finish();
                 overridePendingTransition(R.anim.push_in_left, R.anim.push_out_right);
             }
-        }, 1000);
+        }, 1000);*/
     }
 
 }

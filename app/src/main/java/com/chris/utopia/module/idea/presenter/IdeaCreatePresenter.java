@@ -9,6 +9,6 @@ import com.chris.utopia.module.idea.activity.IdeaCreateActionView;
  */
 public interface IdeaCreatePresenter {
     void setActionView(IdeaCreateActionView actionView);
-    ThingClasses getThingClassById(Integer id);
+    ThingClasses getThingClassById(String id);
     void addIdea(Idea idea);
 }

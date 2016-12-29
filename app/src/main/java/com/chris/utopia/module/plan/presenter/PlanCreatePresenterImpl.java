@@ -5,6 +5,7 @@ import android.content.Context;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
+import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.Idea;
 import com.chris.utopia.entity.Plan;
 import com.chris.utopia.entity.Role;
@@ -44,9 +45,10 @@ public class PlanCreatePresenterImpl implements PlanCreatePresenter {
     @Override
     public void loadThing(Plan plan) {
         try {
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             Thing thing = new Thing();
             thing.setPlanId(plan.getId());
-            thing.setUserId(SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0));
+            thing.setUserId(userId);
             List<Thing> thingList = thingInteractor.findThing(thing);
 
             actionView.loadThing(thingList);
@@ -59,10 +61,11 @@ public class PlanCreatePresenterImpl implements PlanCreatePresenter {
     @Override
     public void save(Plan plan, Idea idea, boolean isClose) {
         try {
-            int userId = SharedPrefsUtil.getIntValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(mContext, Constant.SP_KEY_LOGIN_USER_NAME, "");
             String dateStr = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6);
             if(plan.getId() == null) {
+                plan.setId(StringUtil.getUUID());
                 plan.setCreateBy(userName);
                 plan.setCreateAt(dateStr);
                 //plan.setProgress(0+"%");
@@ -91,7 +94,7 @@ public class PlanCreatePresenterImpl implements PlanCreatePresenter {
     }
 
     @Override
-    public ThingClasses getThingClassById(Integer id) {
+    public ThingClasses getThingClassById(String id) {
         try {
             return thingInteractor.findThingClassessById(id);
         } catch (SQLException e) {
@@ -101,7 +104,7 @@ public class PlanCreatePresenterImpl implements PlanCreatePresenter {
     }
 
     @Override
-    public Role getRoleById(Integer id) {
+    public Role getRoleById(String id) {
         try {
             return thingInteractor.findRoleById(id);
         } catch (SQLException e) {

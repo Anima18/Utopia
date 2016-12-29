@@ -32,7 +32,7 @@ public class RolePresenterImpl implements RolePresenter {
     @Override
     public void loadRoleData() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(context, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_ID, "");
             Role role = new Role();
             role.setUserId(userId);
 

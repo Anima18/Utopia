@@ -52,7 +52,7 @@ public class LoginPresenterImpl implements LoginPresenter {
             List<User> users = interactor.findUser(user);
             if(CollectionUtil.isNotEmpty(users)) {
                 //init login
-                SharedPrefsUtil.putIntValue(context, Constant.SP_KEY_LOGIN_USER_ID, users.get(0).getUserId());
+                SharedPrefsUtil.putStringValue(context, Constant.SP_KEY_LOGIN_USER_ID, users.get(0).getUserId());
                 SharedPrefsUtil.putStringValue(context, Constant.SP_KEY_LOGIN_USER_NAME, users.get(0).getName());
                 SharedPrefsUtil.putStringValue(context, Constant.SP_KEY_LOGIN_USER_EMAIL, users.get(0).getEmail());
                 actionView.toMainPage();
@@ -68,7 +68,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     @Override
     public void initData() {
         try {
-            Integer userId = SharedPrefsUtil.getIntValue(context, Constant.SP_KEY_LOGIN_USER_ID, 0);
+            String userId = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_ID, "");
             String userName = SharedPrefsUtil.getStringValue(context, Constant.SP_KEY_LOGIN_USER_NAME, "");
             String dateTimeStr = DateUtil.toString(new Date(), Constant.DATETIME_FORMAT_6);
             //init role

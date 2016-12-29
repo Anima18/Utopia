@@ -21,13 +21,13 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
 	private static final String DATABASE_NAME = "UTOPIA.db";
     private static final int DATABASE_VERSION = 1;
 
-	private static Dao<User, Integer> userDao = null;
-	private static Dao<Idea, Integer> ideaDao = null;
-	private static Dao<ThingClasses, Integer> thingClassesDao = null;
-	private static Dao<Role, Integer> roleDao = null;
+	private static Dao<User, String> userDao = null;
+	private static Dao<Idea, String> ideaDao = null;
+	private static Dao<ThingClasses, String> thingClassesDao = null;
+	private static Dao<Role, String> roleDao = null;
 
-	private static Dao<Thing, Integer> thingDao = null;
-	private static Dao<Plan, Integer> planDao = null;
+	private static Dao<Thing, String> thingDao = null;
+	private static Dao<Plan, String> planDao = null;
 
 
 	public DBOpenHelper(Context context){  
@@ -67,42 +67,42 @@ public class DBOpenHelper extends OrmLiteSqliteOpenHelper {
         } 
 	}
 
-	public Dao<User, Integer> getUserDao() throws SQLException {
+	public Dao<User, String> getUserDao() throws SQLException {
 		if(userDao == null) {
 			userDao = getDao(User.class);
 		}
 		return userDao;
 	}
 
-	public Dao<Idea, Integer> getIdeaDao() throws SQLException {
+	public Dao<Idea, String> getIdeaDao() throws SQLException {
 		if(ideaDao == null) {
 			ideaDao = getDao(Idea.class);
 		}
 		return ideaDao;
 	}
 
-	public Dao<ThingClasses, Integer> getThingClassesDao() throws SQLException {
+	public Dao<ThingClasses, String> getThingClassesDao() throws SQLException {
 		if(thingClassesDao == null) {
 			thingClassesDao = getDao(ThingClasses.class);
 		}
 		return thingClassesDao;
 	}
 
-	public Dao<Role, Integer> getRoleDao() throws SQLException {
+	public Dao<Role, String> getRoleDao() throws SQLException {
 		if(roleDao == null) {
 			roleDao = getDao(Role.class);
 		}
 		return roleDao;
 	}
 
-	public Dao<Thing, Integer> getThingDao() throws SQLException {
+	public Dao<Thing, String> getThingDao() throws SQLException {
 		if(thingDao == null) {
 			thingDao = getDao(Thing.class);
 		}
 		return thingDao;
 	}
 
-	public Dao<Plan, Integer> getPlanDao() throws SQLException {
+	public Dao<Plan, String> getPlanDao() throws SQLException {
 		if(planDao == null) {
 			planDao = getDao(Plan.class);
 		}

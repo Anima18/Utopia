@@ -20,8 +20,8 @@ import java.util.concurrent.Callable;
 public class IdeaInteractorImpl implements IdeaInteractor {
     private static DBOpenHelper openHelper = null;
 
-    private Dao<Idea, Integer> ideaDao = null;
-    private Dao<ThingClasses, Integer> thingClassesDao = null;
+    private Dao<Idea, String> ideaDao = null;
+    private Dao<ThingClasses, String> thingClassesDao = null;
 
     public IdeaInteractorImpl() {
         try {
@@ -40,7 +40,7 @@ public class IdeaInteractorImpl implements IdeaInteractor {
     }
 
     @Override
-    public ThingClasses findThingClassessById(Integer id) throws SQLException {
+    public ThingClasses findThingClassessById(String id) throws SQLException {
         try {
             return thingClassesDao.queryForId(id);
         } catch (SQLException e) {
@@ -52,8 +52,8 @@ public class IdeaInteractorImpl implements IdeaInteractor {
     @Override
     public List<ThingClasses> findThingClassess(ThingClasses classes) throws SQLException {
         try {
-            QueryBuilder<ThingClasses, Integer> qb = thingClassesDao.queryBuilder();
-            Where<ThingClasses, Integer> where = qb.where();
+            QueryBuilder<ThingClasses, String> qb = thingClassesDao.queryBuilder();
+            Where<ThingClasses, String> where = qb.where();
             where.isNotNull("id");
 
             if(classes != null) {
@@ -85,7 +85,7 @@ public class IdeaInteractorImpl implements IdeaInteractor {
     }
 
     @Override
-    public Idea findIdeaById(Integer id) throws SQLException {
+    public Idea findIdeaById(String id) throws SQLException {
         try {
             return ideaDao.queryForId(id);
         } catch (SQLException e) {
@@ -97,8 +97,8 @@ public class IdeaInteractorImpl implements IdeaInteractor {
     @Override
     public List<Idea> findIdea(Idea idea) throws SQLException {
         try {
-            QueryBuilder<Idea, Integer> qb = ideaDao.queryBuilder();
-            Where<Idea, Integer> where = qb.where();
+            QueryBuilder<Idea, String> qb = ideaDao.queryBuilder();
+            Where<Idea, String> where = qb.where();
             where.isNotNull("id");
 
             if(idea != null) {

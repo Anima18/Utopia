@@ -1,9 +1,13 @@
 package com.chris.utopia.common.util;
 
+import android.telephony.TelephonyManager;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
+
 /**
  * Created by Chris on 2015/9/2.
  */
@@ -206,5 +210,9 @@ public class StringUtil {
 		}
 		String str = sb.toString();
 		return str.substring(1, str.length()-2);
+	}
+
+	public static String getUUID() {
+		return UUID.randomUUID().toString();
 	}
 }
