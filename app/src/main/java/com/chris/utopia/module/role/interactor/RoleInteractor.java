@@ -11,5 +11,6 @@ import java.util.List;
 public interface RoleInteractor {
     void addRole(Role role) throws SQLException;
     List<Role> findRole(Role role) throws SQLException;
+    Role findRoleById(String roleId) throws SQLException;
     void addRole(List<Role> roleList) throws Exception;
 }

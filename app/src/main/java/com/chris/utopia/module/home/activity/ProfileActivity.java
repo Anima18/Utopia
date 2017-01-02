@@ -124,7 +124,7 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
                     case 5:
-                        presenter.syncData();
+                        presenter.checkDataVersion();
                         break;
                 }
             }

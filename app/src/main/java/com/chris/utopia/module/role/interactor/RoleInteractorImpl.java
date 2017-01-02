@@ -46,6 +46,11 @@ public class RoleInteractorImpl implements RoleInteractor {
     }
 
     @Override
+    public Role findRoleById(String roleId) throws SQLException {
+        return roleDao.queryForId(roleId);
+    }
+
+    @Override
     public void addRole(final List<Role> roleList) throws Exception {
         try {
             roleDao.callBatchTasks(new Callable<Void>() {

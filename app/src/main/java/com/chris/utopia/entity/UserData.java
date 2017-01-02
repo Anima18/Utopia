@@ -13,6 +13,7 @@ public class UserData {
     private List<Idea> ideaList;
     private List<Plan> planList;
     private List<Thing> thingList;
+    private UserSyncRecord record;
 
     public UserData(User user, List<Role> roleList, List<ThingClasses> classesList, List<Idea> ideaList, List<Plan> planList, List<Thing> thingList) {
         this.user = user;
@@ -69,5 +70,13 @@ public class UserData {
 
     public void setThingList(List<Thing> thingList) {
         this.thingList = thingList;
+    }
+
+    public UserSyncRecord getRecord() {
+        return record;
+    }
+
+    public void setRecord(UserSyncRecord record) {
+        this.record = record;
     }
 }

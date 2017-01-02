@@ -5,5 +5,5 @@ package com.chris.utopia.module.home.presenter;
  */
 
 public interface MePresenter {
-    void syncData();
+    void checkDataVersion();
 }
