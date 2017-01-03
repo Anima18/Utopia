@@ -64,7 +64,7 @@ public class MePresnterImpl implements MePresenter {
         TelephonyManager telephonyManager =(TelephonyManager)actionView.getContext().getSystemService( Context.TELEPHONY_SERVICE );
         String deviceId = telephonyManager.getDeviceId();
         String lastSyncTime = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LAST_SYNC_TIME, "");
-
+        actionView.showProgress("正在同步中，请稍后");
         new NetworkRequest.Builder(actionView.getLifecycleProvider())
                 .url("http://192.168.1.106:8080/PhotoKnow/security/security_checkDataVersion.action")
                 .dataType(new TypeToken<ResultData>(){}.getType())
@@ -86,7 +86,7 @@ public class MePresnterImpl implements MePresenter {
                     @Override
                     public void onFailure(int code, String message) {
                         Log.i("Chris", "onFailure："+message);
-                        actionView.showMessage("同步数据失败");
+                        actionView.syncFail();
                     }
 
                     @Override
@@ -229,7 +229,6 @@ public class MePresnterImpl implements MePresenter {
     }
 
     public void syncData() {
-        actionView.showProgress("正在同步中，请稍后");
         String userId = SharedPrefsUtil.getStringValue(actionView.getContext(), Constant.SP_KEY_LOGIN_USER_ID, null);
         TelephonyManager telephonyManager =(TelephonyManager)actionView.getContext().getSystemService( Context.TELEPHONY_SERVICE );
         String deviceId = telephonyManager.getDeviceId();
@@ -275,13 +274,13 @@ public class MePresnterImpl implements MePresenter {
                             @Override
                             public void onSuccess(ResultData data) {
                                 Log.i("Chris", "onSuccess");
-                                actionView.showMessage("同步数据成功");
+                                actionView.syncSuccess();
                             }
 
                             @Override
                             public void onFailure(int code, String message) {
                                 Log.i("Chris", "onFailure："+message);
-                                actionView.showMessage("同步数据失败");
+                                actionView.syncFail();
                             }
 
                             @Override

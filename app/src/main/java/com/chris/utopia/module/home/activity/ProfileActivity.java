@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
+import com.chris.utopia.common.view.BaseActivity;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
@@ -136,14 +139,13 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
 
     @Override
     public void syncFail() {
-        progressDialog.hide();
-        showMessage("同步数据失败");
+        Log.i("Chris", "dddddddddddddddddd");
+        Snackbar.make(view, "同步数据失败", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void syncSuccess() {
-        progressDialog.hide();
-        showMessage("同步数据成功");
+        Snackbar.make(view, "同步数据成功", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

@@ -86,6 +86,7 @@ public abstract class BaseActivity extends RoboAppCompatActivity implements Base
 
     @Override
     public void showMessage(String message) {
+
         Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
     }
 
