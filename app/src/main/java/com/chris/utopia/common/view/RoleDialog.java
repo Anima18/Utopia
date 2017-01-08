@@ -11,10 +11,6 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
 import com.chris.utopia.module.system.interactor.SystemInteractorImpl;
-import com.google.inject.Binder;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -30,13 +26,7 @@ public class RoleDialog {
     private int index = -1;
 
     private RoleDialog() {
-        Injector inj=  Guice.createInjector(new Module() {
-            @Override
-            public void configure(Binder binder) {
-                binder.bind(SystemInteractor.class).to(SystemInteractorImpl.class);
-            }
-        });
-        interactor = inj.getInstance(SystemInteractorImpl.class);
+        interactor = new SystemInteractorImpl();
     }
 
     public static RoleDialog initInstance() {

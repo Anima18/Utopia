@@ -10,25 +10,18 @@ import android.widget.LinearLayout;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.presenter.LabelCreatePresenter;
 import com.chris.utopia.module.home.presenter.LabelCreatePresenterImpl;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/1/25.
  */
-@ContentView(R.layout.activity_role_create)
-public class LabelCreateActivity extends BaseActivity implements LabelCreateActionView {
+public class LabelCreateActivity extends BaseActivity2 implements LabelCreateActionView {
 
-    @InjectView(R.id.rcAct_layout)
     private LinearLayout rootView;
-    @InjectView(R.id.rcAct_title_et)
     private EditText titleEt;
-    @InjectView(R.id.rcAct_desc_et)
     private EditText descEt;
 
     private ThingClasses label;
@@ -37,6 +30,7 @@ public class LabelCreateActivity extends BaseActivity implements LabelCreateActi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_role_create);
         super.onCreate(savedInstanceState);
 
         label = (ThingClasses)getIntent().getSerializableExtra("label");
@@ -45,6 +39,9 @@ public class LabelCreateActivity extends BaseActivity implements LabelCreateActi
     }
 
     public void initView() {
+        rootView = (LinearLayout) findViewById(R.id.rcAct_layout);
+        titleEt = (EditText) findViewById(R.id.rcAct_title_et);
+        descEt = (EditText) findViewById(R.id.rcAct_desc_et);
         setToolBarTitle();
     }
 

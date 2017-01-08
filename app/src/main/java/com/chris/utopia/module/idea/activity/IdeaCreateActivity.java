@@ -20,13 +20,13 @@ import com.chris.utopia.common.callback.LabelCallBack;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.LabelDialog;
 import com.chris.utopia.entity.Idea;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.idea.presenter.IdeaCreatePresenter;
+import com.chris.utopia.module.idea.presenter.IdeaCreatePresenterImpl;
 import com.chris.utopia.module.plan.activity.PlanCreateActivity;
-import com.google.inject.Inject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -36,36 +36,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/1/20.
  */
-@ContentView(R.layout.activity_idea_create)
-public class IdeaCreateActivity extends BaseActivity implements IdeaCreateActionView, View.OnClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, ColorChooserDialog.ColorCallback {
+public class IdeaCreateActivity extends BaseActivity2 implements IdeaCreateActionView, View.OnClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, ColorChooserDialog.ColorCallback {
 
-    @InjectView(R.id.icAct_layout)
     private LinearLayout rootView;
-    @InjectView(R.id.icAct_title_textInput)
     private TextInputLayout titleTi;
-    @InjectView(R.id.icAct_title_et)
     private EditText titleEt;
-    @InjectView(R.id.icAct_desc_ti)
     private TextInputLayout descTi;
-    @InjectView(R.id.icAct_desc_et)
     private EditText descEt;
-    @InjectView(R.id.icAct_label_layout)
     private LinearLayout labelLayout;
-    @InjectView(R.id.icAct_label_value)
     private TextView labelValue;
-    @InjectView(R.id.icAct_clock_layout)
     private LinearLayout clockLayout;
-    @InjectView(R.id.icAct_clock_value)
     private TextView clockValue;
-    @InjectView(R.id.icAct_palette_layout)
     private LinearLayout paletteLayout;
-    @InjectView(R.id.icAct_palette_value)
     private TextView paletteValue;
 
     private Idea idea = null;
@@ -74,11 +59,11 @@ public class IdeaCreateActivity extends BaseActivity implements IdeaCreateAction
 
     private MaterialDialog labelDialog = null;
 
-    @Inject
-    private IdeaCreatePresenter presenter;
+    private IdeaCreatePresenter presenter = new IdeaCreatePresenterImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_idea_create);
         super.onCreate(savedInstanceState);
         idea = (Idea)getIntent().getSerializableExtra("Idea");
         initView();
@@ -87,6 +72,17 @@ public class IdeaCreateActivity extends BaseActivity implements IdeaCreateAction
     }
 
     public void initView() {
+        rootView = (LinearLayout) findViewById(R.id.icAct_layout);
+        titleEt = (EditText) findViewById(R.id.icAct_title_et);
+        titleTi = (TextInputLayout) findViewById(R.id.icAct_title_textInput);
+        descEt = (EditText) findViewById(R.id.icAct_desc_et);
+        descTi = (TextInputLayout) findViewById(R.id.icAct_desc_ti);
+        labelLayout = (LinearLayout) findViewById(R.id.icAct_label_layout);
+        labelValue = (TextView) findViewById(R.id.icAct_label_value);
+        clockLayout = (LinearLayout) findViewById(R.id.icAct_clock_layout);
+        clockValue = (TextView)findViewById(R.id.icAct_clock_value);
+        paletteLayout = (LinearLayout)findViewById(R.id.icAct_palette_layout);
+        paletteValue = (TextView) findViewById(R.id.icAct_palette_value);
         setToolBarTitle();
         invalidateOptionsMenu();
     }

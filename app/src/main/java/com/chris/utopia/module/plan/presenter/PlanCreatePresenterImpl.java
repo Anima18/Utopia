@@ -12,10 +12,12 @@ import com.chris.utopia.entity.Role;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 import com.chris.utopia.module.idea.interactor.IdeaInteractor;
+import com.chris.utopia.module.idea.interactor.IdeaInteractorImpl;
 import com.chris.utopia.module.plan.activity.PlanCreateActionView;
 import com.chris.utopia.module.plan.interactor.PlanInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.plan.interactor.PlanInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -29,12 +31,9 @@ public class PlanCreatePresenterImpl implements PlanCreatePresenter {
     private PlanCreateActionView actionView;
     private Context mContext;
 
-    @Inject
-    private PlanInteractor planInteractor;
-    @Inject
-    private ThingInteractor thingInteractor;
-    @Inject
-    private IdeaInteractor ideaInteractor;
+    private PlanInteractor planInteractor = new PlanInteractorImpl();
+    private ThingInteractor thingInteractor = new ThingInteractorImpl();
+    private IdeaInteractor ideaInteractor = new IdeaInteractorImpl();
 
     @Override
     public void setActionView(PlanCreateActionView actionView) {

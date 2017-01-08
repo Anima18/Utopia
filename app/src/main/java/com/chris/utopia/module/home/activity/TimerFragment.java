@@ -14,7 +14,7 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.TimerAdapter;
 import com.chris.utopia.module.home.presenter.TimerPresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.presenter.TimerPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +30,7 @@ public class TimerFragment extends BaseFragment implements TimerActionView {
     private List<Thing> thingList = new ArrayList<>();
     private String dateStr;
 
-    @Inject
-    private TimerPresenter presenter;
+    private TimerPresenter presenter = new TimerPresenterImpl();
 
     @Nullable
     @Override

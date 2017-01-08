@@ -11,7 +11,6 @@ import android.view.MenuItem;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.SharedPrefsUtil;
-import com.chris.utopia.common.view.BaseActivity;
 import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.module.home.activity.HomeFragment;
 import com.chris.utopia.module.home.activity.MessageActivity;
@@ -19,8 +18,6 @@ import com.chris.utopia.module.home.activity.ProfileActivity;
 import com.chris.utopia.module.home.activity.SearchActivity;
 import com.chris.utopia.module.idea.activity.IdeaFragment;
 import com.chris.utopia.module.plan.activity.PlanFragment;
-
-import roboguice.inject.ContentView;
 
 /**
  * Created by jianjianhong on 2016/12/2.

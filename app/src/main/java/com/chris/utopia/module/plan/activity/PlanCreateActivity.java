@@ -33,7 +33,7 @@ import com.chris.utopia.common.callback.RoleCallBack;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.listener.AppBarStateChangeListener;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.LabelDialog;
 import com.chris.utopia.common.view.QuadrantDialog;
 import com.chris.utopia.common.view.RoleDialog;
@@ -45,43 +45,27 @@ import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.activity.ThingCreateActivity;
 import com.chris.utopia.module.plan.adapter.PlanThingAdapter;
 import com.chris.utopia.module.plan.presenter.PlanCreatePresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.plan.presenter.PlanCreatePresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/1/28.
  */
-@ContentView(R.layout.activity_plan_create)
-public class PlanCreateActivity extends BaseActivity implements View.OnClickListener, PlanCreateActionView {
+public class PlanCreateActivity extends BaseActivity2 implements View.OnClickListener, PlanCreateActionView {
 
-    @InjectView(R.id.pcAct_layout)
     private View rootView;
-    @InjectView(R.id.pcAct_thing_rv)
     private RecyclerView thingRv;
-    @InjectView(R.id.pcAct_label_layout)
     private View labelView;
-    @InjectView(R.id.pcAct_role_layout)
     private View roleView;
-    @InjectView(R.id.pcAct_quadrant_layout)
     private View quadrantView;
-    @InjectView(R.id.pcAct_label_value)
     private TextView lableTv;
-    @InjectView(R.id.pcAct_role_value)
     private TextView roleTv;
-    @InjectView(R.id.pcAct_quadrant_value)
     private TextView quadrantTv;
-    @InjectView(R.id.pcAct_addFad)
     private FloatingActionButton addFAB;
-    @InjectView(R.id.pcAct_title_textInput)
     private TextInputLayout titleTi;
-    @InjectView(R.id.pcAct_title_et)
     private EditText titleEt;
-    @InjectView(R.id.pcAct_desc_et)
     private EditText descEt;
 
     private PlanThingAdapter adapter;
@@ -90,14 +74,14 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
     private List<Role> roleList = new ArrayList<>();
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
-    @Inject
-    private PlanCreatePresenter presenter;
+    private PlanCreatePresenter presenter = new PlanCreatePresenterImpl();
 
     private Plan plan;
     private Idea idea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_plan_create);
         super.onCreate(savedInstanceState);
         plan = (Plan)getIntent().getSerializableExtra("PLAN");
         idea = (Idea)getIntent().getSerializableExtra("IDEA");
@@ -107,6 +91,19 @@ public class PlanCreateActivity extends BaseActivity implements View.OnClickList
     }
 
     public void initView() {
+
+        rootView = (View) findViewById(R.id.pcAct_layout);
+        thingRv = (RecyclerView)findViewById(R.id.pcAct_thing_rv);
+        labelView = findViewById(R.id.pcAct_label_layout);
+        roleView = findViewById(R.id.pcAct_role_layout);
+        quadrantView = findViewById(R.id.pcAct_quadrant_layout);
+        lableTv = (TextView) findViewById(R.id.pcAct_label_value);
+        roleTv = (TextView) findViewById(R.id.pcAct_role_value);
+        quadrantTv = (TextView) findViewById(R.id.pcAct_quadrant_value);
+        addFAB = (FloatingActionButton) findViewById(R.id.pcAct_addFad);
+        titleTi = (TextInputLayout) findViewById(R.id.pcAct_title_textInput);
+        titleEt = (EditText) findViewById(R.id.pcAct_title_et);
+        descEt = (EditText) findViewById(R.id.pcAct_desc_et);
         setToolBarTitle();
         adapter = new PlanThingAdapter(getContext(), thingList);
         adapter.setOnItemClickListener(new PlanThingAdapter.OnItemClickListener() {

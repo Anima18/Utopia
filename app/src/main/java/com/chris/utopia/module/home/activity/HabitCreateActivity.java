@@ -1,10 +1,6 @@
 package com.chris.utopia.module.home.activity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
@@ -18,10 +14,9 @@ import com.chris.utopia.common.callback.LabelCallBack;
 import com.chris.utopia.common.callback.QuadrantCallBack;
 import com.chris.utopia.common.callback.RoleCallBack;
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.service.NotificationService;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.LabelDialog;
 import com.chris.utopia.common.view.QuadrantDialog;
 import com.chris.utopia.common.view.RoleDialog;
@@ -31,61 +26,42 @@ import com.chris.utopia.entity.Role;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.presenter.ThingCreatePresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.presenter.ThingCreatePresenterImpl;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/2/20.
  */
-@ContentView(R.layout.activity_habit_create)
-public class HabitCreateActivity extends BaseActivity  implements View.OnClickListener, View.OnFocusChangeListener,
+public class HabitCreateActivity extends BaseActivity2 implements View.OnClickListener, View.OnFocusChangeListener,
         TimePickerDialog.OnTimeSetListener, ThingCreateActionView {
 
-    @InjectView(R.id.hcAct_layout)
     private View rootView;
-    @InjectView(R.id.hcAct_title_ti)
     private TextInputLayout nameTi;
-    @InjectView(R.id.hcAct_title_et)
     private EditText nameEt;
-    @InjectView(R.id.hcAct_desc_ti)
     private TextInputLayout descTi;
-    @InjectView(R.id.hcAct_desc_et)
     private EditText descEt;
-    @InjectView(R.id.hcAct_label_et)
     private EditText labelEt;
-    @InjectView(R.id.hcAct_role_et)
     private EditText roleEt;
-    @InjectView(R.id.hcAct_quadrant_et)
     private EditText quadrantEt;
-    @InjectView(R.id.hcAct_whatDay_ti)
     private TextInputLayout whatDayTi;
-    @InjectView(R.id.hcAct_whatDay_et)
     private EditText whatDayEt;
-    @InjectView(R.id.hcAct_begin_time_ti)
     private TextInputLayout fromTimeTi;
-    @InjectView(R.id.hcAct_begin_time_et)
     private EditText fromTimeEt;
-    @InjectView(R.id.hcAct_prompting_cb)
     private AppCompatCheckBox promptingCb;
-    @InjectView(R.id.hcAct_type_et)
     private EditText typeEt;
-    @InjectView(R.id.hcAct_time_layout)
     private View timeView;
 
     private Thing thing = null;
 
-    @Inject
-    private ThingCreatePresenter presenter;
+    private ThingCreatePresenter presenter = new ThingCreatePresenterImpl();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_habit_create);
         super.onCreate(savedInstanceState);
 
         thing = (Thing) getIntent().getSerializableExtra("THING");
@@ -95,6 +71,22 @@ public class HabitCreateActivity extends BaseActivity  implements View.OnClickLi
     }
 
     public void initView() {
+        rootView = findViewById(R.id.hcAct_layout);
+        nameTi = (TextInputLayout) findViewById(R.id.hcAct_title_ti);
+        nameEt = (EditText) findViewById(R.id.hcAct_title_et);
+        descTi = (TextInputLayout) findViewById(R.id.hcAct_desc_ti);
+        descEt = (EditText) findViewById(R.id.hcAct_desc_et);
+        labelEt = (EditText) findViewById(R.id.hcAct_label_et);
+        roleEt = (EditText) findViewById(R.id.hcAct_role_et);
+        quadrantEt = (EditText) findViewById(R.id.hcAct_quadrant_et);
+        whatDayTi = (TextInputLayout) findViewById(R.id.hcAct_whatDay_ti);
+        whatDayEt = (EditText) findViewById(R.id.hcAct_whatDay_et);
+        fromTimeTi = (TextInputLayout) findViewById(R.id.hcAct_begin_time_ti);
+        fromTimeEt = (EditText) findViewById(R.id.hcAct_begin_time_et);
+        promptingCb = (AppCompatCheckBox) findViewById(R.id.hcAct_prompting_cb);
+        typeEt = (EditText) findViewById(R.id.hcAct_type_et);
+        timeView = findViewById(R.id.hcAct_time_layout);
+
         setToolBarTitle();
     }
 

@@ -2,8 +2,6 @@ package com.chris.utopia.module.system.presenter;
 
 import android.content.Context;
 
-import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.ResultData;
 import com.chris.utopia.entity.User;
@@ -14,7 +12,6 @@ import com.example.requestmanager.NetworkRequest;
 import com.example.requestmanager.callBack.DataCallBack;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.inject.Inject;
 
 import java.sql.SQLException;
 
@@ -26,8 +23,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
     private RegisterActionView actionView;
     private Context context;
 
-    @Inject
-    private SystemInteractor interactor;
+    private SystemInteractor interactor = new SystemInteractorImpl();
 
     public RegisterPresenterImpl(RegisterActionView actionView) {
         this.actionView = actionView;

@@ -18,7 +18,7 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.MyHabitAdapter;
 import com.chris.utopia.module.home.presenter.HabitPresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.presenter.HabitPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,7 @@ public class MyHabitFragment extends BaseFragment implements View.OnClickListene
     private MyHabitAdapter adapter;
     private List<Thing> thingList = new ArrayList<>();
 
-    @Inject
-    private HabitPresenter presenter;
+    private HabitPresenter presenter = new HabitPresenterImpl(this);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

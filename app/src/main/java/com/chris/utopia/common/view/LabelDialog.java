@@ -16,10 +16,6 @@ import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
 import com.chris.utopia.module.system.interactor.SystemInteractorImpl;
-import com.google.inject.Binder;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -36,13 +32,7 @@ public class LabelDialog {
     private int index = -1;
 
     private LabelDialog() {
-        Injector inj=  Guice.createInjector(new Module() {
-            @Override
-            public void configure(Binder binder) {
-                binder.bind(SystemInteractor.class).to(SystemInteractorImpl.class);
-            }
-        });
-        interactor = inj.getInstance(SystemInteractorImpl.class);
+        interactor = new SystemInteractorImpl();
     }
 
     public static LabelDialog initInstance() {

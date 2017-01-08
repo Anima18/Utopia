@@ -9,7 +9,7 @@ import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.activity.RoleCreateActionView;
 import com.chris.utopia.module.role.interactor.RoleInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.role.interactor.RoleInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -22,8 +22,7 @@ public class RoleCreatePresenterImpl implements RoleCreatePresenter {
     private RoleCreateActionView actionView;
     private Context context;
 
-    @Inject
-    private RoleInteractor interactor;
+    private RoleInteractor interactor = new RoleInteractorImpl();
 
     @Override
     public void setActionView(RoleCreateActionView actionView) {

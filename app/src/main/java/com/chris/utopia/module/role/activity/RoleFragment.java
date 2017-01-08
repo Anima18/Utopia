@@ -18,7 +18,7 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.adapter.RoleAdapter;
 import com.chris.utopia.module.role.presenter.RolePresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.role.presenter.RolePresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,7 @@ public class RoleFragment extends BaseFragment implements View.OnClickListener, 
     private List<Role> rolelist = new ArrayList<>();
     private RoleAdapter adapter;
 
-    @Inject
-    private RolePresenter presenter;
+    private RolePresenter presenter = new RolePresenterImpl();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

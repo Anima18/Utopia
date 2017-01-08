@@ -12,15 +12,10 @@ import android.widget.TextView;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
 import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.system.presenter.LoginPresenter;
 import com.chris.utopia.module.system.presenter.LoginPresenterImpl;
-import com.google.inject.Inject;
-
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
 
 /**
  * Created by Chris on 2016/1/17.
@@ -108,6 +103,7 @@ public class LoginActivity extends BaseActivity2 implements View.OnClickListener
 
     @Override
     public void toMainPage() {
+        this.progressDialog.dismiss();
         this.finish();
         Intent intent = new Intent(getContext(), MainActivity2.class);
         startActivity(intent);

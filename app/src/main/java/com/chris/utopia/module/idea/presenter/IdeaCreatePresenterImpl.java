@@ -10,7 +10,7 @@ import com.chris.utopia.entity.Idea;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.idea.activity.IdeaCreateActionView;
 import com.chris.utopia.module.idea.interactor.IdeaInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.idea.interactor.IdeaInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -23,8 +23,7 @@ public class IdeaCreatePresenterImpl implements IdeaCreatePresenter {
     private IdeaCreateActionView actionView;
     private Context mContext;
 
-    @Inject
-    private IdeaInteractor interactor;
+    private IdeaInteractor interactor = new IdeaInteractorImpl();
 
     @Override
     public void setActionView(IdeaCreateActionView actionView) {

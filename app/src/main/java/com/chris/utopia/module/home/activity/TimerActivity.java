@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.SlidingTabLayout;
 import com.chris.utopia.module.home.adapter.ViewPagerAdapter;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -20,18 +20,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/3/1.
  */
-@ContentView(R.layout.activity_timer)
-public class TimerActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
+public class TimerActivity extends BaseActivity2 implements DatePickerDialog.OnDateSetListener {
 
-    @InjectView(R.id.timerAct_slidingTabLayout)
     private SlidingTabLayout slidingTabLayout;
-    @InjectView(R.id.timerAct_viewpager)
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
 
@@ -42,6 +36,7 @@ public class TimerActivity extends BaseActivity implements DatePickerDialog.OnDa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_timer);
         super.onCreate(savedInstanceState);
         for(int i = 0; i < 7; i++) {
             fragmentList.add(new TimerFragment());
@@ -53,6 +48,8 @@ public class TimerActivity extends BaseActivity implements DatePickerDialog.OnDa
     }
 
     public void initView() {
+        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.timerAct_slidingTabLayout);
+        viewPager = (ViewPager) findViewById(R.id.timerAct_viewpager);
         setToolBarTitle();
     }
 

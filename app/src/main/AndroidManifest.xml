@@ -23,8 +23,6 @@
         </activity>
         <activity android:name=".module.guide.GuideActivity"/>
 
-        <activity android:name=".module.system.activity.MainActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
-
         <activity android:name=".module.system.activity.MainActivity2" android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity android:name=".module.system.activity.LoginActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
@@ -60,7 +58,7 @@
         <activity android:name=".module.role.activity.RoleActivity" android:windowSoftInputMode="stateAlwaysHidden"/>
         <service android:name=".common.service.NotificationService"/>
 
-        <meta-data android:name="roboguice.modules" android:value="com.chris.utopia.common.config.MsmModule"/>
+        <!--<meta-data android:name="roboguice.modules" android:value="com.chris.utopia.common.config.MsmModule"/>-->
     </application>
 
 </manifest>

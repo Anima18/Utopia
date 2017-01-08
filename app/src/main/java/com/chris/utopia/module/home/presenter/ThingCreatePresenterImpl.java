@@ -12,8 +12,9 @@ import com.chris.utopia.entity.Thing;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.activity.ThingCreateActionView;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 import com.chris.utopia.module.plan.interactor.PlanInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.plan.interactor.PlanInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -26,10 +27,8 @@ public class ThingCreatePresenterImpl implements ThingCreatePresenter {
     private ThingCreateActionView actionView;
     private Context mContext;
 
-    @Inject
-    private ThingInteractor interactor;
-    @Inject
-    private PlanInteractor planInteractor;
+    private ThingInteractor interactor = new ThingInteractorImpl();
+    private PlanInteractor planInteractor = new PlanInteractorImpl();
 
     @Override
     public void setActionView(ThingCreateActionView actionView) {

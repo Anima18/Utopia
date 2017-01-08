@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.chris.utopia.R;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.adapter.LabelAdapter;
 import com.chris.utopia.module.home.presenter.LabelPresenter;
@@ -20,19 +20,11 @@ import com.chris.utopia.module.home.presenter.LabelPresenterImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Admin on 2016/12/10.
  */
-@ContentView(R.layout.activity_label)
-public class ThingLabelActivity extends BaseActivity implements LabelActionView, View.OnClickListener {
-    @InjectView(R.id.labelAct_coordinatorLayout)
-    private CoordinatorLayout rootView;
-    @InjectView(R.id.labelAct_recyclerView)
+public class ThingLabelActivity extends BaseActivity2 implements LabelActionView, View.OnClickListener {    private CoordinatorLayout rootView;
     private RecyclerView labelRecyclerView;
-    @InjectView(R.id.labelAct_addFad)
     private FloatingActionButton addFab;
     private List<ThingClasses> labellist = new ArrayList<>();
     private LabelAdapter adapter;
@@ -41,8 +33,16 @@ public class ThingLabelActivity extends BaseActivity implements LabelActionView,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_label);
         super.onCreate(savedInstanceState);
+        initView();
         initEvent();
+    }
+
+    public void initView() {
+        rootView = (CoordinatorLayout) findViewById(R.id.labelAct_coordinatorLayout);
+        labelRecyclerView = (RecyclerView) findViewById(R.id.labelAct_recyclerView);
+        addFab = (FloatingActionButton) findViewById(R.id.labelAct_addFad);
     }
 
     @Override

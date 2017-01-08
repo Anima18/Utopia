@@ -7,7 +7,7 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.activity.RoleActionView;
 import com.chris.utopia.module.role.interactor.RoleInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.role.interactor.RoleInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,8 +20,7 @@ public class RolePresenterImpl implements RolePresenter {
     private RoleActionView actionView;
     private Context context;
 
-    @Inject
-    private RoleInteractor interactor;
+    private RoleInteractor interactor = new RoleInteractorImpl();
 
     @Override
     public void setActionView(RoleActionView actionView) {

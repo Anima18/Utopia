@@ -10,34 +10,27 @@ import android.widget.LinearLayout;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.presenter.RoleCreatePresenter;
-import com.google.inject.Inject;
-
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
+import com.chris.utopia.module.role.presenter.RoleCreatePresenterImpl;
 
 /**
  * Created by Chris on 2016/1/25.
  */
-@ContentView(R.layout.activity_role_create)
-public class RoleCreateActivity extends BaseActivity implements RoleCreateActionView {
+public class RoleCreateActivity extends BaseActivity2 implements RoleCreateActionView {
 
-    @InjectView(R.id.rcAct_layout)
     private LinearLayout rootView;
-    @InjectView(R.id.rcAct_title_et)
     private EditText titleEt;
-    @InjectView(R.id.rcAct_desc_et)
     private EditText descEt;
 
     private Role role;
 
-    @Inject
-    private RoleCreatePresenter presenter;
+    private RoleCreatePresenter presenter = new RoleCreatePresenterImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_role_create);
         super.onCreate(savedInstanceState);
 
         role = (Role)getIntent().getSerializableExtra("role");
@@ -47,6 +40,9 @@ public class RoleCreateActivity extends BaseActivity implements RoleCreateAction
     }
 
     public void initView() {
+        rootView = (LinearLayout) findViewById(R.id.rcAct_layout);
+        titleEt = (EditText) findViewById(R.id.rcAct_title_et);
+        descEt = (EditText) findViewById(R.id.rcAct_desc_et);
         setToolBarTitle();
     }
 

@@ -9,7 +9,7 @@ import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.activity.TodayTaskActionView;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -22,9 +22,13 @@ public class TodayTaskPresenterImpl implements TodayTaskPresenter {
 
     private TodayTaskActionView actionView;
     private Context mContext;
-
-    @Inject
     private ThingInteractor interactor;
+
+    public TodayTaskPresenterImpl(TodayTaskActionView actionView) {
+        this.actionView = actionView;
+        this.mContext = actionView.getContext();
+        this.interactor = new ThingInteractorImpl();
+    }
 
     @Override
     public void setActionView(TodayTaskActionView actionView) {

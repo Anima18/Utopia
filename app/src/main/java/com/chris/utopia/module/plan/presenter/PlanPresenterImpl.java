@@ -7,9 +7,10 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Plan;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 import com.chris.utopia.module.plan.activity.PlanActionView;
 import com.chris.utopia.module.plan.interactor.PlanInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.plan.interactor.PlanInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,10 +23,8 @@ public class PlanPresenterImpl implements PlanPresenter {
     private PlanActionView actionView;
     private Context mContext;
 
-    @Inject
-    private PlanInteractor interactor;
-    @Inject
-    private ThingInteractor thingInteractor;
+    private PlanInteractor interactor = new PlanInteractorImpl();
+    private ThingInteractor thingInteractor = new ThingInteractorImpl();
 
     @Override
     public void setActionView(PlanActionView actionView) {

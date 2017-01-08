@@ -13,16 +13,10 @@ import android.widget.TextView;
 
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
 import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.system.presenter.RegisterPresenter;
 import com.chris.utopia.module.system.presenter.RegisterPresenterImpl;
-import com.google.inject.Exposed;
-import com.google.inject.Inject;
-
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
 
 
 /**

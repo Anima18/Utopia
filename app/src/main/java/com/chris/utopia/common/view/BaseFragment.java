@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 
 import com.chris.utopia.common.util.ProgressDialogUtil;
 import com.trello.rxlifecycle.LifecycleProvider;
@@ -15,14 +16,13 @@ import com.trello.rxlifecycle.RxLifecycle;
 import com.trello.rxlifecycle.android.ActivityEvent;
 import com.trello.rxlifecycle.android.RxLifecycleAndroid;
 
-import roboguice.fragment.RoboFragment;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
 
 /**
  * Created by Chris on 2016/1/14.
  */
-public class BaseFragment extends RoboFragment implements BaseActionView, LifecycleProvider<ActivityEvent> {
+public class BaseFragment extends Fragment implements BaseActionView, LifecycleProvider<ActivityEvent> {
 
     protected ProgressDialog progressDialog;
 

@@ -25,7 +25,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.home.presenter.ProfilePresenter;
 import com.chris.utopia.module.home.presenter.ProfilePresenterImpl;
@@ -38,13 +38,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import roboguice.inject.ContentView;
 
 /**
  * Created by jianjianhong on 2016/12/7.
  */
-@ContentView(R.layout.activity_information)
-public class InformationActivity extends BaseActivity implements ProfileActionView, View.OnClickListener {
+public class InformationActivity extends BaseActivity2 implements ProfileActionView, View.OnClickListener {
 
     private CircleImageView profileIv;
     private TextInputLayout nameTi;
@@ -68,6 +66,7 @@ public class InformationActivity extends BaseActivity implements ProfileActionVi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_information);
         super.onCreate(savedInstanceState);
         initView();
         initData();

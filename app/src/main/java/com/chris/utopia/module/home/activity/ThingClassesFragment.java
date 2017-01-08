@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.chris.utopia.R;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.module.home.presenter.TimeAnalysisPresenter;
+import com.chris.utopia.module.home.presenter.TimeAnalysisPresenterImpl;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
@@ -17,7 +18,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,8 +30,7 @@ public class ThingClassesFragment extends BaseFragment implements OnChartValueSe
     private PieChart mChart;
     private Typeface tf;
 
-    @Inject
-    private TimeAnalysisPresenter presenter;
+    private TimeAnalysisPresenter presenter = new TimeAnalysisPresenterImpl();
 
     /*protected String[] mParties = new String[] {
             "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",

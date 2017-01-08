@@ -19,7 +19,7 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.TodayTaskAdapter;
 import com.chris.utopia.module.home.presenter.TodayTaskPresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.presenter.TodayTaskPresenterImpl;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -39,8 +39,7 @@ public class TodayTaskFragment extends BaseFragment implements TodayTaskActionVi
     private TodayTaskAdapter adapter;
     private List<Thing> thingList = new ArrayList<>();
 
-    @Inject
-    private TodayTaskPresenter presenter;
+    private TodayTaskPresenter presenter = new TodayTaskPresenterImpl(this);
 
     private Thing selectThing;
 

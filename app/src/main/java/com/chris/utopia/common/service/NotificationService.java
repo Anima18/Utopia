@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.chris.utopia.R;
 import com.chris.utopia.entity.Thing;
-import com.chris.utopia.module.system.activity.MainActivity;
+import com.chris.utopia.module.system.activity.MainActivity2;
 
 import java.util.Random;
 
@@ -46,7 +46,7 @@ public class NotificationService extends Service {
 		Random random = new Random();
 		int notificationId = random.nextInt(9999 - 1000) + 1000;
 
-		Intent startIntent = new Intent(this, MainActivity.class);
+		Intent startIntent = new Intent(this, MainActivity2.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent pd = PendingIntent.getActivity(this, 0, startIntent, 0);
 

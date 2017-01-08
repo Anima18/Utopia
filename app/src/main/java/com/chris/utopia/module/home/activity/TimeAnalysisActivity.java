@@ -6,25 +6,19 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import com.chris.utopia.R;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.SlidingTabLayout;
 import com.chris.utopia.module.home.adapter.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/3/8.
  */
-@ContentView(R.layout.activity_timer_analysis)
-public class TimeAnalysisActivity extends BaseActivity {
+public class TimeAnalysisActivity extends BaseActivity2 {
 
-    @InjectView(R.id.timerAnalysisAct_slidingTabLayout)
     private SlidingTabLayout slidingTabLayout;
-    @InjectView(R.id.timerAnalysisAct_viewpager)
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
 
@@ -33,6 +27,7 @@ public class TimeAnalysisActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_timer_analysis);
         super.onCreate(savedInstanceState);
 
         initView();
@@ -41,6 +36,8 @@ public class TimeAnalysisActivity extends BaseActivity {
     }
 
     public void initView() {
+        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.timerAnalysisAct_slidingTabLayout);
+        viewPager = (ViewPager) findViewById(R.id.timerAnalysisAct_viewpager);
         setToolBarTitle();
     }
 

@@ -5,12 +5,10 @@ import android.content.Context;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
-import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.home.activity.ProfileActionView;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
 import com.chris.utopia.module.system.interactor.SystemInteractorImpl;
-import com.google.inject.Inject;
 
 import java.sql.SQLException;
 import java.util.Date;

@@ -17,7 +17,7 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Idea;
 import com.chris.utopia.module.idea.adapter.IdeaAdapter;
 import com.chris.utopia.module.idea.presenter.IdeaPresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.idea.presenter.IdeaPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +33,7 @@ public class IdeaFragment extends BaseFragment implements View.OnClickListener, 
     private IdeaAdapter adapter;
     private List<Idea> ideaList = new ArrayList<>();
 
-    @Inject
-    private IdeaPresenter presenter;
+    private IdeaPresenter presenter = new IdeaPresenterImpl();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

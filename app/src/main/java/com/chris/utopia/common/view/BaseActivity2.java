@@ -2,7 +2,6 @@ package com.chris.utopia.common.view;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +9,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +30,7 @@ import rx.subjects.BehaviorSubject;
 /**
  * Created by Chris on 2015/9/2.
  */
-public abstract class BaseActivity2 extends RoboAppCompatActivity implements BaseActionView, LifecycleProvider<ActivityEvent> {
+public abstract class BaseActivity2 extends AppCompatActivity implements BaseActionView, LifecycleProvider<ActivityEvent> {
     protected Toolbar toolbar;
     protected ProgressDialog progressDialog;
     private View rootView;
@@ -86,13 +86,13 @@ public abstract class BaseActivity2 extends RoboAppCompatActivity implements Bas
     public void showProgress(String message) {
         if(progressDialog == null) {
             progressDialog = ProgressDialogUtil.showProgessDialog(getContext(), message);
-            progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            /*progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
                     lifecycleSubject.onNext(ActivityEvent.PAUSE);
                     lifecycleSubject.onNext(ActivityEvent.CREATE);
                 }
-            });
+            });*/
         }else {
             progressDialog.setMessage(message);
         }

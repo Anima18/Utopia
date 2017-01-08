@@ -8,7 +8,7 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.activity.MessageActionView;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -22,8 +22,7 @@ public class MessagePresenterImpl implements MessagePresenter {
     private MessageActionView actionView;
     private Context mContext;
 
-    @Inject
-    private ThingInteractor interactor;
+    private ThingInteractor interactor = new ThingInteractorImpl();
 
     @Override
     public void setActionView(MessageActionView actionView) {

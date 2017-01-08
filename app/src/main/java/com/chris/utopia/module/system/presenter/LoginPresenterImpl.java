@@ -1,30 +1,15 @@
 package com.chris.utopia.module.system.presenter;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.CollectionUtil;
-import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
-import com.chris.utopia.entity.Role;
 import com.chris.utopia.entity.User;
-import com.chris.utopia.module.home.interactor.ThingInteractor;
-import com.chris.utopia.module.idea.interactor.IdeaInteractor;
-import com.chris.utopia.module.plan.interactor.PlanInteractor;
-import com.chris.utopia.module.role.interactor.RoleInteractor;
 import com.chris.utopia.module.system.activity.LoginActionView;
-import com.chris.utopia.module.system.interactor.SystemInteractor;
 import com.example.requestmanager.NetworkRequest;
 import com.example.requestmanager.callBack.DataCallBack;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.inject.Inject;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Chris on 2016/1/19.

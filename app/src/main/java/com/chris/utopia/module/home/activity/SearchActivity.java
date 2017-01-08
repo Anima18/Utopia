@@ -12,36 +12,31 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.chris.utopia.R;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.SearchAdapter;
 import com.chris.utopia.module.home.presenter.SearchPresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.presenter.SearchPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/2/27.
  */
-@ContentView(R.layout.activity_search)
-public class SearchActivity extends BaseActivity implements SearchActionView {
+public class SearchActivity extends BaseActivity2 implements SearchActionView {
 
-    @InjectView(R.id.searchAct_data_rv)
     private RecyclerView dataRv;
     private SearchView searchView;
 
     private SearchAdapter adapter;
     private List<Thing> thingList = new ArrayList<>();
 
-    @Inject
-    private SearchPresenter presenter;
+    private SearchPresenter presenter = new SearchPresenterImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_search);
         super.onCreate(savedInstanceState);
         initView();
         initData();
@@ -49,6 +44,7 @@ public class SearchActivity extends BaseActivity implements SearchActionView {
     }
 
     public void initView() {
+        dataRv = (RecyclerView) findViewById(R.id.searchAct_data_rv);
         adapter = new SearchAdapter(getContext(), thingList);
         dataRv.setAdapter(adapter);
         adapter.setOnItemClickListener(new SearchAdapter.OnItemClickListener() {

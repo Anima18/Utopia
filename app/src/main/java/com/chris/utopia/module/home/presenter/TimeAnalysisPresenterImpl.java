@@ -9,8 +9,9 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.activity.TimeAnalysisActionView;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 import com.chris.utopia.module.system.interactor.SystemInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.system.interactor.SystemInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,10 +28,8 @@ public class TimeAnalysisPresenterImpl implements TimeAnalysisPresenter {
     private TimeAnalysisActionView actionView;
     private Context mContext;
 
-    @Inject
-    private ThingInteractor interactor;
-    @Inject
-    private SystemInteractor systemInteractor;
+    private ThingInteractor interactor = new ThingInteractorImpl();
+    private SystemInteractor systemInteractor = new SystemInteractorImpl();
 
     @Override
     public void setActionView(TimeAnalysisActionView actionView) {

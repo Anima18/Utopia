@@ -2,7 +2,6 @@ package com.chris.utopia.module.home.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -19,10 +18,9 @@ import com.chris.utopia.common.callback.LabelCallBack;
 import com.chris.utopia.common.callback.QuadrantCallBack;
 import com.chris.utopia.common.callback.RoleCallBack;
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.AlarmManagerUtil;
 import com.chris.utopia.common.util.DateUtil;
 import com.chris.utopia.common.util.StringUtil;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.LabelDialog;
 import com.chris.utopia.common.view.QuadrantDialog;
 import com.chris.utopia.common.view.RoleDialog;
@@ -31,8 +29,8 @@ import com.chris.utopia.entity.Role;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.entity.ThingClasses;
 import com.chris.utopia.module.home.presenter.ThingCreatePresenter;
+import com.chris.utopia.module.home.presenter.ThingCreatePresenterImpl;
 import com.gc.materialdesign.views.Slider;
-import com.google.inject.Inject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -40,50 +38,28 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import java.util.Calendar;
 import java.util.Date;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/2/2.
  */
-@ContentView(R.layout.activity_thing_create)
-public class ThingCreateActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener,
+public class ThingCreateActivity extends BaseActivity2 implements View.OnClickListener, View.OnFocusChangeListener,
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, ThingCreateActionView {
-    @InjectView(R.id.tcAct_layout)
     private View rootView;
-    @InjectView(R.id.tcAct_title_ti)
     private TextInputLayout nameTi;
-    @InjectView(R.id.tcAct_title_et)
     private EditText nameEt;
-    @InjectView(R.id.tcAct_desc_ti)
     private TextInputLayout descTi;
-    @InjectView(R.id.tcAct_desc_et)
     private EditText descEt;
-    @InjectView(R.id.tcAct_label_ti)
     private TextInputLayout labelTi;
-    @InjectView(R.id.tcAct_label_et)
     private EditText labelEt;
-    @InjectView(R.id.tcAct_role_ti)
     private TextInputLayout roleTi;
-    @InjectView(R.id.tcAct_role_et)
     private EditText roleEt;
-    @InjectView(R.id.tcAct_quadrant_ti)
     private TextInputLayout quadrantTi;
-    @InjectView(R.id.tcAct_quadrant_et)
     private EditText quadrantEt;
-    @InjectView(R.id.tcAct_begin_date_ti)
     private TextInputLayout fromDateTi;
-    @InjectView(R.id.tcAct_begin_date_et)
     private EditText fromDateEt;
-    @InjectView(R.id.tcAct_begin_time_ti)
     private TextInputLayout fromTimeTi;
-    @InjectView(R.id.tcAct_begin_time_et)
     private EditText fromTimeEt;
-    @InjectView(R.id.tcAct_prompting_cb)
     private AppCompatCheckBox promptingCb;
-    @InjectView(R.id.tcAct_progress_ti)
     private TextInputLayout progressTi;
-    @InjectView(R.id.tcAct_progress_et)
     private EditText progressEt;
 
     private Plan plan = null;
@@ -91,11 +67,11 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
 
     private MaterialDialog dialog;
 
-    @Inject
-    private ThingCreatePresenter presenter;
+    private ThingCreatePresenter presenter = new ThingCreatePresenterImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_thing_create);
         super.onCreate(savedInstanceState);
 
         plan = (Plan)getIntent().getSerializableExtra("PLAN");
@@ -107,6 +83,26 @@ public class ThingCreateActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void initView() {
+
+        rootView = findViewById(R.id.tcAct_layout);
+        nameTi = (TextInputLayout) findViewById(R.id.tcAct_title_ti);
+        nameEt = (EditText) findViewById(R.id.tcAct_title_et);
+        descTi = (TextInputLayout) findViewById(R.id.tcAct_desc_ti);
+        descEt = (EditText) findViewById(R.id.tcAct_desc_et);
+        labelTi = (TextInputLayout) findViewById(R.id.tcAct_label_ti);
+        labelEt = (EditText) findViewById(R.id.tcAct_label_et);
+        roleTi = (TextInputLayout) findViewById(R.id.tcAct_role_ti);
+        roleEt = (EditText) findViewById(R.id.tcAct_role_et);
+        quadrantTi = (TextInputLayout) findViewById(R.id.tcAct_quadrant_ti);
+        quadrantEt = (EditText) findViewById(R.id.tcAct_quadrant_et);
+        fromDateTi = (TextInputLayout) findViewById(R.id.tcAct_begin_date_ti);
+        fromDateEt = (EditText) findViewById(R.id.tcAct_begin_date_et);
+        fromTimeTi = (TextInputLayout) findViewById(R.id.tcAct_begin_time_ti);
+        fromTimeEt = (EditText) findViewById(R.id.tcAct_begin_time_et);
+        promptingCb = (AppCompatCheckBox) findViewById(R.id.tcAct_prompting_cb);
+        progressTi = (TextInputLayout) findViewById(R.id.tcAct_progress_ti);
+        progressEt = (EditText) findViewById(R.id.tcAct_progress_et);
+
         setToolBarTitle();
         presenter.setActionView(this);
         if(plan != null || (thing != null && thing.getPlanId() != null)) {

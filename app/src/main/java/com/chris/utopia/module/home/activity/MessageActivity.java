@@ -13,35 +13,30 @@ import android.view.View;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.adapter.MessageAdapter;
 import com.chris.utopia.module.home.presenter.MessagePresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.presenter.MessagePresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-
 /**
  * Created by Chris on 2016/2/27.
  */
-@ContentView(R.layout.activity_message)
-public class MessageActivity extends BaseActivity implements MessageActionView {
+public class MessageActivity extends BaseActivity2 implements MessageActionView {
 
-    @InjectView(R.id.messageAct_data_rv)
     private RecyclerView dataRv;
 
     private MessageAdapter adapter;
     private List<Thing> thingList = new ArrayList<>();
 
-    @Inject
-    private MessagePresenter presenter;
+    private MessagePresenter presenter = new MessagePresenterImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_message);
         super.onCreate(savedInstanceState);
 
         initView();
@@ -50,6 +45,7 @@ public class MessageActivity extends BaseActivity implements MessageActionView {
     }
 
     public void initView() {
+        dataRv = (RecyclerView) findViewById(R.id.messageAct_data_rv);
         setToolBarTitle();
 
         adapter = new MessageAdapter(getContext(), thingList);

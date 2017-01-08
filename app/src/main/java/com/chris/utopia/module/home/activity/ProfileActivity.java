@@ -19,10 +19,10 @@ import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
-import com.chris.utopia.common.view.BaseActivity;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
+import com.chris.utopia.module.home.adapter.SettingAdapter;
 import com.chris.utopia.module.home.presenter.MePresenter;
 import com.chris.utopia.module.home.presenter.MePresnterImpl;
 import com.chris.utopia.module.role.activity.RoleActivity;
@@ -32,12 +32,9 @@ import com.trello.rxlifecycle.LifecycleProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-
 /**
  * Created by Chris on 2016/2/29.
  */
-@ContentView(R.layout.activity_profile)
 public class ProfileActivity extends BaseFragment implements MeActionView {
 
     private RecyclerView dataRv;
@@ -45,7 +42,7 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
 
     private String userName;
     private ProfileAdapter adapter;
-    private ProfileAdapter settingAdapter;
+    private SettingAdapter settingAdapter;
     private List<String> dataList = new ArrayList<>();
     private List<Integer> resList = new ArrayList<>();
     private List<String> settingList = new ArrayList<>();
@@ -144,8 +141,8 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
         settingRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager2.getOrientation()));
         settingRv.setLayoutManager(layoutManager2);
-        settingAdapter = new ProfileAdapter(getContext(), settingList, settingResList);
-        settingAdapter.setOnItemClickListener(new ProfileAdapter.OnItemClickListener() {
+        settingAdapter = new SettingAdapter(getContext(), settingList, settingResList);
+        settingAdapter.setOnItemClickListener(new SettingAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
                 switch (position) {

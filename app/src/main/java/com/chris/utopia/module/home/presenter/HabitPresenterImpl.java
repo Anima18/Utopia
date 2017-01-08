@@ -7,7 +7,7 @@ import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.activity.MyHabitActionView;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,8 +20,13 @@ public class HabitPresenterImpl implements HabitPresenter {
     private MyHabitActionView actionView;
     private Context mContext;
 
-    @Inject
     private ThingInteractor interactor;
+
+    public HabitPresenterImpl(MyHabitActionView actionView) {
+        this.actionView = actionView;
+        this.mContext =actionView.getContext();
+        interactor = new ThingInteractorImpl();
+    }
 
     @Override
     public void setActionView(MyHabitActionView actionView) {

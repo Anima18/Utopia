@@ -15,9 +15,8 @@ import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Plan;
 import com.chris.utopia.module.home.adapter.WeekPlanAdapter;
 import com.chris.utopia.module.home.presenter.WeekPlanPresenter;
-
+import com.chris.utopia.module.home.presenter.WeekPlanPresenterImpl;
 import com.chris.utopia.module.plan.activity.PlanCreateActivity;
-import com.google.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,7 @@ public class WeekPlanFragment extends BaseFragment implements WeekPlanActionView
     private WeekPlanAdapter adapter;
     private List<Plan> planList = new ArrayList<>();
 
-    @Inject
-    private WeekPlanPresenter presenter;
+    private WeekPlanPresenter presenter = new WeekPlanPresenterImpl(this);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

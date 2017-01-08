@@ -11,16 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.view.BaseFragment;
 import com.chris.utopia.entity.Plan;
 import com.chris.utopia.module.plan.adapter.PlanAdapter;
 import com.chris.utopia.module.plan.presenter.PlanPresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.plan.presenter.PlanPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +34,7 @@ public class PlanFragment extends BaseFragment implements View.OnClickListener, 
     private PlanAdapter adapter;
     private List<Plan> planList = new ArrayList<>();
 
-    @Inject
-    private PlanPresenter presenter;
+    private PlanPresenter presenter = new PlanPresenterImpl();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

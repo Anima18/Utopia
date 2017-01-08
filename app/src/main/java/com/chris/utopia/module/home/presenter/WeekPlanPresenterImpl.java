@@ -11,8 +11,9 @@ import com.chris.utopia.entity.Plan;
 import com.chris.utopia.entity.Thing;
 import com.chris.utopia.module.home.activity.WeekPlanActionView;
 import com.chris.utopia.module.home.interactor.ThingInteractor;
+import com.chris.utopia.module.home.interactor.ThingInteractorImpl;
 import com.chris.utopia.module.plan.interactor.PlanInteractor;
-import com.google.inject.Inject;
+import com.chris.utopia.module.plan.interactor.PlanInteractorImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -25,10 +26,15 @@ public class WeekPlanPresenterImpl implements WeekPlanPresenter {
     private WeekPlanActionView actionView;
     private Context mContext;
 
-    @Inject
     private PlanInteractor interactor;
-    @Inject
     private ThingInteractor thingInteractor;
+
+    public WeekPlanPresenterImpl(WeekPlanActionView actionView) {
+        this.actionView = actionView;
+        this.mContext = actionView.getContext();
+        interactor = new PlanInteractorImpl();
+        thingInteractor = new ThingInteractorImpl();
+    }
 
     @Override
     public void setActionView(WeekPlanActionView actionView) {

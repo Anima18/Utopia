@@ -12,22 +12,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.chris.utopia.R;
-import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.Role;
 import com.chris.utopia.module.role.adapter.RoleAdapter;
 import com.chris.utopia.module.role.presenter.RolePresenter;
-import com.google.inject.Inject;
+import com.chris.utopia.module.role.presenter.RolePresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.inject.ContentView;
-
 /**
  * Created by Chris on 2015/8/16.
  */
-@ContentView(R.layout.fragment_role)
-public class RoleActivity extends BaseActivity implements View.OnClickListener, RoleActionView {
+public class RoleActivity extends BaseActivity2 implements View.OnClickListener, RoleActionView {
 
     private CoordinatorLayout rootView;
     private RecyclerView roleRecyclerView;
@@ -35,11 +32,11 @@ public class RoleActivity extends BaseActivity implements View.OnClickListener, 
     private List<Role> rolelist = new ArrayList<>();
     private RoleAdapter adapter;
 
-    @Inject
-    private RolePresenter presenter;
+    private RolePresenter presenter = new RolePresenterImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.fragment_role);
         super.onCreate(savedInstanceState);
         initView();
         initEvent();

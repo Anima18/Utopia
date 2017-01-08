@@ -10,6 +10,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ import rx.subjects.BehaviorSubject;
 /**
  * Created by Chris on 2015/9/2.
  */
-public abstract class BaseActivity extends RoboAppCompatActivity implements BaseActionView, LifecycleProvider<ActivityEvent> {
+public abstract class BaseActivity extends AppCompatActivity implements BaseActionView, LifecycleProvider<ActivityEvent> {
     protected Toolbar toolbar;
     protected ProgressDialog progressDialog;
     private View rootView;
