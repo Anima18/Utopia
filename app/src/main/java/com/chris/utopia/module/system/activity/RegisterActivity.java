@@ -14,8 +14,11 @@ import android.widget.TextView;
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.system.presenter.RegisterPresenter;
+import com.chris.utopia.module.system.presenter.RegisterPresenterImpl;
+import com.google.inject.Exposed;
 import com.google.inject.Inject;
 
 import roboguice.inject.ContentView;
@@ -25,10 +28,9 @@ import roboguice.inject.InjectView;
 /**
  * Created by Chris on 2016/1/17.
  */
-@ContentView(R.layout.activity_register)
-public class RegisterActivity extends BaseActivity implements View.OnClickListener, RegisterActionView {
+public class RegisterActivity extends BaseActivity2 implements View.OnClickListener, RegisterActionView {
 
-    @InjectView(R.id.registerAct_layout)
+    /*@InjectView(R.id.registerAct_layout)
     private LinearLayout rootLayout;
     @InjectView(R.id.registerAct_name_ti)
     private TextInputLayout nameTextInput;
@@ -45,18 +47,37 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @InjectView(R.id.registerAct_register_bt)
     private Button registerButton;
     @InjectView(R.id.tv_registerAct_login)
+    private TextView loginTv;*/
+
+    private LinearLayout rootLayout;
+    private TextInputLayout nameTextInput;
+    private EditText nameEt;
+    private TextInputLayout passwordTextInput;
+    private EditText passwordEt;
+    private TextInputLayout emailTextInput;
+    private EditText emailEt;
+    private Button registerButton;
     private TextView loginTv;
 
-    @Inject
-    private RegisterPresenter presenter;
+    private RegisterPresenter presenter = new RegisterPresenterImpl(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_register);
         super.onCreate(savedInstanceState);
         initView();
         initEvent();
     }
 
     public void initView() {
+        rootLayout = (LinearLayout) findViewById(R.id.registerAct_layout);
+        nameTextInput =(TextInputLayout) findViewById(R.id.registerAct_name_ti);
+        nameEt = (EditText) findViewById(R.id.registerAct_name_et);
+        passwordTextInput =(TextInputLayout) findViewById(R.id.registerAct_password_ti);
+        passwordEt = (EditText) findViewById(R.id.registerAct_password_et);
+        emailTextInput =(TextInputLayout) findViewById(R.id.registerAct_email_ti);
+        emailEt = (EditText) findViewById(R.id.registerAct_email_et);
+        registerButton = (Button) findViewById(R.id.registerAct_register_bt);
+        loginTv = (TextView) findViewById(R.id.tv_registerAct_login);
     }
 
     public void initEvent() {

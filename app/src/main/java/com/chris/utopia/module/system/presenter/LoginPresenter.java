@@ -9,5 +9,4 @@ import com.chris.utopia.module.system.activity.LoginActionView;
 public interface LoginPresenter {
     void setActionView(LoginActionView actionView);
     void login(User user);
-    void initData();
 }

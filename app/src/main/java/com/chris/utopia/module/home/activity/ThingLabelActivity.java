@@ -46,7 +46,7 @@ public class ThingLabelActivity extends BaseActivity implements LabelActionView,
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         initData();
     }

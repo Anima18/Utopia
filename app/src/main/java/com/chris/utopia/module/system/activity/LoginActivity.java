@@ -13,8 +13,10 @@ import android.widget.TextView;
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.system.presenter.LoginPresenter;
+import com.chris.utopia.module.system.presenter.LoginPresenterImpl;
 import com.google.inject.Inject;
 
 import roboguice.inject.ContentView;
@@ -23,29 +25,21 @@ import roboguice.inject.InjectView;
 /**
  * Created by Chris on 2016/1/17.
  */
-@ContentView(R.layout.activity_login)
-public class LoginActivity extends BaseActivity implements View.OnClickListener, LoginActionView {
+public class LoginActivity extends BaseActivity2 implements View.OnClickListener, LoginActionView {
 
-    @InjectView(R.id.loginAct_layout)
     private LinearLayout rootView;
-    @InjectView(R.id.loginAct_name_ti)
     private TextInputLayout nameTi;
-    @InjectView(R.id.loginAct_name_et)
     private EditText nameEt;
-    @InjectView(R.id.loginAct_password_ti)
     private TextInputLayout passwordTi;
-    @InjectView(R.id.loginAct_password_et)
     private EditText passwordEt;
-    @InjectView(R.id.loginAct_login_bt)
     private Button loginButton;
-    @InjectView(R.id.loginAct_register_tv)
     private TextView registerTv;
 
-    @Inject
-    private LoginPresenter presenter;
+    private LoginPresenter presenter = new LoginPresenterImpl(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_login);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
@@ -53,6 +47,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     public void initView() {
+        rootView = (LinearLayout)findViewById(R.id.loginAct_layout);
+        nameTi = (TextInputLayout) findViewById(R.id.loginAct_name_ti);
+        nameEt = (EditText) findViewById(R.id.loginAct_name_et);
+        passwordTi = (TextInputLayout) findViewById(R.id.loginAct_password_ti);
+        passwordEt = (EditText) findViewById(R.id.loginAct_password_et);
+        loginButton = (Button) findViewById(R.id.loginAct_login_bt);
+        registerTv = (TextView) findViewById(R.id.loginAct_register_tv);
     }
 
     public void initEvent() {

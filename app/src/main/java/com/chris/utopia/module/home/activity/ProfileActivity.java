@@ -26,6 +26,7 @@ import com.chris.utopia.module.home.adapter.ProfileAdapter;
 import com.chris.utopia.module.home.presenter.MePresenter;
 import com.chris.utopia.module.home.presenter.MePresnterImpl;
 import com.chris.utopia.module.role.activity.RoleActivity;
+import com.chris.utopia.module.system.activity.LoginActivity;
 import com.trello.rxlifecycle.LifecycleProvider;
 
 import java.util.ArrayList;
@@ -40,11 +41,15 @@ import roboguice.inject.ContentView;
 public class ProfileActivity extends BaseFragment implements MeActionView {
 
     private RecyclerView dataRv;
+    private RecyclerView settingRv;
 
     private String userName;
     private ProfileAdapter adapter;
+    private ProfileAdapter settingAdapter;
     private List<String> dataList = new ArrayList<>();
     private List<Integer> resList = new ArrayList<>();
+    private List<String> settingList = new ArrayList<>();
+    private List<Integer> settingResList = new ArrayList<>();
     private MaterialDialog resetPwdDialog;
     private View view;
 
@@ -64,6 +69,7 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
 
     public void initView(View view) {
         dataRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv);
+        settingRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv2);
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.activity_toolBar);
 
         String userName = SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "");
@@ -90,8 +96,7 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
         resList.add(R.drawable.ic_time);
         dataList.add("时间分析");
         resList.add(R.drawable.ic_analyze);
-        dataList.add("数据同步");
-        resList.add(R.drawable.ic_palette);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         dataRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager.getOrientation()));
@@ -126,13 +131,39 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
                         startActivity(intent2);
                         getActivity().overridePendingTransition(R.anim.push_in_right, R.anim.push_out_left);
                         break;
-                    case 5:
-                        presenter.checkDataVersion();
-                        break;
                 }
             }
         });
         dataRv.setAdapter(adapter);
+
+
+        settingList.add("数据同步");
+        settingResList.add(R.drawable.ic_palette);
+        settingList.add("退出");
+        settingResList.add(R.drawable.ic_palette);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
+        settingRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager2.getOrientation()));
+        settingRv.setLayoutManager(layoutManager2);
+        settingAdapter = new ProfileAdapter(getContext(), settingList, settingResList);
+        settingAdapter.setOnItemClickListener(new ProfileAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                switch (position) {
+                    case 0:
+                        presenter.checkDataVersion();
+                        break;
+                    case 1:
+                        SharedPrefsUtil.clear(getContext());
+                        Intent intent0 = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent0);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(R.anim.push_in_left, R.anim.push_out_right);
+                        break;
+
+                }
+            }
+        });
+        settingRv.setAdapter(settingAdapter);
     }
 
     public void initEvent() {}

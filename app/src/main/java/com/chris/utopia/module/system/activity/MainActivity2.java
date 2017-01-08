@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.chris.utopia.R;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.view.BaseActivity;
+import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.module.home.activity.HomeFragment;
 import com.chris.utopia.module.home.activity.MessageActivity;
 import com.chris.utopia.module.home.activity.ProfileActivity;
@@ -24,8 +25,7 @@ import roboguice.inject.ContentView;
 /**
  * Created by jianjianhong on 2016/12/2.
  */
-@ContentView(R.layout.activity_main2)
-public class MainActivity2 extends BaseActivity {
+public class MainActivity2 extends BaseActivity2 {
     private BottomNavigationView navigationView;
     private Fragment fragment1;
     private Fragment fragment2;
@@ -35,6 +35,7 @@ public class MainActivity2 extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setLayoutId(R.layout.activity_main2);
         super.onCreate(savedInstanceState);
 
         navigationView = (BottomNavigationView)findViewById(R.id.bottom_nav);

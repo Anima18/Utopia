@@ -30,14 +30,20 @@ import rx.subjects.BehaviorSubject;
 /**
  * Created by Chris on 2015/9/2.
  */
-public abstract class BaseActivity extends RoboAppCompatActivity implements BaseActionView, LifecycleProvider<ActivityEvent> {
+public abstract class BaseActivity2 extends RoboAppCompatActivity implements BaseActionView, LifecycleProvider<ActivityEvent> {
     protected Toolbar toolbar;
     protected ProgressDialog progressDialog;
     private View rootView;
+    private int layoutId;
+
+    protected void setLayoutId(int layoutId) {
+        this.layoutId = layoutId;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(layoutId);
         initStatusBar();
         initToolBar();
         ViewGroup content = (ViewGroup)findViewById(android.R.id.content);
@@ -68,7 +74,7 @@ public abstract class BaseActivity extends RoboAppCompatActivity implements Base
     }
     @Override
     public Context getContext() {
-        return BaseActivity.this;
+        return BaseActivity2.this;
     }
 
     @Override

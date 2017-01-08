@@ -121,4 +121,9 @@ public class BaseFragment extends RoboFragment implements BaseActionView, Lifecy
         lifecycleSubject.onNext(ActivityEvent.DESTROY);
         super.onDestroy();
     }
+
+    @Override
+    public LifecycleProvider getLifecycleProvider() {
+        return this;
+    }
 }

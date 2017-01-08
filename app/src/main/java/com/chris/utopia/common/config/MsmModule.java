@@ -53,8 +53,8 @@ public class MsmModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(SystemInteractor.class).to(SystemInteractorImpl.class);
-        bind(RegisterPresenter.class).to(RegisterPresenterImpl.class);
-        bind(LoginPresenter.class).to(LoginPresenterImpl.class);
+        //bind(RegisterPresenter.class).to(RegisterPresenterImpl.class);
+        //bind(LoginPresenter.class).to(LoginPresenterImpl.class);
 
         bind(IdeaCreatePresenter.class).to(IdeaCreatePresenterImpl.class);
         bind(IdeaInteractor.class).to(IdeaInteractorImpl.class);
