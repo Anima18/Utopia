@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseActi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initStatusBar();
+        //initStatusBar();
         initToolBar();
         ViewGroup content = (ViewGroup)findViewById(android.R.id.content);
         rootView = content.getChildAt(0);

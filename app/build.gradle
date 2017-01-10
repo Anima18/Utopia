@@ -54,4 +54,5 @@ dependencies {
     compile 'com.trello:rxlifecycle:1.0'
     compile 'com.trello:rxlifecycle-android:1.0'
     compile 'com.trello:rxlifecycle-components:1.0'
+    compile files('libs/picasso-2.5.3.jar')
 }

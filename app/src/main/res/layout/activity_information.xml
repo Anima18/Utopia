@@ -9,7 +9,7 @@
 
     <include layout="@layout/toolbar_common"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/profile_image"
         android:layout_width="96dp"
         android:layout_height="96dp"
@@ -20,15 +20,6 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop" />
 
-  <!--  <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_info_camera"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_camera"
-        android:background="@color/primary"
-        android:layout_alignRight="@id/profile_image"
-        android:layout_alignBottom="@id/profile_image"
-        android:scaleType="centerCrop" />-->
 
     <LinearLayout
         android:id="@+id/view_info_name"

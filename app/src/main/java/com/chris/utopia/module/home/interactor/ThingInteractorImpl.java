@@ -69,6 +69,10 @@ public class ThingInteractorImpl implements ThingInteractor {
             Where<Thing, String> where = db.where();
             where.isNotNull("id");
             if(thing != null) {
+                if(StringUtil.isNotEmpty(thing.getId())) {
+                    where.and().eq("id", thing.getId());
+                }
+
                 if(StringUtil.isNotEmpty(thing.getUserId())) {
                     where.and().eq("USER_ID", thing.getUserId());
                 }

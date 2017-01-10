@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,9 +27,12 @@ import com.chris.utopia.R;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseActivity2;
+import com.chris.utopia.common.view.CircleTransform;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.home.presenter.ProfilePresenter;
 import com.chris.utopia.module.home.presenter.ProfilePresenterImpl;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -44,7 +48,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class InformationActivity extends BaseActivity2 implements ProfileActionView, View.OnClickListener {
 
-    private CircleImageView profileIv;
+    private ImageView profileIv;
     private TextInputLayout nameTi;
     private EditText nameEt;
     private TextInputLayout emailTi;
@@ -74,7 +78,7 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
     }
 
     private void initView() {
-        profileIv = (CircleImageView) findViewById(R.id.profile_image);
+        profileIv = (ImageView) findViewById(R.id.profile_image);
         sexGroup = (RadioGroup) findViewById(R.id.rg_info_sex);
         nameTi = (TextInputLayout) findViewById(R.id.ti_info_name);
         emailTi = (TextInputLayout) findViewById(R.id.ti_info_email);
@@ -89,11 +93,11 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
 
     public void initData() {
         String filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath, CommonUtil.getBitmapOption(10));
+        /*Bitmap bitmap = BitmapFactory.decodeFile(filePath, CommonUtil.getBitmapOption(10));
         if(bitmap != null) {
             profileIv.setImageBitmap(bitmap);
-        }
-
+        }*/
+        Picasso.with(this).load(new File(filePath)).transform(new CircleTransform()).fit().error(R.drawable.boy).into(profileIv);
         profilePresenter.setActionView(this);
         profilePresenter.loadUserInfo();
     }
@@ -290,12 +294,15 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
         File f = new File(getContext().getFilesDir().getPath(), "chris.jpg");
         if (f.exists()) {
             f.delete();
+            Picasso.with(getContext()).invalidate(f);
         }
         try {
             FileOutputStream out = new FileOutputStream(f);
             myBitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
+            String filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
+            Picasso.with(this).load(new File(filePath)).transform(new CircleTransform()).fit().error(R.drawable.boy).into(profileIv);
             Log.i("Chris", "头像已经保存");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block

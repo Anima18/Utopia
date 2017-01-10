@@ -103,7 +103,9 @@ public class LoginActivity extends BaseActivity2 implements View.OnClickListener
 
     @Override
     public void toMainPage() {
-        this.progressDialog.dismiss();
+        if(progressDialog != null) {
+            this.progressDialog.dismiss();
+        }
         this.finish();
         Intent intent = new Intent(getContext(), MainActivity2.class);
         startActivity(intent);

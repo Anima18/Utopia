@@ -20,6 +20,7 @@ import com.chris.utopia.common.constant.Constant;
 import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.view.BaseFragment;
+import com.chris.utopia.common.view.CircleTransform;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
 import com.chris.utopia.module.home.adapter.SettingAdapter;
@@ -27,8 +28,10 @@ import com.chris.utopia.module.home.presenter.MePresenter;
 import com.chris.utopia.module.home.presenter.MePresnterImpl;
 import com.chris.utopia.module.role.activity.RoleActivity;
 import com.chris.utopia.module.system.activity.LoginActivity;
+import com.squareup.picasso.Picasso;
 import com.trello.rxlifecycle.LifecycleProvider;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +51,8 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
     private List<String> settingList = new ArrayList<>();
     private List<Integer> settingResList = new ArrayList<>();
     private MaterialDialog resetPwdDialog;
+    private ImageView imageView;
+    private String filePath ;
     private View view;
 
     private MePresenter presenter = new MePresnterImpl(this);
@@ -64,6 +69,12 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Picasso.with(getContext()).load(new File(filePath)).fit().centerInside().error(R.drawable.boy).into(imageView);
+    }
+
     public void initView(View view) {
         dataRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv);
         settingRv = (RecyclerView) view.findViewById(R.id.profileAct_menu_rv2);
@@ -72,12 +83,8 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
         String userName = SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "");
         toolbar.setTitle(userName);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.pcAct_title_layout);
-        String filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath, CommonUtil.getBitmapOption(3));
-        if(bitmap != null) {
-            imageView.setImageBitmap(bitmap);
-        }
+        imageView = (ImageView) view.findViewById(R.id.pcAct_title_layout);
+        filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
     }
 
     public void initData() {
@@ -135,9 +142,9 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
 
 
         settingList.add("数据同步");
-        settingResList.add(R.drawable.ic_palette);
+        settingResList.add(R.drawable.ic_sync);
         settingList.add("退出");
-        settingResList.add(R.drawable.ic_palette);
+        settingResList.add(R.drawable.ic_exit);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
         settingRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.DIVIDER_TYPE_INSET, layoutManager2.getOrientation()));
         settingRv.setLayoutManager(layoutManager2);
