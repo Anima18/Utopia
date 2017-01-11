@@ -104,7 +104,9 @@ public abstract class BaseActivity2 extends AppCompatActivity implements BaseAct
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                progressDialog.cancel();
+                if(progressDialog != null) {
+                    progressDialog.cancel();
+                }
             }
         }, 500);
     }

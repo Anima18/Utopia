@@ -24,15 +24,16 @@ import android.widget.RadioGroup;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
-import com.chris.utopia.common.util.CommonUtil;
+import com.chris.utopia.common.constant.Constant;
+import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.util.StringUtil;
 import com.chris.utopia.common.view.BaseActivity2;
 import com.chris.utopia.common.view.CircleTransform;
 import com.chris.utopia.entity.User;
 import com.chris.utopia.module.home.presenter.ProfilePresenter;
 import com.chris.utopia.module.home.presenter.ProfilePresenterImpl;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
+import com.trello.rxlifecycle.android.ActivityEvent;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -40,8 +41,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by jianjianhong on 2016/12/7.
@@ -64,6 +63,8 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
     private User user;
     private Bitmap myBitmap;
     private byte[] mContent;
+    private String fileName;
+    private String filePath;
 
     private ProfilePresenter profilePresenter = new ProfilePresenterImpl();
 
@@ -92,12 +93,14 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
     }
 
     public void initData() {
-        String filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
-        /*Bitmap bitmap = BitmapFactory.decodeFile(filePath, CommonUtil.getBitmapOption(10));
-        if(bitmap != null) {
-            profileIv.setImageBitmap(bitmap);
-        }*/
-        Picasso.with(this).load(new File(filePath)).transform(new CircleTransform()).fit().error(R.drawable.boy).into(profileIv);
+        fileName = SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "")+".jpg";
+        filePath = getContext().getFilesDir().getPath()+"/"+fileName;
+        if(!new File(filePath).exists()) {
+            Picasso.with(this).load(R.drawable.boy).transform(new CircleTransform()).fit().centerCrop().into(profileIv);
+        }else {
+            Picasso.with(this).load(new File(filePath)).transform(new CircleTransform()).fit().centerCrop().into(profileIv);
+        }
+
         profilePresenter.setActionView(this);
         profilePresenter.loadUserInfo();
     }
@@ -192,76 +195,62 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
                                     getImage.setType("image/jpeg");
                                     startActivityForResult(getImage, 0);
                                 }
-
+                                showProgress("正在处理中，请稍后...");
                             }
                         }).create();
+                dlg.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        hideProgress();
+                    }
+                });
                 dlg.show();
                 break;
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
+        new Thread(new Runnable(){
+            public void run(){
+                ContentResolver contentResolver  =getContentResolver();
+                if(requestCode==0){
 
-        ContentResolver contentResolver  =getContentResolver();
-        /**
-         * 因为两种方式都用到了startActivityForResult方法，这个方法执行完后都会执行onActivityResult方法，
-         * 所以为了区别到底选择了那个方式获取图片要进行判断，这里的requestCode跟startActivityForResult里面第二个参数对应
-         */
+                    //方式一
+                    try {
+                        //获得图片的uri
+                        Uri orginalUri = data.getData();
+                        //将图片内容解析成字节数组
+                        mContent = readStream(contentResolver.openInputStream(Uri.parse(orginalUri.toString())));
+                        //将字节数组转换为ImageView可调用的Bitmap对象
+                        myBitmap  =getPicFromBytes(mContent,null);
+                        ////把得到的图片绑定在控件上显示
+                        //profileIv.setImageBitmap(myBitmap);
+                        saveBitmap();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // TODO: handle exception
+                    }
 
-        if(requestCode==0){
+                }else if(requestCode==1){
+                    try {
+                        Bundle extras = data.getExtras();
+                        myBitmap = (Bitmap) extras.get("data");
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        myBitmap.compress(Bitmap.CompressFormat.JPEG , 100, baos);
+                        mContent = baos.toByteArray();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // TODO: handle exception
+                    }
+                    //profileIv.setImageBitmap(myBitmap);
+                    saveBitmap();
+                }
+            }}
+        ).start();
 
-            //方式一
-            try {
-                 //获得图片的uri
-                Uri orginalUri = data.getData();
-                  //将图片内容解析成字节数组
-                mContent = readStream(contentResolver.openInputStream(Uri.parse(orginalUri.toString())));
-                 //将字节数组转换为ImageView可调用的Bitmap对象
-                myBitmap  =getPicFromBytes(mContent,null);
-                  ////把得到的图片绑定在控件上显示
-                profileIv.setImageBitmap(myBitmap);
-                saveBitmap();
-            } catch (Exception e) {
-                e.printStackTrace();
-                // TODO: handle exception
-            }
-
-            //方式二
-            /*try {
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-                Cursor cursor = getContentResolver().query(selectedImage,
-                        filePathColumn, null, null, null);
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String picturePath = cursor.getString(columnIndex);
-                cursor.close();
-                profileIv.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }*/
-
-
-        }else if(requestCode==1){
-            try {
-                Bundle extras = data.getExtras();
-                myBitmap = (Bitmap) extras.get("data");
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                myBitmap.compress(Bitmap.CompressFormat.JPEG , 100, baos);
-                mContent = baos.toByteArray();
-            } catch (Exception e) {
-                e.printStackTrace();
-                // TODO: handle exception
-            }
-            profileIv.setImageBitmap(myBitmap);
-            saveBitmap();
-        }
 
     }
 
@@ -291,7 +280,7 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
     }
 
     public void saveBitmap() {
-        File f = new File(getContext().getFilesDir().getPath(), "chris.jpg");
+        File f = new File(getContext().getFilesDir().getPath(), fileName);
         if (f.exists()) {
             f.delete();
             Picasso.with(getContext()).invalidate(f);
@@ -301,8 +290,16 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
             myBitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
-            String filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
-            Picasso.with(this).load(new File(filePath)).transform(new CircleTransform()).fit().error(R.drawable.boy).into(profileIv);
+            runOnUiThread(new Runnable(){
+
+                @Override
+                public void run() {
+                    //更新UI
+                    Picasso.with(getContext()).load(new File(filePath)).transform(new CircleTransform()).fit().centerCrop().error(R.drawable.boy).into(profileIv);
+                }
+
+            });
+
             Log.i("Chris", "头像已经保存");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -310,6 +307,16 @@ public class InformationActivity extends BaseActivity2 implements ProfileActionV
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }finally {
+            runOnUiThread(new Runnable(){
+
+                @Override
+                public void run() {
+                    hideProgress();
+                }
+
+            });
+
         }
 
     }

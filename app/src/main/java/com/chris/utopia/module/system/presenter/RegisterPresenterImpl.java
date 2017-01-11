@@ -40,7 +40,7 @@ public class RegisterPresenterImpl implements RegisterPresenter {
 
     @Override
     public void register(final User user) {
-        actionView.showProgress("正在注册中，请稍等...");
+        /*actionView.showProgress("正在注册中，请稍等...");
         user.setUserId(StringUtil.getUUID());
         Gson gson = new Gson();
         String userStr = gson.toJson(user);
@@ -73,15 +73,15 @@ public class RegisterPresenterImpl implements RegisterPresenter {
                     public void onCompleted() {
                         actionView.hideProgress();
                     }
-                });
+                });*/
 
-        /*try {
+        try {
             user.setUserId(StringUtil.getUUID());
             interactor.addUser(user);
             actionView.toLoginPage("注册成功");
         } catch (SQLException e) {
             e.printStackTrace();
             actionView.showRegisterMessage("注册失败");
-        }*/
+        }
     }
 }

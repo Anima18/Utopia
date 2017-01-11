@@ -48,6 +48,8 @@ public class LoginPresenterImpl implements LoginPresenter {
                 SharedPrefsUtil.putStringValue(context, Constant.SP_KEY_LOGIN_USER_NAME, user1.getName());
                 SharedPrefsUtil.putStringValue(context, Constant.SP_KEY_LOGIN_USER_EMAIL, user1.getEmail());
                 actionView.toMainPage();
+            }else {
+                actionView.showLoginMessage("用户名或密码有误");
             }
         } catch (SQLException e) {
             e.printStackTrace();

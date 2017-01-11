@@ -1,8 +1,6 @@
 package com.chris.utopia.module.home.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +15,8 @@ import android.widget.ImageView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.utopia.R;
 import com.chris.utopia.common.constant.Constant;
-import com.chris.utopia.common.util.CommonUtil;
 import com.chris.utopia.common.util.SharedPrefsUtil;
 import com.chris.utopia.common.view.BaseFragment;
-import com.chris.utopia.common.view.CircleTransform;
 import com.chris.utopia.common.view.DividerItemDecoration;
 import com.chris.utopia.module.home.adapter.ProfileAdapter;
 import com.chris.utopia.module.home.adapter.SettingAdapter;
@@ -72,7 +68,11 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
     @Override
     public void onResume() {
         super.onResume();
-        Picasso.with(getContext()).load(new File(filePath)).fit().centerInside().error(R.drawable.boy).into(imageView);
+        if(!new File(filePath).exists()) {
+            Picasso.with(getContext()).load(R.drawable.boy).fit().centerCrop().into(imageView);
+        }else {
+            Picasso.with(getContext()).load(new File(filePath)).fit().centerCrop().into(imageView);
+        }
     }
 
     public void initView(View view) {
@@ -84,7 +84,7 @@ public class ProfileActivity extends BaseFragment implements MeActionView {
         toolbar.setTitle(userName);
 
         imageView = (ImageView) view.findViewById(R.id.pcAct_title_layout);
-        filePath = getContext().getFilesDir().getPath()+"/chris.jpg";
+        filePath = getContext().getFilesDir().getPath()+"/"+SharedPrefsUtil.getStringValue(getContext(), Constant.SP_KEY_LOGIN_USER_NAME, "")+".jpg";
     }
 
     public void initData() {

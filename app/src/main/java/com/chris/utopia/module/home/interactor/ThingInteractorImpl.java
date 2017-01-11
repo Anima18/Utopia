@@ -303,6 +303,7 @@ public class ThingInteractorImpl implements ThingInteractor {
             sql.append(" OR t.period = '每周' ");
             sql.append(" AND t.what_day = '"+thing.getWhatDay()+"'");
             sql.append(" AND t.habit_status = 'ACTION' ");
+            sql.append(" AND t.USER_ID = '"+ thing.getUserId()+"' ");
 
             Log.i("findCarton", "Sql:" + sql.toString());
             rawResults =
